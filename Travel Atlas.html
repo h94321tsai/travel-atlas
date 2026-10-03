@@ -151,6 +151,31 @@
   .d-chips{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 4px;}
   .d-chip{font-family:"Space Mono",monospace;font-size:.72rem;color:#c3cada;background:var(--glass);border:1px solid var(--line);
     border-radius:20px;padding:7px 13px;letter-spacing:.03em;}
+  /* 內容頁 tab 切換 */
+  .d-tabs{display:flex;gap:8px;position:sticky;top:-2px;z-index:6;background:linear-gradient(#0c111f,#0c111f 70%,transparent);
+    padding:14px 0 12px;margin:26px 0 6px;}
+  .dtab{flex:1;font-size:.9rem;font-weight:600;color:var(--muted);background:var(--glass);border:1px solid var(--line);
+    border-radius:12px;padding:12px;cursor:pointer;transition:.2s;}
+  .dtab:hover{color:var(--ink);}
+  .dtab.active{background:var(--gold);color:#000;border-color:var(--gold);}
+  .d-pane[hidden]{display:none;}
+  .d-pane{margin-top:8px;}
+  /* 收合共用 */
+  .collapse-h{cursor:pointer;user-select:none;}
+  .chev{margin-left:auto;transition:transform .25s;color:var(--muted);font-size:.8rem;}
+  .collapsible.collapsed .collapse-body{display:none;}
+  .collapsible.collapsed .chev{transform:rotate(-90deg);}
+  /* 收合:行程日 */
+  .itin-day .itin-dhead{align-items:center;}
+  .itin-day .dtitle-in{color:#fff;font-weight:600;margin-left:10px;font-size:.95rem;}
+  /* 收合:購物店家 */
+  .shop-group .gh{display:flex;align-items:center;gap:10px;}
+  .shop-group .gcount{font-family:"Space Mono",monospace;font-size:.62rem;color:var(--gold);background:rgba(245,195,122,.12);
+    border:1px solid rgba(245,195,122,.25);border-radius:20px;padding:1px 8px;}
+  /* 什麼時候買 */
+  .buy-timing{background:var(--glass);border:1px solid var(--line);border-radius:12px;padding:4px 14px;margin:0 0 18px;}
+  .buy-timing summary{cursor:pointer;font-size:.82rem;color:var(--gold);padding:9px 0;font-weight:600;}
+  .buy-timing .bt-body{font-size:.76rem;color:#aab2c7;line-height:1.8;padding:4px 0 10px;}
   .d-sec{margin-top:40px;}
   .d-sec h4{display:flex;align-items:center;gap:10px;font-size:1.05rem;font-weight:600;margin-bottom:18px;}
   .d-sec h4 .k{font-family:"Space Mono",monospace;font-size:.66rem;color:var(--faint);letter-spacing:.18em;margin-left:auto;text-transform:uppercase;}
@@ -310,8 +335,8 @@
     </div>
     <div class="tabs" id="tabs">
       <button class="active" data-f="all">All</button>
-      <button data-f="行程回顧">回顧</button>
       <button data-f="規劃中">規劃中</button>
+      <button data-f="行程回顧">回顧</button>
       <button data-f="許願池">許願池</button>
     </div>
   </div>
@@ -366,9 +391,9 @@
 
 <script src="./assets/globe.gl.min.js"></script>
 <script src="./assets/countries.js"></script>
-<script src="./assets/trips.js?v=1791046365"></script>
+<script src="./assets/trips.js?v=1791047113"></script>
 <script>
-// 資料來源：assets/trips.js?v=1791046365
+// 資料來源：assets/trips.js?v=1791047113
 const RAW = (window.__TRIPS__ || []);
 const TRIPS = RAW.map(t=>({
   ...t,
@@ -466,83 +491,78 @@ function openDetail(t){
   if(t.days)chips.push(`◷ ${t.days} 天`);
   if(t.people)chips.push(`👥 ${t.people} 人`);
   if(t.companions&&t.companions.length)chips.push(`🧑‍🤝‍🧑 ${t.companions.join('、')}`);
-  let itin='';
+  // ---- 行程(可收合一天一塊) ----
+  let itinHTML='';
   if(t.itineraryRich&&t.itineraryRich.length){
     const m=t.tripMeta||{};
-    const meta = (m.subtitle||m.flights||m.stays) ? `<div class="itin-meta">
-        ${m.subtitle?`<div class="im-sub">${m.subtitle}</div>`:''}
-        ${(m.flights||[]).map(x=>`<div class="im-row">✈️ ${x}</div>`).join('')}
-        ${(m.stays||[]).map(x=>`<div class="im-row">🏨 ${x}</div>`).join('')}
-      </div>` : '';
-    const days = t.itineraryRich.map(day=>{
+    const meta=(m.subtitle||m.flights||m.stays)?`<div class="itin-meta">${m.subtitle?`<div class="im-sub">${m.subtitle}</div>`:''}${(m.flights||[]).map(x=>`<div class="im-row">✈️ ${x}</div>`).join('')}${(m.stays||[]).map(x=>`<div class="im-row">🏨 ${x}</div>`).join('')}</div>`:'';
+    const days=t.itineraryRich.map(day=>{
       const sched=(day.schedule||[]).map(r=>`<tr><td>${r[0]||''}</td><td>${r[1]||''}</td></tr>`).join('');
-      const spots=(day.spots||[]).map(s=>{
-        const q=s.c?`https://www.google.com/maps/search/?api=1&query=${s.c}`:null;
-        const inner=`${s.n}${s.note?`<span class="sp-note"> · ${s.note}</span>`:''}`;
-        return q?`<a class="itin-spot" href="${q}" target="_blank" rel="noopener">📍 ${inner}</a>`:`<span class="itin-spot">📍 ${inner}</span>`;
-      }).join('');
-      return `<div class="itin-day">
-        <div class="itin-dhead"><span class="dd">${day.d||''}</span><span class="ddate">${day.date||''}</span></div>
-        <div class="dtitle">${day.title||''}</div>
-        ${(day.highlight||day.remind)?`<div class="itin-hl">${day.highlight?`<span class="hl-star">✦ ${day.highlight}</span>`:''}${day.remind?`<span class="hl-rem">⚠ ${day.remind}</span>`:''}</div>`:''}
-        ${sched?`<table class="d-itin sched">${sched}</table>`:''}
-        ${spots?`<div class="itin-spots">${spots}</div>`:''}
-      </div>`;
+      const spots=(day.spots||[]).map(s=>{const q=s.c?`https://www.google.com/maps/search/?api=1&query=${s.c}`:null;const inner=`${s.n}${s.note?`<span class="sp-note"> · ${s.note}</span>`:''}`;return q?`<a class="itin-spot" href="${q}" target="_blank" rel="noopener">📍 ${inner}</a>`:`<span class="itin-spot">📍 ${inner}</span>`;}).join('');
+      return `<div class="itin-day collapsible">
+        <div class="itin-dhead collapse-h"><span class="dd">${day.d||''}</span><span class="ddate">${day.date||''}</span><span class="dtitle-in">${day.title||''}</span><span class="chev">▾</span></div>
+        <div class="collapse-body">
+          ${(day.highlight||day.remind)?`<div class="itin-hl">${day.highlight?`<span class="hl-star">✦ ${day.highlight}</span>`:''}${day.remind?`<span class="hl-rem">⚠ ${day.remind}</span>`:''}</div>`:''}
+          ${sched?`<table class="d-itin sched">${sched}</table>`:''}
+          ${spots?`<div class="itin-spots">${spots}</div>`:''}
+        </div></div>`;
     }).join('');
-    itin=`<div class="d-sec"><h4>🗺️ 行程 <span class="k">Itinerary</span></h4>${meta}${days}</div>`;
+    itinHTML=meta+days;
   } else if(t.itinerary&&t.itinerary.length){
-    itin=`<div class="d-sec"><h4>🗺️ 行程 <span class="k">Itinerary</span></h4><div class="itin-wrap"><table class="d-itin">`+
-      t.itinerary.map(r=>`<tr>`+r.map(c=>`<td>${c||''}</td>`).join('')+`</tr>`).join('')+`</table></div></div>`;
-  }
-  let shop='';
+    itinHTML=`<div class="itin-wrap"><table class="d-itin">`+t.itinerary.map(r=>`<tr>`+r.map(c=>`<td>${c||''}</td>`).join('')+`</tr>`).join('')+`</table></div>`;
+  } else { itinHTML=`<div class="d-empty">這趟還沒有行程。</div>`; }
+
+  // ---- 購物(店家分組可收合,預設展開) ----
   const groups=t.shopping||[];
   const allItems=groups.reduce((s,g)=>s+g.items.length,0);
+  const base=t.imageBase||'';
+  const timing=(t.buyTiming&&t.buyTiming.length)?`<details class="buy-timing"><summary>🕒 什麼時候買</summary><div class="bt-body">${t.buyTiming.map(x=>`<div>・${x}</div>`).join('')}</div></details>`:'';
+  let shopHTML;
   if(allItems){
-    const base=t.imageBase||'';
     const gbody=groups.map((g,gi)=>{
       const items=g.items.map((it,ii)=>{
         const key=shopKey(t,gi,ii), saved=localStorage.getItem(key);
         const done=saved===null?(it.done||false):saved==='1';
         if(it.name!==undefined){
           const imgs=(it.imgs||[]).map(f=>({t:`${base}/thumb/${f}`,f:`${base}/${f}`}));
-          const thumb=imgs.length
-            ? `<div class="ithumb" data-full='${JSON.stringify(imgs.map(x=>x.f))}' style="background-image:url('${encodeURI(imgs[0].t)}')">${imgs.length>1?`<span class="imgn">+${imgs.length-1}</span>`:''}</div>`
-            : `<div class="ithumb empty">🛍️</div>`;
+          const thumb=imgs.length?`<div class="ithumb" data-full='${JSON.stringify(imgs.map(x=>x.f))}' style="background-image:url('${encodeURI(imgs[0].t)}')">${imgs.length>1?`<span class="imgn">+${imgs.length-1}</span>`:''}</div>`:`<div class="ithumb empty">🛍️</div>`;
           const txt=`<div class="itxt"><div class="iname">${it.name}</div>${it.desc?`<div class="idesc">${it.desc}</div>`:''}${it.price?`<div class="iprice">${it.price}</div>`:''}</div>`;
           return `<div class="shop-item rich ${done?'done':''}" data-key="${key}"><div class="box">✓</div>${thumb}${txt}</div>`;
         }
-        const txt=(it.text||'')
-          .replace(/^◎\s*/,'<span class="star">◎</span>')
-          .replace(/\*\*(.+?)\*\*/g,'<b>$1</b>')
-          .replace(/`([^`]+)`/g,'<span class="price">$1</span>')
-          .replace(/\s*—\s*/,' <span class="dash">—</span> ');
+        const txt=(it.text||'').replace(/^◎\s*/,'<span class="star">◎</span>').replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/`([^`]+)`/g,'<span class="price">$1</span>').replace(/\s*—\s*/,' <span class="dash">—</span> ');
         return `<div class="shop-item ${done?'done':''}" data-key="${key}"><div class="box">✓</div><div class="txt">${txt}</div></div>`;
       }).join('');
       const note=g.note?`<div class="gnote">${g.note}</div>`:'';
-      return `<div class="shop-group"><div class="gh">${g.group}</div>${note}${items}</div>`;
+      return `<div class="shop-group collapsible"><div class="gh collapse-h"><span class="gtitle">${g.group}</span><span class="gcount">${g.items.length}</span><span class="chev">▾</span></div><div class="collapse-body">${note}${items}</div></div>`;
     }).join('');
-    shop=`<div class="d-sec"><h4>🛒 購物清單 <span class="k">Shopping</span></h4>
-      <div class="shop-prog"><div class="track"><div class="fill" id="shopFill"></div></div><div class="pct" id="shopPct"></div></div>
-      ${gbody}</div>`;
-  } else {
-    shop=`<div class="d-sec"><h4>🛒 購物清單 <span class="k">Shopping</span></h4><div class="d-empty">這趟還沒列購物清單。到 Obsidian 筆記的「購物清單」區塊新增，再重新產生即可。</div></div>`;
-  }
+    shopHTML=`<div class="shop-prog"><div class="track"><div class="fill" id="shopFill"></div></div><div class="pct" id="shopPct"></div></div>${timing}${gbody}`;
+  } else { shopHTML=`<div class="d-empty">這趟還沒列購物清單。</div>`; }
+
   detailBody.innerHTML=`<div class="d-flag">${t.flag}</div>
     <div class="d-year">${t.year||''}</div>
     <div class="d-title">${t.title}${badge}</div>
     <div class="d-chips">${chips.map(c=>`<span class="d-chip">${c}</span>`).join('')}</div>
-    ${itin}${shop}`;
-  const updProg=()=>{const n=detailBody.querySelectorAll('.shop-item').length,
-    d=detailBody.querySelectorAll('.shop-item.done').length,
-    f=detailBody.querySelector('#shopFill'), p=detailBody.querySelector('#shopPct');
-    if(f)f.style.width=(n?d/n*100:0)+'%'; if(p)p.textContent=`${d} / ${n} 已買`;};
-  detailBody.querySelectorAll('.shop-item').forEach(el=>el.onclick=()=>{
-    el.classList.toggle('done');
-    localStorage.setItem(el.dataset.key, el.classList.contains('done')?'1':'0'); updProg();});
-  detailBody.querySelectorAll('.ithumb').forEach(el=>el.onclick=(e)=>{
-    e.stopPropagation(); if(el.dataset.full) openLightbox(JSON.parse(el.dataset.full),0);});
+    <div class="d-tabs">
+      <button class="dtab active" data-pane="itin">🗺️ 行程</button>
+      <button class="dtab" data-pane="shop">🛒 購物清單</button>
+    </div>
+    <div class="d-pane" data-pane="itin">${itinHTML}</div>
+    <div class="d-pane" data-pane="shop" hidden>${shopHTML}</div>`;
+
+  const panel=detail.querySelector('.detail-panel');
+  const panes=detailBody.querySelectorAll('.d-pane');
+  detailBody.querySelectorAll('.dtab').forEach(b=>b.onclick=()=>{
+    detailBody.querySelectorAll('.dtab').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    panes.forEach(p=>{p.hidden = p.dataset.pane!==b.dataset.pane;});
+    panel.scrollTop=0;
+  });
+  detailBody.querySelectorAll('.collapse-h').forEach(h=>h.onclick=()=>h.closest('.collapsible').classList.toggle('collapsed'));
+  const updProg=()=>{const n=detailBody.querySelectorAll('.shop-item').length,d=detailBody.querySelectorAll('.shop-item.done').length,f=detailBody.querySelector('#shopFill'),p=detailBody.querySelector('#shopPct');if(f)f.style.width=(n?d/n*100:0)+'%';if(p)p.textContent=`${d} / ${n} 已買`;};
+  detailBody.querySelectorAll('.shop-item').forEach(el=>el.onclick=()=>{el.classList.toggle('done');localStorage.setItem(el.dataset.key,el.classList.contains('done')?'1':'0');updProg();});
+  detailBody.querySelectorAll('.ithumb').forEach(el=>el.onclick=(e)=>{e.stopPropagation();if(el.dataset.full)openLightbox(JSON.parse(el.dataset.full),0);});
   updProg();
-  detail.scrollTop=0; detail.querySelector('.detail-panel').scrollTop=0;
+  detail.scrollTop=0; panel.scrollTop=0;
   detail.classList.add('on'); document.body.style.overflow='hidden';
 }
 function closeDetail(){detail.classList.remove('on');document.body.style.overflow='';}
