@@ -141,7 +141,7 @@
   .detail{position:fixed;inset:0;z-index:200;transform:translateX(100%);visibility:hidden;
     transition:transform .42s cubic-bezier(.2,.85,.2,1);will-change:transform;}
   .detail.on{transform:translateX(0);visibility:visible;}
-  .detail-panel{position:absolute;inset:0;background:linear-gradient(180deg,#0c111f,#080b14);overflow-y:auto;overflow-x:hidden;padding:26px 46px 62px;}
+  .detail-panel{position:absolute;inset:0;background:linear-gradient(180deg,#0c111f,#080b14);overflow-y:auto;overflow-x:hidden;padding:0 46px 62px;}
   .d-pane,.shop-group,.itin-day,.itin-meta,table.sched{max-width:100%;}
   table.sched{table-layout:fixed;}
   table.sched td:last-child{word-break:break-word;}
@@ -158,8 +158,13 @@
   .d-chip{font-family:"Space Mono",monospace;font-size:.72rem;color:#c3cada;background:var(--glass);border:1px solid var(--line);
     border-radius:20px;padding:7px 13px;letter-spacing:.03em;}
   /* 內容頁 tab 切換 */
-  .d-tabs{display:flex;gap:8px;align-items:stretch;position:sticky;top:0;z-index:8;background:#0c111f;
-    border-bottom:1px solid var(--line);padding:12px 0;margin:16px 0 10px;}
+  /* 內容頁置頂頁首(標題 + 返回/tab) */
+  .d-head{position:sticky;top:0;z-index:9;background:#0c111f;border-bottom:1px solid var(--line);margin:0 0 14px;padding:12px 0 0;}
+  .d-htitle-row{display:flex;align-items:center;gap:9px;padding:2px 0 2px;}
+  .d-htitle-row .hflag{font-size:1.35rem;line-height:1;flex:0 0 auto;}
+  .d-htitle-row .htitle{font-size:1.1rem;font-weight:700;color:#fff;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .d-htitle-row .d-badge{margin-left:0;flex:0 0 auto;}
+  .d-tabs{display:flex;gap:8px;align-items:stretch;padding:9px 0 11px;}
   .d-back{flex:0 0 48px;font-size:1.15rem;line-height:1;color:var(--ink);background:var(--glass);border:1px solid var(--line);
     border-radius:12px;cursor:pointer;transition:.2s;}
   .d-back:hover{background:var(--gold);color:#000;border-color:var(--gold);}
@@ -288,7 +293,7 @@
     section.block{padding:72px 24px;}
     .sec-head{flex-direction:column;align-items:flex-start;gap:18px;}
     .donut-wrap{flex-direction:column;align-items:flex-start;gap:22px;}
-    .detail-panel{width:100vw;padding:22px 24px 54px;}
+    .detail-panel{width:100vw;padding:0 24px 54px;}
     .detail-close{top:18px;right:18px;}
     .itin-wrap .d-itin{min-width:480px;}
     table.sched{min-width:0;width:100%;}
@@ -304,11 +309,11 @@
     .stats-row{flex-wrap:wrap;gap:18px 28px;}
     .stat .num{font-size:2rem;}
     /* 詳細整頁 */
-    .detail-panel{padding:18px 15px 48px;}
-    .d-title{font-size:1.55rem;}
-    .d-chips{gap:7px;margin:16px 0 2px;}
+    .detail-panel{padding:0 15px 48px;}
+    .d-htitle-row .htitle{font-size:1rem;}
+    .d-chips{gap:7px;margin:14px 0 2px;}
     .d-chip{font-size:.68rem;padding:6px 10px;}
-    .d-tabs{top:0;margin:14px 0 8px;padding:10px 0;}
+    .d-tabs{padding:8px 0 10px;}
     .d-back{flex-basis:44px;font-size:1.05rem;}
     .dtab{padding:12px 8px;font-size:.86rem;}
     .itin-meta{padding:12px 14px;}
@@ -419,9 +424,9 @@
 
 <script src="./assets/globe.gl.min.js"></script>
 <script src="./assets/countries.js"></script>
-<script src="./assets/trips.js?v=1791067557"></script>
+<script src="./assets/trips.js?v=1791067955"></script>
 <script>
-// 資料來源：assets/trips.js?v=1791067557
+// 資料來源：assets/trips.js?v=1791067955
 const RAW = (window.__TRIPS__ || []);
 const TRIPS = RAW.map(t=>({
   ...t,
@@ -577,15 +582,15 @@ function openDetail(t){
     shopHTML=`<div class="shop-prog"><div class="track"><div class="fill" id="shopFill"></div></div><div class="pct" id="shopPct"></div></div>${timing}${gbody}`;
   } else { shopHTML=`<div class="d-empty">這趟還沒列購物清單。</div>`; }
 
-  detailBody.innerHTML=`<div class="d-flag">${t.flag}</div>
-    <div class="d-year">${t.year||''}</div>
-    <div class="d-title">${t.title}${badge}</div>
-    <div class="d-chips">${chips.map(c=>`<span class="d-chip">${c}</span>`).join('')}</div>
-    <div class="d-tabs">
-      <button class="d-back" id="dBack" aria-label="返回">←</button>
-      <button class="dtab active" data-pane="itin">🗺️ 行程</button>
-      <button class="dtab" data-pane="shop">🛒 購物清單</button>
+  detailBody.innerHTML=`<div class="d-head">
+      <div class="d-htitle-row"><span class="hflag">${t.flag}</span><span class="htitle">${t.title}</span>${badge}</div>
+      <div class="d-tabs">
+        <button class="d-back" id="dBack" aria-label="返回">←</button>
+        <button class="dtab active" data-pane="itin">🗺️ 行程</button>
+        <button class="dtab" data-pane="shop">🛒 購物清單</button>
+      </div>
     </div>
+    <div class="d-chips">${chips.map(c=>`<span class="d-chip">${c}</span>`).join('')}</div>
     <div class="d-pane" data-pane="itin">${itinHTML}</div>
     <div class="d-pane" data-pane="shop" hidden>${shopHTML}</div>`;
 
