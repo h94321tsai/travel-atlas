@@ -272,8 +272,8 @@ window.__TRIPS__ = [
       "desc": "#01 淡音 AWAOTO／#07 彩望・只有福屋有專櫃",
       "price": "NT$2,200",
       "imgs": [
-       "16_SUQQU_頰彩.png",
-       "16b_SUQQU_頰彩_試色.png"
+       "16_SUQQU_頰彩.jpg",
+       "16b_SUQQU_頰彩_試色.jpg"
       ]
      },
      {
@@ -281,8 +281,8 @@ window.__TRIPS__ = [
       "desc": "#01 ROSY BROWN(試色對照 #11)",
       "price": "NT$1,650",
       "imgs": [
-       "13_DECORTE_眼彩盤.png",
-       "13b_DECORTE_眼彩盤_試色.png"
+       "13_DECORTE_眼彩盤.jpg",
+       "13b_DECORTE_眼彩盤_試色.jpg"
       ]
      },
      {
@@ -290,7 +290,7 @@ window.__TRIPS__ = [
       "desc": "#04 CORAL MOONSTONE／#06 MAUVE QUARTZ",
       "price": "NT$1,450",
       "imgs": [
-       "14_SHISEIDO_眼頰亮彩盤.png"
+       "14_SHISEIDO_眼頰亮彩盤.jpg"
       ]
      },
      {
@@ -298,7 +298,7 @@ window.__TRIPS__ = [
       "desc": "色號 #012・專櫃試色後買",
       "price": "",
       "imgs": [
-       "IMG_6564.png"
+       "IMG_6564.jpg"
       ]
      },
      {
@@ -306,7 +306,7 @@ window.__TRIPS__ = [
       "desc": "#14 CLOUD FLEUR",
       "price": "NT$1,250",
       "imgs": [
-       "15_RMK_頰采.png"
+       "15_RMK_頰采.jpg"
       ]
      },
      {
@@ -314,8 +314,8 @@ window.__TRIPS__ = [
       "desc": "#306／#405／#504・高松三越確定有",
       "price": "NT$1,600",
       "imgs": [
-       "17_DIOR_唇膏.png",
-       "17b_DIOR_唇膏_色號.png"
+       "17_DIOR_唇膏.jpg",
+       "17b_DIOR_唇膏_色號.jpg"
       ]
      }
     ]
@@ -329,7 +329,7 @@ window.__TRIPS__ = [
       "desc": "第3類醫藥品・先決定容量(60/120/240錠)",
       "price": "¥1,760起",
       "imgs": [
-       "02_Transino_WhiteC_clear.png"
+       "02_Transino_WhiteC_clear.jpg"
       ]
      },
      {
@@ -337,7 +337,7 @@ window.__TRIPS__ = [
       "desc": "",
       "price": "¥1,680",
       "imgs": [
-       "18_Sante_眼藥水.png"
+       "18_Sante_眼藥水.jpg"
       ]
      },
      {
@@ -345,7 +345,7 @@ window.__TRIPS__ = [
       "desc": "",
       "price": "¥870",
       "imgs": [
-       "06_APAGARD_Premio.png"
+       "06_APAGARD_Premio.jpg"
       ]
      },
      {
@@ -353,7 +353,7 @@ window.__TRIPS__ = [
       "desc": "SPF50+",
       "price": "¥990",
       "imgs": [
-       "07_by365_防曬.png"
+       "07_by365_防曬.jpg"
       ]
      },
      {
@@ -361,7 +361,7 @@ window.__TRIPS__ = [
       "desc": "牙齒美白筆+刷・医薬部外品・愛喝茶咖啡用",
       "price": "",
       "imgs": [
-       "IMG_6573.PNG"
+       "IMG_6573.jpg"
       ]
      },
      {
@@ -369,7 +369,7 @@ window.__TRIPS__ = [
       "desc": "Rohto・赤み/濕疹 治",
       "price": "",
       "imgs": [
-       "IMG_6574.PNG"
+       "IMG_6574.jpg"
       ]
      },
      {
@@ -377,7 +377,7 @@ window.__TRIPS__ = [
       "desc": "じんましん専用",
       "price": "",
       "imgs": [
-       "IMG_6574.PNG"
+       "IMG_6574.jpg"
       ]
      },
      {
@@ -385,7 +385,7 @@ window.__TRIPS__ = [
       "desc": "曬黑的人可以試",
       "price": "",
       "imgs": [
-       "IMG_6575.PNG"
+       "IMG_6575.jpg"
       ]
      },
      {
@@ -393,7 +393,7 @@ window.__TRIPS__ = [
       "desc": "馬桶除臭滴劑",
       "price": "",
       "imgs": [
-       "IMG_6577.PNG"
+       "IMG_6577.jpg"
       ]
      },
      {
@@ -401,7 +401,7 @@ window.__TRIPS__ = [
       "desc": "木質香調・在日本很紅",
       "price": "",
       "imgs": [
-       "IMG_6586.PNG"
+       "IMG_6586.jpg"
       ]
      },
      {
@@ -409,7 +409,7 @@ window.__TRIPS__ = [
       "desc": "SHOBIDO・睫毛keep coat",
       "price": "",
       "imgs": [
-       "IMG_6578.PNG"
+       "IMG_6578.jpg"
       ]
      }
     ]
@@ -423,7 +423,7 @@ window.__TRIPS__ = [
       "desc": "Skincare Moisture Base AQ・SPF42",
       "price": "¥1,300",
       "imgs": [
-       "04_KANSOSAN_保濕妝前乳.png"
+       "04_KANSOSAN_保濕妝前乳.jpg"
       ]
      },
      {
@@ -431,7 +431,7 @@ window.__TRIPS__ = [
       "desc": "#02 Luna Pink",
       "price": "¥990",
       "imgs": [
-       "05_muice_打亮.png"
+       "05_muice_打亮.jpg"
       ]
      }
     ]
@@ -445,7 +445,7 @@ window.__TRIPS__ = [
       "desc": "頭皮化妝水 150mL",
       "price": "¥1,390",
       "imgs": [
-       "08_無印_頭皮化妝水.png"
+       "08_無印_頭皮化妝水.jpg"
       ]
      },
      {
@@ -453,7 +453,7 @@ window.__TRIPS__ = [
       "desc": "頭皮抗老精華 150mL",
       "price": "¥1,590",
       "imgs": [
-       "10_無印_頭皮抗老精華.png"
+       "10_無印_頭皮抗老精華.jpg"
       ]
      },
      {
@@ -461,7 +461,7 @@ window.__TRIPS__ = [
       "desc": "頭皮去角質・葡萄柚香",
       "price": "",
       "imgs": [
-       "09_無印_頭皮去角質.png"
+       "09_無印_頭皮去角質.jpg"
       ]
      },
      {
@@ -469,7 +469,7 @@ window.__TRIPS__ = [
       "desc": "導入化妝棉・丸型50枚",
       "price": "",
       "imgs": [
-       "11_無印_導入化妝棉.png"
+       "11_無印_導入化妝棉.jpg"
       ]
      }
     ]
@@ -483,7 +483,7 @@ window.__TRIPS__ = [
       "desc": "濃厚奶油・冷藏甜點",
       "price": "",
       "imgs": [
-       "IMG_6576.PNG"
+       "IMG_6576.jpg"
       ]
      },
      {
@@ -491,7 +491,7 @@ window.__TRIPS__ = [
       "desc": "多款一起買，直接買爆",
       "price": "",
       "imgs": [
-       "IMG_6579.PNG"
+       "IMG_6579.jpg"
       ]
      }
     ]
@@ -505,7 +505,7 @@ window.__TRIPS__ = [
       "desc": "Since 1993・長時間發酵",
       "price": "",
       "imgs": [
-       "IMG_6580.PNG"
+       "IMG_6580.jpg"
       ]
      },
      {
@@ -513,7 +513,7 @@ window.__TRIPS__ = [
       "desc": "北海道產生奶油",
       "price": "¥318",
       "imgs": [
-       "IMG_6581.PNG"
+       "IMG_6581.jpg"
       ]
      },
      {
@@ -521,7 +521,7 @@ window.__TRIPS__ = [
       "desc": "清淡好吃",
       "price": "¥156",
       "imgs": [
-       "IMG_6582.PNG"
+       "IMG_6582.jpg"
       ]
      },
      {
@@ -529,7 +529,7 @@ window.__TRIPS__ = [
       "desc": "配日本啤酒",
       "price": "",
       "imgs": [
-       "IMG_6583.PNG"
+       "IMG_6583.jpg"
       ]
      },
      {
@@ -537,7 +537,7 @@ window.__TRIPS__ = [
       "desc": "季節限定・酸奶油洋蔥味",
       "price": "",
       "imgs": [
-       "IMG_6584.PNG"
+       "IMG_6584.jpg"
       ]
      },
      {
@@ -545,7 +545,7 @@ window.__TRIPS__ = [
       "desc": "芒果・西瓜・消暑",
       "price": "",
       "imgs": [
-       "IMG_6585.PNG"
+       "IMG_6585.jpg"
       ]
      }
     ]
@@ -559,7 +559,7 @@ window.__TRIPS__ = [
       "desc": "牡蠣高湯醬油・減鹽25%・400mL",
       "price": "約¥420",
       "imgs": [
-       "01_牡蠣だし醤油.png"
+       "01_牡蠣だし醤油.jpg"
       ]
      },
      {
@@ -567,7 +567,7 @@ window.__TRIPS__ = [
       "desc": "和光(順)／青嵐(加奶)／五十鈴(濃)・看到再買",
       "price": "",
       "imgs": [
-       "03_丸久小山園_抹茶.png"
+       "03_丸久小山園_抹茶.jpg"
       ]
      }
     ]
@@ -581,7 +581,7 @@ window.__TRIPS__ = [
       "desc": "@iliabeauty・唇線筆",
       "price": "",
       "imgs": [
-       "IMG_6587.PNG"
+       "IMG_6587.jpg"
       ]
      }
     ]
@@ -595,7 +595,7 @@ window.__TRIPS__ = [
       "desc": "牌子未定・EDION／Bic Camera 可找・注意電壓",
       "price": "",
       "imgs": [
-       "12_捲髮棒.png"
+       "12_捲髮棒.jpg"
       ]
      }
     ]
