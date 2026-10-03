@@ -294,6 +294,14 @@ window.__TRIPS__ = [
       ]
      },
      {
+      "name": "SHISEIDO 超進光／透光持久粉底液",
+      "desc": "色號 #012・專櫃試色後買",
+      "price": "",
+      "imgs": [
+       "IMG_6564.png"
+      ]
+     },
+     {
       "name": "RMK 透光立體頰采",
       "desc": "#14 CLOUD FLEUR",
       "price": "NT$1,250",
@@ -346,6 +354,62 @@ window.__TRIPS__ = [
       "price": "¥990",
       "imgs": [
        "07_by365_防曬.png"
+      ]
+     },
+     {
+      "name": "Teeth Master 藥用美白精萃劑",
+      "desc": "牙齒美白筆+刷・医薬部外品・愛喝茶咖啡用",
+      "price": "",
+      "imgs": [
+       "IMG_6573.PNG"
+      ]
+     },
+     {
+      "name": "メディクイックPRO 濕疹・癢軟膏",
+      "desc": "Rohto・赤み/濕疹 治",
+      "price": "",
+      "imgs": [
+       "IMG_6574.PNG"
+      ]
+     },
+     {
+      "name": "ジンマート 蕁麻疹治療藥",
+      "desc": "じんましん専用",
+      "price": "",
+      "imgs": [
+       "IMG_6574.PNG"
+      ]
+     },
+     {
+      "name": "Bright C 美白維他命C + LIPO Vitamin D",
+      "desc": "曬黑的人可以試",
+      "price": "",
+      "imgs": [
+       "IMG_6575.PNG"
+      ]
+     },
+     {
+      "name": "小林製薬 1滴消臭元",
+      "desc": "馬桶除臭滴劑",
+      "price": "",
+      "imgs": [
+       "IMG_6577.PNG"
+      ]
+     },
+     {
+      "name": "Seika 全防脫洗髮水",
+      "desc": "木質香調・在日本很紅",
+      "price": "",
+      "imgs": [
+       "IMG_6586.PNG"
+      ]
+     },
+     {
+      "name": "Clue 東感まつげ 睫毛定型液",
+      "desc": "SHOBIDO・睫毛keep coat",
+      "price": "",
+      "imgs": [
+       "IMG_6578.PNG"
       ]
      }
     ]
@@ -411,6 +475,82 @@ window.__TRIPS__ = [
     ]
    },
    {
+    "group": "🍡 唐吉訶德 零食",
+    "note": "逛 Donki 順手拿",
+    "items": [
+     {
+      "name": "Brulee クレームブリュレ 烤布蕾",
+      "desc": "濃厚奶油・冷藏甜點",
+      "price": "",
+      "imgs": [
+       "IMG_6576.PNG"
+      ]
+     },
+     {
+      "name": "烤魷魚絲／綜合海味零食",
+      "desc": "多款一起買，直接買爆",
+      "price": "",
+      "imgs": [
+       "IMG_6579.PNG"
+      ]
+     }
+    ]
+   },
+   {
+    "group": "🏪 超商 Lawson 必買",
+    "note": "走到就買・冷藏櫃",
+    "items": [
+     {
+      "name": "バニラヨーグルト 香草優格",
+      "desc": "Since 1993・長時間發酵",
+      "price": "",
+      "imgs": [
+       "IMG_6580.PNG"
+      ]
+     },
+     {
+      "name": "もち食感ロール 北海道鮮奶油蛋糕捲",
+      "desc": "北海道產生奶油",
+      "price": "¥318",
+      "imgs": [
+       "IMG_6581.PNG"
+      ]
+     },
+     {
+      "name": "鶏しおラーメン 鹽味雞湯杯麵",
+      "desc": "清淡好吃",
+      "price": "¥156",
+      "imgs": [
+       "IMG_6582.PNG"
+      ]
+     },
+     {
+      "name": "生ハム巻きクリームチーズ 火腿起司",
+      "desc": "配日本啤酒",
+      "price": "",
+      "imgs": [
+       "IMG_6583.PNG"
+      ]
+     },
+     {
+      "name": "Calbee 細 Jagabee 洋蔥薯條",
+      "desc": "季節限定・酸奶油洋蔥味",
+      "price": "",
+      "imgs": [
+       "IMG_6584.PNG"
+      ]
+     },
+     {
+      "name": "完熟生マンゴー／生すいか 水果冰棒",
+      "desc": "芒果・西瓜・消暑",
+      "price": "",
+      "imgs": [
+       "IMG_6585.PNG"
+      ]
+     }
+    ]
+   },
+   {
     "group": "🍵 食品",
     "note": "一般超市就有，不一定要去名產店",
     "items": [
@@ -433,12 +573,26 @@ window.__TRIPS__ = [
     ]
    },
    {
+    "group": "💄 美妝參考",
+    "note": "非日本限定，想到再找",
+    "items": [
+     {
+      "name": "ILIA Beauty lip liner",
+      "desc": "@iliabeauty・唇線筆",
+      "price": "",
+      "imgs": [
+       "IMG_6587.PNG"
+      ]
+     }
+    ]
+   },
+   {
     "group": "❓ 待確認",
     "note": "",
     "items": [
      {
       "name": "捲髮棒(淡紫 32mm)",
-      "desc": "牌子未定・EDION/Bic Camera 可找・注意電壓",
+      "desc": "牌子未定・EDION／Bic Camera 可找・注意電壓",
       "price": "",
       "imgs": [
        "12_捲髮棒.png"
