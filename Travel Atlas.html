@@ -99,6 +99,12 @@
   .tcard .flag{position:absolute;top:18px;left:18px;z-index:3;font-size:1.6rem;filter:drop-shadow(0 2px 8px rgba(0,0,0,.7));}
   .tcard .badge{position:absolute;top:20px;right:18px;z-index:3;font-family:"Space Mono",monospace;font-size:.6rem;letter-spacing:.14em;
     font-weight:700;text-transform:uppercase;padding:6px 11px;border-radius:20px;backdrop-filter:blur(8px);}
+  .tcard .badge.live{background:rgba(95,224,208,.18);color:#5fe0d0;border:1px solid rgba(95,224,208,.55);
+    display:flex;align-items:center;gap:6px;}
+  .tcard .badge.live .dot{width:6px;height:6px;border-radius:50%;background:#5fe0d0;box-shadow:0 0 0 0 rgba(95,224,208,.7);animation:livepulse 1.6s infinite;}
+  @keyframes livepulse{0%{box-shadow:0 0 0 0 rgba(95,224,208,.6)}70%{box-shadow:0 0 0 7px rgba(95,224,208,0)}100%{box-shadow:0 0 0 0 rgba(95,224,208,0)}}
+  .tcard.live{border-color:rgba(95,224,208,.55);box-shadow:0 0 0 1px rgba(95,224,208,.3),0 16px 44px rgba(0,0,0,.5);}
+  .tcard.live:hover{border-color:rgba(95,224,208,.8);}
   .tcard .body{position:relative;z-index:3;padding:24px;}
   .tcard .yr{font-family:"Space Mono",monospace;font-size:.7rem;letter-spacing:.18em;color:var(--gold);margin-bottom:9px;font-weight:700;}
   .tcard h3{font-size:1.4rem;font-weight:600;line-height:1.22;margin-bottom:14px;color:#fff;}
@@ -135,7 +141,7 @@
   .detail{position:fixed;inset:0;z-index:200;transform:translateX(100%);visibility:hidden;
     transition:transform .42s cubic-bezier(.2,.85,.2,1);will-change:transform;}
   .detail.on{transform:translateX(0);visibility:visible;}
-  .detail-panel{position:absolute;inset:0;background:linear-gradient(180deg,#0c111f,#080b14);overflow-y:auto;overflow-x:hidden;padding:68px 46px 62px;}
+  .detail-panel{position:absolute;inset:0;background:linear-gradient(180deg,#0c111f,#080b14);overflow-y:auto;overflow-x:hidden;padding:26px 46px 62px;}
   .d-pane,.shop-group,.itin-day,.itin-meta,table.sched{max-width:100%;}
   table.sched{table-layout:fixed;}
   table.sched td:last-child{word-break:break-word;}
@@ -152,8 +158,11 @@
   .d-chip{font-family:"Space Mono",monospace;font-size:.72rem;color:#c3cada;background:var(--glass);border:1px solid var(--line);
     border-radius:20px;padding:7px 13px;letter-spacing:.03em;}
   /* 內容頁 tab 切換 */
-  .d-tabs{display:flex;gap:8px;position:sticky;top:56px;z-index:6;background:linear-gradient(#0c111f,#0c111f 70%,transparent);
-    padding:14px 0 12px;margin:22px 0 6px;}
+  .d-tabs{display:flex;gap:8px;align-items:stretch;position:sticky;top:0;z-index:8;background:#0c111f;
+    border-bottom:1px solid var(--line);padding:12px 0;margin:16px 0 10px;}
+  .d-back{flex:0 0 48px;font-size:1.15rem;line-height:1;color:var(--ink);background:var(--glass);border:1px solid var(--line);
+    border-radius:12px;cursor:pointer;transition:.2s;}
+  .d-back:hover{background:var(--gold);color:#000;border-color:var(--gold);}
   .dtab{flex:1;font-size:.9rem;font-weight:600;color:var(--muted);background:var(--glass);border:1px solid var(--line);
     border-radius:12px;padding:12px;cursor:pointer;transition:.2s;}
   .dtab:hover{color:var(--ink);}
@@ -261,8 +270,10 @@
 
   /* ===== 平板 ===== */
   @media(max-width:900px){
-    nav{padding:16px 22px;}
+    nav{padding:14px 22px;background:rgba(7,10,18,.8);backdrop-filter:blur(10px);mix-blend-mode:normal;border-bottom:1px solid var(--line);}
+    nav .brand{color:var(--ink);}
     nav .links{gap:18px;font-size:.62rem;}
+    nav .links a{color:var(--muted);}
     .hero{min-height:100svh;padding:96px 0 60px;}
     .hero-copy{padding:0 26px;max-width:none;}
     #globeViz{right:50%!important;top:44%!important;transform:translate(50%,-50%)!important;opacity:.26;z-index:0;}
@@ -277,7 +288,7 @@
     section.block{padding:72px 24px;}
     .sec-head{flex-direction:column;align-items:flex-start;gap:18px;}
     .donut-wrap{flex-direction:column;align-items:flex-start;gap:22px;}
-    .detail-panel{width:100vw;padding:70px 24px 54px;}
+    .detail-panel{width:100vw;padding:22px 24px 54px;}
     .detail-close{top:18px;right:18px;}
     .itin-wrap .d-itin{min-width:480px;}
     table.sched{min-width:0;width:100%;}
@@ -293,12 +304,12 @@
     .stats-row{flex-wrap:wrap;gap:18px 28px;}
     .stat .num{font-size:2rem;}
     /* 詳細整頁 */
-    .detail-panel{padding:58px 15px 48px;}
-    .detail-back{top:12px;left:12px;font-size:.72rem;padding:8px 13px;}
+    .detail-panel{padding:18px 15px 48px;}
     .d-title{font-size:1.55rem;}
     .d-chips{gap:7px;margin:16px 0 2px;}
     .d-chip{font-size:.68rem;padding:6px 10px;}
-    .d-tabs{top:46px;margin:16px 0 4px;padding:10px 0;}
+    .d-tabs{top:0;margin:14px 0 8px;padding:10px 0;}
+    .d-back{flex-basis:44px;font-size:1.05rem;}
     .dtab{padding:12px 8px;font-size:.86rem;}
     .itin-meta{padding:12px 14px;}
     .itin-dhead{flex-wrap:wrap;}
@@ -401,7 +412,6 @@
 
 <!-- 旅程詳細頁(整頁切換) -->
 <div class="detail" id="detail">
-  <button class="detail-back" id="detailBack" aria-label="back">←&nbsp;返回</button>
   <div class="detail-panel">
     <div id="detailBody"></div>
   </div>
@@ -409,9 +419,9 @@
 
 <script src="./assets/globe.gl.min.js"></script>
 <script src="./assets/countries.js"></script>
-<script src="./assets/trips.js?v=1791066935"></script>
+<script src="./assets/trips.js?v=1791067557"></script>
 <script>
-// 資料來源：assets/trips.js?v=1791066935
+// 資料來源：assets/trips.js?v=1791067557
 const RAW = (window.__TRIPS__ || []);
 const TRIPS = RAW.map(t=>({
   ...t,
@@ -472,19 +482,30 @@ world.onPointClick(p=>{world.controls().autoRotate=false;world.pointOfView({lat:
 
 /* ---------- CARDS ---------- */
 const cardsEl=document.getElementById('cards');
+const _d=new Date();
+const TODAY=`${_d.getFullYear()}-${String(_d.getMonth()+1).padStart(2,'0')}-${String(_d.getDate()).padStart(2,'0')}`;
+const isOngoing=t=>t.start&&t.end&&TODAY>=t.start&&TODAY<=t.end;
 function renderCards(f='all'){
-  const list=TRIPS.filter(t=>f==='all'||t.status===f);
-  cardsEl.innerHTML=list.map((t,i)=>{
+  const list=TRIPS.filter(t=>f==='all'||t.status===f).slice().sort((a,b)=>{
+    const ao=isOngoing(a)?1:0, bo=isOngoing(b)?1:0;
+    if(ao!==bo) return bo-ao;                         // 進行中優先
+    return (b.start||'').localeCompare(a.start||'');   // 其餘日期新→舊,無日期殿後
+  });
+  cardsEl.innerHTML=list.map(t=>{
     const rc=REGION_COLOR[t.region]||'#79b4ff';
     const cover=`background:radial-gradient(120% 110% at 72% 8%, ${rc}99, ${rc}33 38%, transparent 62%),linear-gradient(160deg,${rc}3a 0%,#0c1324 62%);`;
     const shopN=(t.shopping||[]).reduce((s,g)=>s+g.items.length,0);
     const meta=[t.days?`◷ ${t.days}D`:null, t.people?`◇ ${t.people}人`:null, shopN?`🛒 ${shopN}`:null, `◉ ${t.country}`].filter(Boolean)
       .map(x=>`<span>${x}</span>`).join('');
-    return `<article class="tcard" data-i="${TRIPS.indexOf(t)}">
+    const live=isOngoing(t);
+    const badge=live
+      ? `<div class="badge live"><span class="dot"></span>執行中</div>`
+      : `<div class="badge" style="background:${STATUS_COLOR[t.status]}22;color:${STATUS_COLOR[t.status]};border:1px solid ${STATUS_COLOR[t.status]}55">${STATUS_LABEL[t.status]}</div>`;
+    return `<article class="tcard ${live?'live':''}" data-i="${TRIPS.indexOf(t)}">
       <div class="cover" style="${cover}"></div>
       <div class="ghost">${t.flag}</div>
       <div class="flag">${t.flag}</div>
-      <div class="badge" style="background:${STATUS_COLOR[t.status]}22;color:${STATUS_COLOR[t.status]};border:1px solid ${STATUS_COLOR[t.status]}55">${STATUS_LABEL[t.status]}</div>
+      ${badge}
       <div class="body"><div class="yr">${t.year}</div><h3>${t.title}</h3><div class="meta">${meta}</div></div>
     </article>`;}).join('');
   cardsEl.querySelectorAll('.tcard').forEach(c=>c.onclick=()=>openDetail(TRIPS[+c.dataset.i]));
@@ -561,6 +582,7 @@ function openDetail(t){
     <div class="d-title">${t.title}${badge}</div>
     <div class="d-chips">${chips.map(c=>`<span class="d-chip">${c}</span>`).join('')}</div>
     <div class="d-tabs">
+      <button class="d-back" id="dBack" aria-label="返回">←</button>
       <button class="dtab active" data-pane="itin">🗺️ 行程</button>
       <button class="dtab" data-pane="shop">🛒 購物清單</button>
     </div>
@@ -568,6 +590,7 @@ function openDetail(t){
     <div class="d-pane" data-pane="shop" hidden>${shopHTML}</div>`;
 
   const panel=detail.querySelector('.detail-panel');
+  detailBody.querySelector('#dBack').onclick=goBack;
   const panes=detailBody.querySelectorAll('.d-pane');
   detailBody.querySelectorAll('.dtab').forEach(b=>b.onclick=()=>{
     detailBody.querySelectorAll('.dtab').forEach(x=>x.classList.remove('active'));
@@ -586,7 +609,6 @@ function openDetail(t){
 }
 function closeDetail(){detail.classList.remove('on');document.body.style.overflow='';}
 function goBack(){ if(history.state&&history.state.atlasDetail) history.back(); else closeDetail(); }
-document.getElementById('detailBack').onclick=goBack;
 addEventListener('keydown',e=>{if(e.key==='Escape' && detail.classList.contains('on') && !document.getElementById('lightbox').classList.contains('on'))goBack();});
 window.addEventListener('popstate',()=>{ if(detail.classList.contains('on')) closeDetail(); });
 
