@@ -1072,9 +1072,21 @@ window.__TRIPS__ = [
     "回 10/10 CI179 高松 19:05 → 桃園T2 20:55"
    ],
    "stays": [
-    "東急REI廣島 (10/4–10/7)",
-    "琴平花壇 (10/7–10/8)",
-    "fav 高松 (10/8–10/10)"
+    {
+     "n": "東急REI廣島",
+     "when": "10/4–10/7",
+     "url": "https://maps.app.goo.gl/NsLLbtDUdBuuXReJ6"
+    },
+    {
+     "n": "琴平花壇",
+     "when": "10/7–10/8",
+     "url": "https://maps.app.goo.gl/LT4ScKkMxCrZ2QC69"
+    },
+    {
+     "n": "fav 高松",
+     "when": "10/8–10/10",
+     "url": "https://maps.app.goo.gl/69w8ESKizwCZxcJs9"
+    }
    ]
   }
  },

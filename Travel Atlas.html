@@ -256,6 +256,9 @@
   .itin-meta{background:var(--glass);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:22px;}
   .itin-meta .im-sub{font-weight:600;color:#fff;margin-bottom:8px;font-size:.95rem;}
   .itin-meta .im-row{font-family:"Space Mono",monospace;font-size:.76rem;color:#aab2c7;line-height:1.9;}
+  .itin-meta .hotel-link{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(245,195,122,.4);padding-bottom:1px;}
+  .itin-meta .hotel-link:hover{color:#fff;border-color:#fff;}
+  .itin-meta .im-when{color:var(--faint);}
   .itin-day{border-left:2px solid rgba(245,195,122,.35);padding:4px 0 20px 18px;margin-bottom:6px;position:relative;}
   .itin-day::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(245,195,122,.15);}
   .itin-dhead{display:flex;align-items:baseline;gap:12px;}
@@ -424,9 +427,9 @@
 
 <script src="./assets/globe.gl.min.js"></script>
 <script src="./assets/countries.js"></script>
-<script src="./assets/trips.js?v=1791067955"></script>
+<script src="./assets/trips.js?v=1791068816"></script>
 <script>
-// 資料來源：assets/trips.js?v=1791067955
+// 資料來源：assets/trips.js?v=1791068816
 const RAW = (window.__TRIPS__ || []);
 const TRIPS = RAW.map(t=>({
   ...t,
@@ -539,7 +542,10 @@ function openDetail(t){
   let itinHTML='';
   if(t.itineraryRich&&t.itineraryRich.length){
     const m=t.tripMeta||{};
-    const meta=(m.subtitle||m.flights||m.stays)?`<div class="itin-meta">${m.subtitle?`<div class="im-sub">${m.subtitle}</div>`:''}${(m.flights||[]).map(x=>`<div class="im-row">✈️ ${x}</div>`).join('')}${(m.stays||[]).map(x=>`<div class="im-row">🏨 ${x}</div>`).join('')}</div>`:'';
+    const stayRow=x=>{const s=(typeof x==='string')?{n:x}:x;
+      const nm=s.url?`<a class="hotel-link" href="${s.url}" target="_blank" rel="noopener">${s.n} ↗</a>`:s.n;
+      return `<div class="im-row">🏨 ${nm}${s.when?` <span class="im-when">(${s.when})</span>`:''}</div>`;};
+    const meta=(m.subtitle||m.flights||m.stays)?`<div class="itin-meta">${m.subtitle?`<div class="im-sub">${m.subtitle}</div>`:''}${(m.flights||[]).map(x=>`<div class="im-row">✈️ ${x}</div>`).join('')}${(m.stays||[]).map(stayRow).join('')}</div>`:'';
     const days=t.itineraryRich.map(day=>{
       const sched=(day.schedule||[]).map(r=>`<tr><td>${r[0]||''}</td><td>${r[1]||''}</td></tr>`).join('');
       const spots=(day.spots||[]).map(s=>{const q=s.c?`https://www.google.com/maps/search/?api=1&query=${s.c}`:null;const inner=`${s.n}${s.note?`<span class="sp-note"> · ${s.note}</span>`:''}`;return q?`<a class="itin-spot" href="${q}" target="_blank" rel="noopener">📍 ${inner}</a>`:`<span class="itin-spot">📍 ${inner}</span>`;}).join('');
