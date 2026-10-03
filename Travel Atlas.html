@@ -281,16 +281,34 @@
   }
   /* ===== 手機 ===== */
   @media(max-width:560px){
+    nav{padding:14px 16px;}
     nav .links{display:none;}
     .hero-copy{padding:0 20px;}
     .cards{grid-template-columns:1fr;}
     h1.title{font-size:clamp(2.3rem,13vw,3.2rem);}
     .stats-row{flex-wrap:wrap;gap:18px 28px;}
     .stat .num{font-size:2rem;}
-    .detail-panel{padding:64px 18px 48px;}
-    .d-title{font-size:1.7rem;}
+    /* 詳細整頁 */
+    .detail-panel{padding:58px 15px 48px;}
+    .detail-back{top:12px;left:12px;font-size:.72rem;padding:8px 13px;}
+    .d-title{font-size:1.55rem;}
+    .d-chips{gap:7px;margin:16px 0 2px;}
+    .d-chip{font-size:.68rem;padding:6px 10px;}
+    .d-tabs{top:46px;margin:16px 0 4px;padding:10px 0;}
+    .dtab{padding:12px 8px;font-size:.86rem;}
+    .itin-meta{padding:12px 14px;}
+    .itin-dhead{flex-wrap:wrap;}
+    .itin-day .dtitle-in{flex-basis:100%;margin-left:0;margin-top:3px;}
+    table.sched td:first-child{width:58px;font-size:.72rem;}
+    .shop-item{padding:11px 4px;}
+    .shop-item.rich{gap:11px;}
+    .shop-item .ithumb{width:58px;height:58px;}
+    .shop-item .iname{font-size:.92rem;}
+    .shop-item .idesc{font-size:.75rem;}
+    .shop-item .box{width:22px;height:22px;}
     .shop-item .price{display:inline-block;margin-top:4px;margin-left:0;}
     .shop-item .txt{font-size:.9rem;}
+    .buy-timing summary{font-size:.8rem;}
   }
 </style>
 </head>
@@ -387,9 +405,9 @@
 
 <script src="./assets/globe.gl.min.js"></script>
 <script src="./assets/countries.js"></script>
-<script src="./assets/trips.js?v=1791047603"></script>
+<script src="./assets/trips.js?v=1791048023"></script>
 <script>
-// 資料來源：assets/trips.js?v=1791047603
+// 資料來源：assets/trips.js?v=1791048023
 const RAW = (window.__TRIPS__ || []);
 const TRIPS = RAW.map(t=>({
   ...t,
