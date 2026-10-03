@@ -132,17 +132,14 @@
   .reveal.in{opacity:1;transform:none;}
 
   /* 旅程詳細頁 */
-  .detail{position:fixed;inset:0;z-index:200;display:none;}
-  .detail.on{display:block;}
-  .detail-bg{position:absolute;inset:0;background:rgba(4,6,12,.72);backdrop-filter:blur(10px);animation:fade .3s ease;}
-  @keyframes fade{from{opacity:0}to{opacity:1}}
-  .detail-panel{position:absolute;top:0;right:0;height:100%;width:min(760px,94vw);background:linear-gradient(180deg,#0c111f,#080b14);
-    border-left:1px solid var(--line);box-shadow:-30px 0 80px rgba(0,0,0,.6);overflow-y:auto;padding:46px 48px 60px;
-    animation:slideIn .45s cubic-bezier(.2,.85,.2,1);}
-  @keyframes slideIn{from{transform:translateX(60px);opacity:.4}to{transform:none;opacity:1}}
-  .detail-close{position:absolute;top:26px;right:30px;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);
-    background:var(--glass);color:var(--ink);font-size:1rem;cursor:pointer;transition:.25s;z-index:5;}
-  .detail-close:hover{background:var(--gold);color:#000;border-color:var(--gold);transform:rotate(90deg);}
+  .detail{position:fixed;inset:0;z-index:200;transform:translateX(100%);visibility:hidden;
+    transition:transform .42s cubic-bezier(.2,.85,.2,1);will-change:transform;}
+  .detail.on{transform:translateX(0);visibility:visible;}
+  .detail-panel{position:absolute;inset:0;background:linear-gradient(180deg,#0c111f,#080b14);overflow-y:auto;padding:68px 46px 62px;}
+  .detail-back{position:absolute;top:16px;left:20px;z-index:10;display:inline-flex;align-items:center;
+    font-family:"Space Mono",monospace;font-size:.78rem;letter-spacing:.06em;color:var(--ink);
+    background:rgba(12,17,31,.82);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:30px;padding:9px 16px;cursor:pointer;transition:.25s;}
+  .detail-back:hover{background:var(--gold);color:#000;border-color:var(--gold);}
   .d-flag{font-size:3rem;line-height:1;filter:drop-shadow(0 4px 12px rgba(0,0,0,.5));}
   .d-badge{display:inline-block;font-family:"Space Mono",monospace;font-size:.62rem;letter-spacing:.14em;font-weight:700;
     text-transform:uppercase;padding:5px 11px;border-radius:20px;margin-left:12px;vertical-align:middle;}
@@ -152,8 +149,8 @@
   .d-chip{font-family:"Space Mono",monospace;font-size:.72rem;color:#c3cada;background:var(--glass);border:1px solid var(--line);
     border-radius:20px;padding:7px 13px;letter-spacing:.03em;}
   /* 內容頁 tab 切換 */
-  .d-tabs{display:flex;gap:8px;position:sticky;top:-2px;z-index:6;background:linear-gradient(#0c111f,#0c111f 70%,transparent);
-    padding:14px 0 12px;margin:26px 0 6px;}
+  .d-tabs{display:flex;gap:8px;position:sticky;top:56px;z-index:6;background:linear-gradient(#0c111f,#0c111f 70%,transparent);
+    padding:14px 0 12px;margin:22px 0 6px;}
   .dtab{flex:1;font-size:.9rem;font-weight:600;color:var(--muted);background:var(--glass);border:1px solid var(--line);
     border-radius:12px;padding:12px;cursor:pointer;transition:.2s;}
   .dtab:hover{color:var(--ink);}
@@ -380,20 +377,19 @@
   <div class="lb-count" id="lbCount"></div>
 </div>
 
-<!-- 旅程詳細頁 -->
+<!-- 旅程詳細頁(整頁切換) -->
 <div class="detail" id="detail">
-  <div class="detail-bg" id="detailBg"></div>
+  <button class="detail-back" id="detailBack" aria-label="back">←&nbsp;返回</button>
   <div class="detail-panel">
-    <button class="detail-close" id="detailClose" aria-label="close">✕</button>
     <div id="detailBody"></div>
   </div>
 </div>
 
 <script src="./assets/globe.gl.min.js"></script>
 <script src="./assets/countries.js"></script>
-<script src="./assets/trips.js?v=1791047113"></script>
+<script src="./assets/trips.js?v=1791047603"></script>
 <script>
-// 資料來源：assets/trips.js?v=1791047113
+// 資料來源：assets/trips.js?v=1791047603
 const RAW = (window.__TRIPS__ || []);
 const TRIPS = RAW.map(t=>({
   ...t,
@@ -564,11 +560,13 @@ function openDetail(t){
   updProg();
   detail.scrollTop=0; panel.scrollTop=0;
   detail.classList.add('on'); document.body.style.overflow='hidden';
+  if(!(history.state&&history.state.atlasDetail)) history.pushState({atlasDetail:true},'');
 }
 function closeDetail(){detail.classList.remove('on');document.body.style.overflow='';}
-document.getElementById('detailClose').onclick=closeDetail;
-document.getElementById('detailBg').onclick=closeDetail;
-addEventListener('keydown',e=>{if(e.key==='Escape' && !document.getElementById('lightbox').classList.contains('on'))closeDetail();});
+function goBack(){ if(history.state&&history.state.atlasDetail) history.back(); else closeDetail(); }
+document.getElementById('detailBack').onclick=goBack;
+addEventListener('keydown',e=>{if(e.key==='Escape' && detail.classList.contains('on') && !document.getElementById('lightbox').classList.contains('on'))goBack();});
+window.addEventListener('popstate',()=>{ if(detail.classList.contains('on')) closeDetail(); });
 
 /* ---------- 圖片燈箱(可左右滑) ---------- */
 const lightbox=document.getElementById('lightbox'), lbImg=document.getElementById('lbImg'), lbCount=document.getElementById('lbCount');
