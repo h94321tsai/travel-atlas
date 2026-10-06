@@ -657,6 +657,8 @@ window.__TRIPS__ = [
     "d": "Day 1",
     "date": "10/4 (日)",
     "title": "廣島機場接機 → 廣島市區 → 吳",
+    "photo": "assets/images/廣島/itin/d1.jpg",
+    "photoCredit": "原爆圓頂館",
     "highlight": "歷史與和平之旅・廣島燒",
     "remind": "和平紀念資料館館內氣氛較嚴肅，小孩可依狀況調整參觀時間",
     "schedule": [
@@ -735,6 +737,8 @@ window.__TRIPS__ = [
     "d": "Day 2",
     "date": "10/5 (一)",
     "title": "廣島 → 錦帶橋 → 島田水產(午餐) → 宮島(嚴島)",
+    "photo": "assets/images/廣島/itin/d2.jpg",
+    "photoCredit": "嚴島神社 大鳥居",
     "highlight": "日本三景・世界遺產巡禮・牡蠣料理",
     "remind": "搭纜車需步行，建議穿好走的鞋，注意防曬與補水",
     "schedule": [
@@ -817,6 +821,8 @@ window.__TRIPS__ = [
     "d": "Day 3",
     "date": "10/6 (二)",
     "title": "竹原小京都 → 大久野島(兔子島)",
+    "photo": "assets/images/廣島/itin/d3.jpg",
+    "photoCredit": "大久野島的兔子",
     "highlight": "復古街道・萌兔療癒之旅",
     "remind": "觀兔請在商店購買專用飼料，不要餵食其他食物，注意防曬！",
     "schedule": [
@@ -883,6 +889,8 @@ window.__TRIPS__ = [
     "d": "Day 4",
     "date": "10/7 (三)",
     "title": "廣島 → 倉敷美觀地區 → 瀨戶大橋 → 琴平",
+    "photo": "assets/images/廣島/itin/d4.jpg",
+    "photoCredit": "倉敷美觀地區",
     "highlight": "白壁街道・瀨戶內海・金刀比羅宮",
     "remind": "長距離移動日，途中安排休息",
     "schedule": [
@@ -936,6 +944,8 @@ window.__TRIPS__ = [
     "d": "Day 5",
     "date": "10/8 (四)",
     "title": "金刀比羅宮 → 烏龍麵體驗 → 呆呆獸公園 → 高松市區",
+    "photo": "assets/images/廣島/itin/d5.jpg",
+    "photoCredit": "金刀比羅宮",
     "highlight": "信仰之旅・手作體驗・讚岐烏龍麵",
     "remind": "金刀比羅宮階梯多，依孩子體力調整；幼童園區記得穿好走的鞋",
     "schedule": [
@@ -990,6 +1000,8 @@ window.__TRIPS__ = [
     "d": "Day 6",
     "date": "10/9 (五)",
     "title": "栗林公園 → 四國村 → 屋島",
+    "photo": "assets/images/廣島/itin/d6.jpg",
+    "photoCredit": "栗林公園",
     "highlight": "日本庭園・傳統文化・絕景展望",
     "remind": "屋島戶外曝曬，行程可依體力調整",
     "schedule": [

@@ -265,6 +265,10 @@
   .itin-dhead .dd{font-family:"Space Mono",monospace;font-weight:700;color:var(--gold);font-size:.8rem;letter-spacing:.1em;}
   .itin-dhead .ddate{font-family:"Space Mono",monospace;color:var(--muted);font-size:.74rem;}
   .itin-day .dtitle{font-size:1.05rem;font-weight:600;color:#fff;margin:4px 0 8px;line-height:1.3;}
+  .itin-photo{margin:2px 0 14px;border-radius:12px;overflow:hidden;position:relative;border:1px solid var(--line);background:#0c1322;}
+  .itin-photo img{display:block;width:100%;height:190px;object-fit:cover;}
+  .itin-photo figcaption{position:absolute;left:0;right:0;bottom:0;padding:16px 12px 7px;font-size:.72rem;color:#e7ecf6;
+    background:linear-gradient(to top,rgba(6,9,16,.82),transparent);font-family:"Space Mono",monospace;letter-spacing:.03em;}
   .itin-hl{display:flex;flex-wrap:wrap;gap:8px 16px;margin-bottom:12px;font-size:.78rem;}
   .itin-hl .hl-star{color:var(--gold);} .itin-hl .hl-rem{color:#9aa3b6;}
   table.sched{width:100%;border-collapse:collapse;font-size:.82rem;margin-bottom:12px;}
@@ -427,9 +431,9 @@
 
 <script src="./assets/globe.gl.min.js"></script>
 <script src="./assets/countries.js"></script>
-<script src="./assets/trips.js?v=1791307503"></script>
+<script src="./assets/trips.js?v=1791309690"></script>
 <script>
-// 資料來源：assets/trips.js?v=1791307503
+// 資料來源：assets/trips.js?v=1791309690
 const RAW = (window.__TRIPS__ || []);
 const TRIPS = RAW.map(t=>({
   ...t,
@@ -552,6 +556,7 @@ function openDetail(t){
       return `<div class="itin-day collapsible">
         <div class="itin-dhead collapse-h"><span class="dd">${day.d||''}</span><span class="ddate">${day.date||''}</span><span class="dtitle-in">${day.title||''}</span><span class="chev">▾</span></div>
         <div class="collapse-body">
+          ${day.photo?`<figure class="itin-photo"><img loading="lazy" src="${encodeURI(day.photo)}" alt="${day.photoCredit||day.title||''}">${day.photoCredit?`<figcaption>📸 ${day.photoCredit}</figcaption>`:''}</figure>`:''}
           ${(day.highlight||day.remind)?`<div class="itin-hl">${day.highlight?`<span class="hl-star">✦ ${day.highlight}</span>`:''}${day.remind?`<span class="hl-rem">⚠ ${day.remind}</span>`:''}</div>`:''}
           ${sched?`<table class="d-itin sched">${sched}</table>`:''}
           ${spots?`<div class="itin-spots">${spots}</div>`:''}
