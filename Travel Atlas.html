@@ -207,9 +207,12 @@
     margin-bottom:10px;padding-bottom:7px;border-bottom:1px solid var(--line);}
   .shop-item{display:flex;align-items:flex-start;gap:12px;padding:9px 6px;border-radius:9px;cursor:pointer;transition:background .2s;}
   .shop-item:hover{background:rgba(255,255,255,.035);}
-  .shop-item .box{flex-shrink:0;width:20px;height:20px;border-radius:6px;border:1.5px solid var(--faint);margin-top:1px;
-    display:flex;align-items:center;justify-content:center;font-size:.72rem;color:#000;transition:.2s;}
-  .shop-item.done .box{background:var(--gold);border-color:var(--gold);}
+  .shop-item .box{flex-shrink:0;width:22px;height:22px;border-radius:50%;border:2px solid var(--faint);margin-top:1px;
+    display:flex;align-items:center;justify-content:center;font-size:.7rem;color:transparent;background:transparent;
+    transition:transform .18s cubic-bezier(.34,1.56,.64,1),background .18s,border-color .18s,box-shadow .18s;}
+  .shop-item:hover .box{border-color:var(--gold);}
+  .shop-item.done .box{background:linear-gradient(135deg,var(--gold),var(--gold2));border-color:var(--gold2);
+    color:#1a1205;transform:scale(1.1);box-shadow:0 3px 10px rgba(245,195,122,.38);}
   .shop-item .txt{font-size:.92rem;line-height:1.5;color:#dfe4ef;}
   .shop-item.done .txt{color:var(--faint);text-decoration:line-through;}
   .shop-item .star{color:var(--gold);font-weight:700;margin-right:2px;}
@@ -235,6 +238,24 @@
     background:rgba(245,195,122,.1);border:1px solid rgba(245,195,122,.22);border-radius:6px;padding:1px 7px;margin-top:6px;}
   .shop-item.rich.done .ithumb{filter:grayscale(.7) opacity(.5);}
   .shop-item.rich.done .iname,.shop-item.rich.done .idesc{color:var(--faint);text-decoration:line-through;}
+  /* 長按編輯 */
+  .shop-item [hidden]{display:none!important;}
+  .shop-item{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;}
+  .shop-item.editing{background:rgba(245,195,122,.07);cursor:default;}
+  .shop-item.editing [contenteditable]{-webkit-user-select:text;user-select:text;outline:none;cursor:text;
+    border-bottom:1px dashed var(--gold);padding-bottom:1px;min-width:46px;text-decoration:none!important;}
+  .shop-item.editing .iname[contenteditable]{color:#fff;}
+  .shop-item.editing .txt[contenteditable]{color:#eef2fb;}
+  /* 寬螢幕:購物圖片放大 */
+  @media(min-width:768px){
+    .shop-item.rich{gap:18px;padding:13px 10px;}
+    .shop-item .ithumb{width:88px;height:88px;border-radius:13px;font-size:1.8rem;}
+    .shop-item .ithumb .imgn{font-size:.62rem;padding:2px 6px;}
+    .shop-item .iname{font-size:1.05rem;}
+    .shop-item .idesc{font-size:.85rem;margin-top:5px;}
+    .shop-item .iprice{font-size:.76rem;margin-top:8px;}
+    .shop-item .box{width:24px;height:24px;}
+  }
   /* 燈箱 */
   .lightbox{position:fixed;inset:0;z-index:300;display:none;align-items:center;justify-content:center;
     background:rgba(3,5,10,.92);backdrop-filter:blur(8px);}
@@ -431,9 +452,9 @@
 
 <script src="./assets/globe.gl.min.js"></script>
 <script src="./assets/countries.js"></script>
-<script src="./assets/trips.js?v=1791869026"></script>
+<script src="./assets/trips.js?v=1791882243"></script>
 <script>
-// 資料來源：assets/trips.js?v=1791869026
+// 資料來源：assets/trips.js?v=1791882243
 const RAW = (window.__TRIPS__ || []);
 const TRIPS = RAW.map(t=>({
   ...t,
@@ -532,6 +553,11 @@ document.getElementById('tabs').addEventListener('click',e=>{
 /* ---------- 旅程詳細頁 ---------- */
 const detail=document.getElementById('detail'), detailBody=document.getElementById('detailBody');
 const shopKey=(t,gi,ii)=>`atlas:${t.name}:${gi}:${ii}`;
+const editKey=(t,gi,ii)=>`atlas:edit:${t.name}:${gi}:${ii}`;
+function getEdit(t,gi,ii){ try{return JSON.parse(localStorage.getItem(editKey(t,gi,ii))||'null');}catch(e){return null;} }
+function setEdit(t,gi,ii,obj){ localStorage.setItem(editKey(t,gi,ii),JSON.stringify(obj)); }
+const fmtText=s=>(s||'').replace(/^◎\s*/,'<span class="star">◎</span>').replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/`([^`]+)`/g,'<span class="price">$1</span>').replace(/\s*—\s*/,' <span class="dash">—</span> ');
+const escAttr=s=>(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
 function openDetail(t){
   if(!t)return;
   const sc=STATUS_COLOR[t.status]||'#7ad7ff';
@@ -578,14 +604,18 @@ function openDetail(t){
       const items=g.items.map((it,ii)=>{
         const key=shopKey(t,gi,ii), saved=localStorage.getItem(key);
         const done=saved===null?(it.done||false):saved==='1';
+        const ov=getEdit(t,gi,ii)||{};
         if(it.name!==undefined){
+          const nm=ov.name!==undefined?ov.name:(it.name||'');
+          const ds=ov.desc!==undefined?ov.desc:(it.desc||'');
+          const pr=ov.price!==undefined?ov.price:(it.price||'');
           const imgs=(it.imgs||[]).map(f=>({t:`${base}/thumb/${f}`,f:`${base}/${f}`}));
           const thumb=imgs.length?`<div class="ithumb" data-full='${JSON.stringify(imgs.map(x=>x.f))}' style="background-image:url('${encodeURI(imgs[0].t)}')">${imgs.length>1?`<span class="imgn">+${imgs.length-1}</span>`:''}</div>`:`<div class="ithumb empty">🛍️</div>`;
-          const txt=`<div class="itxt"><div class="iname">${it.name}</div>${it.desc?`<div class="idesc">${it.desc}</div>`:''}${it.price?`<div class="iprice">${it.price}</div>`:''}</div>`;
-          return `<div class="shop-item rich ${done?'done':''}" data-key="${key}"><div class="box">✓</div>${thumb}${txt}</div>`;
+          const txt=`<div class="itxt"><div class="iname">${nm}</div><div class="idesc"${ds?'':' hidden'}>${ds}</div><div class="iprice"${pr?'':' hidden'}>${pr}</div></div>`;
+          return `<div class="shop-item rich ${done?'done':''}" data-key="${key}" data-type="rich" data-gi="${gi}" data-ii="${ii}"><div class="box">✓</div>${thumb}${txt}</div>`;
         }
-        const txt=(it.text||'').replace(/^◎\s*/,'<span class="star">◎</span>').replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/`([^`]+)`/g,'<span class="price">$1</span>').replace(/\s*—\s*/,' <span class="dash">—</span> ');
-        return `<div class="shop-item ${done?'done':''}" data-key="${key}"><div class="box">✓</div><div class="txt">${txt}</div></div>`;
+        const raw=ov.text!==undefined?ov.text:(it.text||'');
+        return `<div class="shop-item ${done?'done':''}" data-key="${key}" data-type="text" data-gi="${gi}" data-ii="${ii}" data-raw="${escAttr(raw)}"><div class="box">✓</div><div class="txt">${fmtText(raw)}</div></div>`;
       }).join('');
       const note=g.note?`<div class="gnote">${g.note}</div>`:'';
       return `<div class="shop-group collapsible"><div class="gh collapse-h"><span class="gtitle">${g.group}</span><span class="gcount">${g.items.length}</span><span class="chev">▾</span></div><div class="collapse-body">${note}${items}</div></div>`;
@@ -616,8 +646,71 @@ function openDetail(t){
   });
   detailBody.querySelectorAll('.collapse-h').forEach(h=>h.onclick=()=>h.closest('.collapsible').classList.toggle('collapsed'));
   const updProg=()=>{const n=detailBody.querySelectorAll('.shop-item').length,d=detailBody.querySelectorAll('.shop-item.done').length,f=detailBody.querySelector('#shopFill'),p=detailBody.querySelector('#shopPct');if(f)f.style.width=(n?d/n*100:0)+'%';if(p)p.textContent=`${d} / ${n} 已買`;};
-  detailBody.querySelectorAll('.shop-item').forEach(el=>el.onclick=()=>{el.classList.toggle('done');localStorage.setItem(el.dataset.key,el.classList.contains('done')?'1':'0');updProg();});
+  // 已勾選的自動排到該分類最下面(FLIP 滑動回饋)
+  function reflowGroup(body,animate){
+    if(!body)return;
+    const items=[...body.querySelectorAll('.shop-item')];
+    const first=animate?new Map(items.map(el=>[el,el.getBoundingClientRect().top])):null;
+    const rank=el=>el.classList.contains('done') ? 1e15+(+el.dataset.doneAt||0) : (+el.dataset.ii||0);
+    items.slice().sort((a,b)=>rank(a)-rank(b)).forEach(el=>body.appendChild(el));
+    if(animate) body.querySelectorAll('.shop-item').forEach(el=>{
+      const dy=first.get(el)-el.getBoundingClientRect().top;
+      if(dy){ el.style.transition='none'; el.style.transform=`translateY(${dy}px)`;
+        requestAnimationFrame(()=>{ el.style.transition='transform .34s cubic-bezier(.2,.8,.3,1)'; el.style.transform=''; });
+        setTimeout(()=>{el.style.transition='';el.style.transform='';},420);
+      }
+    });
+  }
+  // 長按編輯文字
+  function enterEdit(el){
+    if(el.classList.contains('editing'))return;
+    el.classList.add('editing');
+    if(el.dataset.type!=='rich'){ const tx=el.querySelector('.txt'); tx.textContent=el.dataset.raw||''; }
+    const sels = el.dataset.type==='rich'?['.iname','.idesc','.iprice']:['.txt'];
+    let firstField=null;
+    sels.forEach(sel=>{ const f=el.querySelector(sel); if(!f)return; if(f.hidden){f.hidden=false;f.dataset.wasHidden='1';} f.contentEditable='true';
+      f.addEventListener('keydown',ev=>{ if(ev.key==='Enter'||ev.key==='Escape'){ev.preventDefault();commitEdit(el);} });
+      if(!firstField)firstField=f; });
+    if(firstField){ firstField.focus(); const r=document.createRange(); r.selectNodeContents(firstField); const s=getSelection(); s.removeAllRanges(); s.addRange(r); }
+  }
+  function commitEdit(el){
+    if(!el.classList.contains('editing'))return;
+    const gi=+el.dataset.gi, ii=+el.dataset.ii, cur=getEdit(t,gi,ii)||{};
+    if(el.dataset.type==='rich'){
+      const nm=el.querySelector('.iname'), ds=el.querySelector('.idesc'), pr=el.querySelector('.iprice');
+      if(nm){cur.name=nm.textContent.trim(); nm.contentEditable='false'; nm.textContent=cur.name;}
+      if(ds){cur.desc=ds.textContent.trim(); ds.contentEditable='false'; ds.textContent=cur.desc; if(!cur.desc)ds.hidden=true;}
+      if(pr){cur.price=pr.textContent.trim(); pr.contentEditable='false'; pr.textContent=cur.price; if(!cur.price)pr.hidden=true;}
+    } else {
+      const tx=el.querySelector('.txt'), raw=tx.textContent.trim();
+      cur.text=raw; el.dataset.raw=raw; tx.contentEditable='false'; tx.innerHTML=fmtText(raw);
+    }
+    setEdit(t,gi,ii,cur);
+    el.classList.remove('editing');
+  }
+  detailBody.querySelectorAll('.shop-item').forEach(el=>{
+    let timer=null, longFired=false;
+    const start=(e)=>{ if(e.target.closest('.ithumb')||el.classList.contains('editing'))return; longFired=false; timer=setTimeout(()=>{longFired=true;enterEdit(el);},480); };
+    const cancel=()=>clearTimeout(timer);
+    el.addEventListener('touchstart',start,{passive:true});
+    el.addEventListener('touchmove',cancel,{passive:true});
+    el.addEventListener('touchend',cancel);
+    el.addEventListener('mousedown',start);
+    el.addEventListener('mouseup',cancel);
+    el.addEventListener('mouseleave',cancel);
+    el.addEventListener('focusout',e=>{ if(el.classList.contains('editing') && !el.contains(e.relatedTarget)) commitEdit(el); });
+    el.onclick=()=>{
+      if(longFired){ longFired=false; return; }
+      if(el.classList.contains('editing')) return;
+      el.classList.toggle('done');
+      if(el.classList.contains('done')) el.dataset.doneAt=Date.now();
+      localStorage.setItem(el.dataset.key, el.classList.contains('done')?'1':'0');
+      updProg();
+      reflowGroup(el.closest('.collapse-body'), true);
+    };
+  });
   detailBody.querySelectorAll('.ithumb').forEach(el=>el.onclick=(e)=>{e.stopPropagation();if(el.dataset.full)openLightbox(JSON.parse(el.dataset.full),0);});
+  detailBody.querySelectorAll('.shop-group .collapse-body').forEach(b=>reflowGroup(b,false));
   updProg();
   detail.scrollTop=0; panel.scrollTop=0;
   detail.classList.add('on'); document.body.style.overflow='hidden';
