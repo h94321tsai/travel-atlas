@@ -98,6 +98,8 @@
     background-image:radial-gradient(rgba(255,255,255,.14) 1px,transparent 1px);background-size:22px 22px;mask-image:linear-gradient(to top,transparent,#000);}
   .tcard .cover::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(6,9,16,.97) 12%,rgba(6,9,16,.45) 52%,rgba(6,9,16,.1));}
   .tcard .ghost{position:absolute;top:-6%;right:-4%;z-index:1;font-size:8rem;opacity:.16;filter:saturate(1.2);transform:rotate(-8deg);pointer-events:none;}
+  .tcard.has-cover .ghost{display:none;}
+  .tcard.has-cover:hover .cover{transform:scale(1.05);}
   .tcard .flag{position:absolute;top:18px;left:18px;z-index:3;font-size:1.6rem;filter:drop-shadow(0 2px 8px rgba(0,0,0,.7));}
   .tcard .badge{position:absolute;top:20px;right:18px;z-index:3;font-family:"Space Mono",monospace;font-size:.6rem;letter-spacing:.14em;
     font-weight:700;text-transform:uppercase;padding:6px 11px;border-radius:20px;backdrop-filter:blur(8px);}
@@ -173,7 +175,7 @@
     border-radius:12px;cursor:pointer;transition:.2s;}
   .d-back:hover{background:var(--gold);color:#000;border-color:var(--gold);}
   .dtab{flex:1;font-size:.9rem;font-weight:600;color:var(--muted);background:var(--glass);border:1px solid var(--line);
-    border-radius:12px;padding:12px;cursor:pointer;transition:.2s;}
+    border-radius:12px;padding:12px 8px;cursor:pointer;transition:.2s;white-space:nowrap;}
   .dtab:hover{color:var(--ink);}
   .dtab.active{background:var(--gold);color:#000;border-color:var(--gold);}
   .d-pane[hidden]{display:none;}
@@ -275,7 +277,34 @@
   .lb-count{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-family:"Space Mono",monospace;
     font-size:.78rem;color:#cfd5e2;letter-spacing:.1em;background:rgba(0,0,0,.4);padding:5px 14px;border-radius:20px;}
   @media(max-width:560px){ .lb-nav{width:44px;height:44px;font-size:1.4rem;} .lb-prev{left:2vw;} .lb-next{right:2vw;} }
-  .d-empty{color:var(--faint);font-size:.9rem;padding:8px 0;}
+  .lb-cap{position:absolute;bottom:58px;left:50%;transform:translateX(-50%);max-width:88vw;text-align:center;
+    font-size:.82rem;color:#eef2fb;background:rgba(0,0,0,.5);padding:6px 16px;border-radius:14px;backdrop-filter:blur(6px);
+    font-family:"Noto Sans TC",sans-serif;letter-spacing:.02em;}
+  /* 📸 回顧 */
+  .recap-cover{position:relative;height:200px;border-radius:14px;overflow:hidden;background:#0c1322 center/cover no-repeat;margin-bottom:20px;border:1px solid var(--line);}
+  .recap-cover .rc-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,9,16,.85),transparent 55%);}
+  .recap-cover .rc-meta{position:absolute;left:14px;bottom:12px;display:flex;gap:8px;align-items:center;color:#eef2fb;
+    font-family:"Space Mono",monospace;font-size:.78rem;letter-spacing:.06em;text-shadow:0 1px 6px rgba(0,0,0,.6);}
+  .recap-day{margin-bottom:26px;}
+  .recap-dhead{margin-bottom:12px;}
+  .recap-spot{margin-bottom:16px;scroll-margin-top:12px;border-radius:10px;transition:box-shadow .4s,background .4s;}
+  .recap-spot.flash{background:rgba(245,195,122,.08);box-shadow:0 0 0 2px var(--gold);}
+  .rs-head{display:flex;align-items:center;gap:7px;font-size:.86rem;color:#dfe4ef;margin:0 0 8px 2px;font-weight:600;}
+  .rs-head.rs-other{color:var(--muted);font-weight:500;}
+  .rs-head .rs-n{font-family:"Space Mono",monospace;font-size:.62rem;color:var(--gold);background:rgba(245,195,122,.12);
+    border-radius:20px;padding:1px 8px;}
+  .recap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
+  .rphoto{width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;cursor:zoom-in;background:#0c1322;
+    border:1px solid var(--line);transition:transform .18s,border-color .18s;display:block;}
+  .rphoto:hover{transform:scale(1.03);border-color:var(--gold);}
+  @media(min-width:620px){ .recap-grid{grid-template-columns:repeat(4,1fr);} .recap-cover{height:260px;} }
+  @media(min-width:960px){ .recap-grid{grid-template-columns:repeat(5,1fr);} }
+  /* 行程 tab 景點照片縮圖 */
+  .spot-photos{flex-shrink:0;width:30px;height:30px;border-radius:8px;background:#0c1322 center/cover no-repeat;border:1px solid var(--gold);
+    position:relative;cursor:pointer;padding:0;overflow:visible;}
+  .spot-photos .n{position:absolute;right:-6px;bottom:-7px;background:var(--gold);color:#000;font:700 .54rem "Space Mono",monospace;
+    padding:1px 5px;border-radius:10px;white-space:nowrap;}
+  .d-empty{color:var(--faint);font-size:.9rem;padding:8px 0;line-height:1.7;}
   .itin-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
   /* rich 行程 */
   .itin-meta{background:var(--glass);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:22px;}
@@ -446,6 +475,7 @@
   <img id="lbImg" alt="">
   <button class="lb-nav lb-next" id="lbNext" aria-label="next">›</button>
   <div class="lb-count" id="lbCount"></div>
+  <div class="lb-cap" id="lbCap" style="display:none"></div>
 </div>
 
 <!-- 旅程詳細頁(整頁切換) -->
@@ -457,9 +487,9 @@
 
 <script src="./assets/globe.gl.min.js"></script>
 <script src="./assets/countries.js"></script>
-<script src="./assets/trips.js?v=1791897493"></script>
+<script src="./assets/trips.js?v=1791907560"></script>
 <script>
-// 資料來源：assets/trips.js?v=1791897493
+// 資料來源：assets/trips.js?v=1791907560
 const RAW = (window.__TRIPS__ || []);
 // ---- 今天（台灣時間），可用 ?today=YYYY-MM-DD 模擬 ----
 function twToday(){
@@ -548,7 +578,10 @@ function renderCards(f='all'){
   });
   cardsEl.innerHTML=list.map(t=>{
     const rc=REGION_COLOR[t.region]||'#79b4ff';
-    const cover=`background:radial-gradient(120% 110% at 72% 8%, ${rc}99, ${rc}33 38%, transparent 62%),linear-gradient(160deg,${rc}3a 0%,#0c1324 62%);`;
+    const hasCover=t.status==='行程回顧'&&t.recap&&t.recap.cover;
+    const cover=hasCover
+      ? `background:linear-gradient(to top,rgba(8,12,20,.9),rgba(8,12,20,.3) 52%,rgba(8,12,20,.08)),url('${encodeURI(t.recap.cover)}') center/cover;`
+      : `background:radial-gradient(120% 110% at 72% 8%, ${rc}99, ${rc}33 38%, transparent 62%),linear-gradient(160deg,${rc}3a 0%,#0c1324 62%);`;
     const shopN=(t.shopping||[]).reduce((s,g)=>s+g.items.length,0);
     const meta=[t.days?`◷ ${t.days}D`:null, t.people?`◇ ${t.people}人`:null, shopN?`🛒 ${shopN}`:null, `◉ ${t.country}`].filter(Boolean)
       .map(x=>`<span>${x}</span>`).join('');
@@ -556,7 +589,7 @@ function renderCards(f='all'){
     const badge=live
       ? `<div class="badge live"><span class="dot"></span>執行中</div>`
       : `<div class="badge" style="background:${STATUS_COLOR[t.status]}22;color:${STATUS_COLOR[t.status]};border:1px solid ${STATUS_COLOR[t.status]}55">${STATUS_LABEL[t.status]}</div>`;
-    return `<article class="tcard ${live?'live':''}" data-i="${TRIPS.indexOf(t)}">
+    return `<article class="tcard ${live?'live':''} ${hasCover?'has-cover':''}" data-i="${TRIPS.indexOf(t)}">
       <div class="cover" style="${cover}"></div>
       <div class="ghost">${t.flag}</div>
       <div class="flag">${t.flag}</div>
@@ -591,6 +624,11 @@ function openDetail(t){
   if(t.days)chips.push(`◷ ${t.days} 天`);
   if(t.people)chips.push(`👥 ${t.people} 人`);
   if(t.companions&&t.companions.length)chips.push(`🧑‍🤝‍🧑 ${t.companions.join('、')}`);
+  // ---- 回顧照片:建景點→照片對照（給行程 tab 的縮圖/跳轉用）----
+  const recap=t.recap;
+  const recapSpotMap={};   // "Day X|景點名" -> {count, thumb, anchor}
+  if(recap&&recap.days){ recap.days.forEach((rd,di)=>{ (rd.spots||[]).forEach((s,si)=>{
+    recapSpotMap[`${rd.d}|${s.n}`]={count:s.photos.length, thumb:s.photos[0]&&s.photos[0].thumb, anchor:`recap-d${di}-s${si}`}; }); }); }
   // ---- 行程(可收合一天一塊) ----
   let itinHTML='';
   if(t.itineraryRich&&t.itineraryRich.length){
@@ -601,7 +639,11 @@ function openDetail(t){
     const meta=(m.subtitle||m.flights||m.stays)?`<div class="itin-meta">${m.subtitle?`<div class="im-sub">${m.subtitle}</div>`:''}${(m.flights||[]).map(x=>`<div class="im-row">✈️ ${x}</div>`).join('')}${(m.stays||[]).map(stayRow).join('')}</div>`:'';
     const days=t.itineraryRich.map(day=>{
       const sched=(day.schedule||[]).map(r=>`<tr><td>${(r[0]||'').replace(/[–—-]/g,'–<wbr>')}</td><td>${r[1]||''}</td></tr>`).join('');
-      const spots=(day.spots||[]).map(s=>{const q=s.c?`https://www.google.com/maps/search/?api=1&query=${s.c}`:null;const inner=`${s.n}${s.note?`<span class="sp-note"> · ${s.note}</span>`:''}`;return q?`<a class="itin-spot" href="${q}" target="_blank" rel="noopener">📍 ${inner}</a>`:`<span class="itin-spot">📍 ${inner}</span>`;}).join('');
+      const spots=(day.spots||[]).map(s=>{const q=s.c?`https://www.google.com/maps/search/?api=1&query=${s.c}`:null;const inner=`${s.n}${s.note?`<span class="sp-note"> · ${s.note}</span>`:''}`;
+        const link=q?`<a class="itin-spot" href="${q}" target="_blank" rel="noopener">📍 ${inner}</a>`:`<span class="itin-spot">📍 ${inner}</span>`;
+        const rc=recapSpotMap[`${day.d}|${s.n}`];
+        const rthumb=(rc&&rc.thumb)?`<button class="spot-photos" data-anchor="${rc.anchor}" style="background-image:url('${encodeURI(rc.thumb)}')" title="看這個景點的照片"><span class="n">📷 ${rc.count}</span></button>`:'';
+        return link+rthumb;}).join('');
       return `<div class="itin-day collapsible">
         <div class="itin-dhead collapse-h"><span class="dd">${day.d||''}</span><span class="ddate">${day.date||''}</span><span class="dtitle-in">${day.title||''}</span><span class="chev">▾</span></div>
         <div class="collapse-body">
@@ -646,17 +688,39 @@ function openDetail(t){
     shopHTML=`<div class="shop-prog"><div class="track"><div class="fill" id="shopFill"></div></div><div class="pct" id="shopPct"></div></div>${timing}${gbody}`;
   } else { shopHTML=`<div class="d-empty">這趟還沒列購物清單。</div>`; }
 
+  // ---- 回顧(依 Day 分段,Day 內依景點分組;縮圖 grid)----
+  const recapLists=[];   // recapLists[di] = [{full,caption,time}]（lightbox 跨整天）
+  let recapHTML;
+  if(recap&&recap.count){
+    const cover=recap.cover?`<div class="recap-cover" style="background-image:url('${encodeURI(recap.cover)}')"><div class="rc-grad"></div><div class="rc-meta"><span>📸 ${recap.count} 張</span><span>·</span><span>${recap.days.length} 天</span></div></div>`:'';
+    const daysHTML=recap.days.map((rd,di)=>{
+      const list=[]; recapLists[di]=list;
+      const pthumb=(p)=>{const idx=list.length; list.push({full:p.full,caption:p.caption||'',time:p.time||''});
+        return `<img class="rphoto" loading="lazy" data-rd="${di}" data-ri="${idx}" src="${encodeURI(p.thumb)}" alt="${(p.caption||'').replace(/"/g,'&quot;')}">`;};
+      const grp=(rd.spots||[]).map((s,si)=>`<div class="recap-spot" id="recap-d${di}-s${si}"><div class="rs-head">📍 ${s.n}<span class="rs-n">${s.photos.length}</span></div><div class="recap-grid">${s.photos.map(pthumb).join('')}</div></div>`).join('');
+      const others=(rd.others&&rd.others.length)?`<div class="recap-spot"><div class="rs-head rs-other">📎 其他<span class="rs-n">${rd.others.length}</span></div><div class="recap-grid">${rd.others.map(pthumb).join('')}</div></div>`:'';
+      const note=rd.note?`<div class="itin-hl"><span class="hl-star">✦ ${rd.note}</span></div>`:'';
+      return `<div class="recap-day"><div class="itin-dhead recap-dhead"><span class="dd">${rd.d}</span><span class="ddate">${rd.date||''}</span></div>${note}${grp}${others}</div>`;
+    }).join('');
+    const uncl=(recap.unclassified&&recap.unclassified.length)?(()=>{const di=recapLists.length;const list=[];recapLists[di]=list;
+      const items=recap.unclassified.map(p=>{const idx=list.length;list.push({full:p.full,caption:p.caption||'',time:p.time||''});return `<img class="rphoto" loading="lazy" data-rd="${di}" data-ri="${idx}" src="${encodeURI(p.thumb)}" alt="">`;}).join('');
+      return `<div class="recap-day"><div class="recap-spot"><div class="rs-head rs-other">❓ 未分類<span class="rs-n">${recap.unclassified.length}</span></div><div class="recap-grid">${items}</div></div></div>`;})():'';
+    recapHTML=cover+daysHTML+uncl;
+  } else { recapHTML=`<div class="d-empty">這趟還沒有回顧照片。<br><span style="font-size:.84rem;color:var(--faint)">把照片放進旅程的 recap 資料夾,發佈後就會出現在這。</span></div>`; }
+
   detailBody.innerHTML=`<div class="d-head">
       <div class="d-htitle-row"><span class="hflag">${t.flag}</span><span class="htitle">${t.title}</span>${badge}</div>
       <div class="d-tabs">
         <button class="d-back" id="dBack" aria-label="返回">←</button>
         <button class="dtab active" data-pane="itin">🗺️ 行程</button>
-        <button class="dtab" data-pane="shop">🛒 購物清單</button>
+        <button class="dtab" data-pane="shop">🛒 購物</button>
+        <button class="dtab" data-pane="recap">📸 回顧</button>
       </div>
     </div>
     <div class="d-chips">${chips.map(c=>`<span class="d-chip">${c}</span>`).join('')}</div>
     <div class="d-pane" data-pane="itin">${itinHTML}</div>
-    <div class="d-pane" data-pane="shop" hidden>${shopHTML}</div>`;
+    <div class="d-pane" data-pane="shop" hidden>${shopHTML}</div>
+    <div class="d-pane" data-pane="recap" hidden>${recapHTML}</div>`;
 
   const panel=detail.querySelector('.detail-panel');
   detailBody.querySelector('#dBack').onclick=goBack;
@@ -672,6 +736,12 @@ function openDetail(t){
   const wantBtn=detailBody.querySelector(`.dtab[data-pane="${PANE_FOR_STATUS[t.status]||'itin'}"]`);
   if(wantBtn && !wantBtn.classList.contains('active')) wantBtn.click();
   detailBody.querySelectorAll('.collapse-h').forEach(h=>h.onclick=()=>h.closest('.collapsible').classList.toggle('collapsed'));
+  // 回顧:縮圖開 lightbox(跨整天左右滑)、行程景點縮圖跳到回顧對應位置
+  detailBody.querySelectorAll('.rphoto').forEach(img=>img.onclick=()=>openRecapLightbox(recapLists[+img.dataset.rd],+img.dataset.ri));
+  detailBody.querySelectorAll('.spot-photos').forEach(b=>b.onclick=(e)=>{e.preventDefault();e.stopPropagation();
+    const rt=detailBody.querySelector('.dtab[data-pane="recap"]'); if(rt)rt.click();
+    const el=detailBody.querySelector('#'+b.dataset.anchor);
+    if(el){el.scrollIntoView({behavior:'smooth',block:'start'});el.classList.add('flash');setTimeout(()=>el.classList.remove('flash'),1600);}});
   const updProg=()=>{const n=detailBody.querySelectorAll('.shop-item').length,d=detailBody.querySelectorAll('.shop-item.done').length,f=detailBody.querySelector('#shopFill'),p=detailBody.querySelector('#shopPct');if(f)f.style.width=(n?d/n*100:0)+'%';if(p)p.textContent=`${d} / ${n} 已買`;};
   // 已勾選的自動排到該分類最下面(FLIP 滑動回饋)
   function reflowGroup(body,animate){
@@ -750,10 +820,12 @@ window.addEventListener('popstate',()=>{ if(detail.classList.contains('on')) clo
 
 /* ---------- 圖片燈箱(可左右滑) ---------- */
 const lightbox=document.getElementById('lightbox'), lbImg=document.getElementById('lbImg'), lbCount=document.getElementById('lbCount');
-let lbList=[], lbIdx=0;
+let lbList=[], lbIdx=0, lbCaps=[];
 function lbShow(){ lbImg.src=encodeURI(lbList[lbIdx]); lbCount.textContent=`${lbIdx+1} / ${lbList.length}`;
-  const multi=lbList.length>1; document.getElementById('lbPrev').style.display=document.getElementById('lbNext').style.display=multi?'':'none'; }
-function openLightbox(list,i){ lbList=list||[]; if(!lbList.length)return; lbIdx=i||0; lbShow(); lightbox.classList.add('on'); }
+  const multi=lbList.length>1; document.getElementById('lbPrev').style.display=document.getElementById('lbNext').style.display=multi?'':'none';
+  const capEl=document.getElementById('lbCap'); if(capEl){const c=lbCaps[lbIdx]||''; capEl.textContent=c; capEl.style.display=c?'':'none';} }
+function openLightbox(list,i,caps){ lbList=list||[]; lbCaps=caps||[]; if(!lbList.length)return; lbIdx=i||0; lbShow(); lightbox.classList.add('on'); }
+function openRecapLightbox(dayList,i){ if(!dayList)return; openLightbox(dayList.map(p=>p.full), i, dayList.map(p=>[p.time,p.caption].filter(Boolean).join('　·　'))); }
 function lbClose(){ lightbox.classList.remove('on'); }
 function lbNext(){ lbIdx=(lbIdx+1)%lbList.length; lbShow(); }
 function lbPrev(){ lbIdx=(lbIdx-1+lbList.length)%lbList.length; lbShow(); }
