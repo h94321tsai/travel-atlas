@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
 <title>Travel Atlas · 我的足跡</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -78,9 +79,10 @@
   .sec-head .idx{font-family:"Space Mono",monospace;font-size:.72rem;letter-spacing:.2em;color:var(--faint);}
 
   /* 篩選 tabs */
-  .tabs{display:flex;gap:8px;}
-  .tabs button{font-family:"Space Mono",monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
-    color:var(--muted);background:var(--glass);border:1px solid var(--line);border-radius:30px;padding:9px 18px;cursor:pointer;transition:.25s;}
+  .tabs{display:flex;gap:8px;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+  .tabs::-webkit-scrollbar{display:none;}
+  .tabs button{font-family:"Space Mono",monospace;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;flex:0 0 auto;
+    color:var(--muted);background:var(--glass);border:1px solid var(--line);border-radius:30px;padding:9px 16px;cursor:pointer;transition:.25s;}
   .tabs button:hover{color:var(--ink);}
   .tabs button.active{background:var(--gold);color:#000;border-color:var(--gold);}
 
@@ -152,6 +154,8 @@
   .d-flag{font-size:3rem;line-height:1;filter:drop-shadow(0 4px 12px rgba(0,0,0,.5));}
   .d-badge{display:inline-block;font-family:"Space Mono",monospace;font-size:.62rem;letter-spacing:.14em;font-weight:700;
     text-transform:uppercase;padding:5px 11px;border-radius:20px;margin-left:12px;vertical-align:middle;}
+  .d-badge.live{display:inline-flex;align-items:center;gap:6px;}
+  .d-badge.live .dot{width:6px;height:6px;border-radius:50%;background:#5fe0d0;box-shadow:0 0 0 0 rgba(95,224,208,.7);animation:livepulse 1.6s infinite;}
   .d-title{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:600;letter-spacing:-.02em;margin:14px 0 6px;line-height:1.1;}
   .d-year{font-family:"Space Mono",monospace;color:var(--gold);font-size:.74rem;letter-spacing:.18em;font-weight:700;}
   .d-chips{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 4px;}
@@ -399,6 +403,7 @@
     <div class="tabs" id="tabs">
       <button class="active" data-f="all">All</button>
       <button data-f="規劃中">規劃中</button>
+      <button data-f="旅行中">旅行中</button>
       <button data-f="行程回顧">回顧</button>
       <button data-f="許願池">許願池</button>
     </div>
@@ -452,19 +457,38 @@
 
 <script src="./assets/globe.gl.min.js"></script>
 <script src="./assets/countries.js"></script>
-<script src="./assets/trips.js?v=1791882243"></script>
+<script src="./assets/trips.js?v=1791897493"></script>
 <script>
-// 資料來源：assets/trips.js?v=1791882243
+// 資料來源：assets/trips.js?v=1791897493
 const RAW = (window.__TRIPS__ || []);
-const TRIPS = RAW.map(t=>({
-  ...t,
-  title: (t.name||"").replace(/^\d{4}-\d{2}\s+\S+\s+/, "").trim() || t.name,
-}));
+// ---- 今天（台灣時間），可用 ?today=YYYY-MM-DD 模擬 ----
+function twToday(){
+  try{ return new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Taipei'}); }
+  catch(e){ const d=new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
+}
+const _qToday=(new URLSearchParams(location.search).get('today')||'').trim();
+const TODAY = /^\d{4}-\d{2}-\d{2}$/.test(_qToday) ? _qToday : twToday();
+// ---- 依日期自動判斷狀態（有日期一律以日期為準；無日期才用 md 的 status）----
+function computeStatus(t){
+  if(t.start && t.end){
+    if(TODAY < t.start) return '規劃中';
+    if(TODAY > t.end)   return '行程回顧';
+    return '旅行中';
+  }
+  return t.rawStatus || '規劃中';
+}
+const TRIPS = RAW.map(t=>{
+  const o={...t,
+    title: (t.name||"").replace(/^\d{4}-\d{2}\s+\S+\s+/, "").trim() || t.name,
+    rawStatus: t.status };
+  o.status = computeStatus(o);
+  return o;
+});
 const GLOBE_TRIPS = TRIPS.filter(t=>t.lat!=null && t.lng!=null);
 const HOME = {lat:25.0330, lng:121.5654};
 const REGION_COLOR = {"韓國":"#ff7a7a","日本":"#79b4ff","泰國":"#ffc06b","越南":"#5fe0d0"};
-const STATUS_COLOR = {"行程回顧":"#f5c37a","規劃中":"#7ad7ff","許願池":"#b79cff"};
-const STATUS_LABEL = {"行程回顧":"VISITED","規劃中":"PLANNING","許願池":"WISHLIST"};
+const STATUS_COLOR = {"行程回顧":"#f5c37a","規劃中":"#7ad7ff","旅行中":"#5fe0d0","許願池":"#b79cff"};
+const STATUS_LABEL = {"行程回顧":"VISITED","規劃中":"PLANNING","旅行中":"TRAVELING","許願池":"WISHLIST"};
 
 /* ---------- GLOBE ---------- */
 const world = Globe()
@@ -515,9 +539,7 @@ world.onPointClick(p=>{world.controls().autoRotate=false;world.pointOfView({lat:
 
 /* ---------- CARDS ---------- */
 const cardsEl=document.getElementById('cards');
-const _d=new Date();
-const TODAY=`${_d.getFullYear()}-${String(_d.getMonth()+1).padStart(2,'0')}-${String(_d.getDate()).padStart(2,'0')}`;
-const isOngoing=t=>t.start&&t.end&&TODAY>=t.start&&TODAY<=t.end;
+const isOngoing=t=>t.status==='旅行中';
 function renderCards(f='all'){
   const list=TRIPS.filter(t=>f==='all'||t.status===f).slice().sort((a,b)=>{
     const ao=isOngoing(a)?1:0, bo=isOngoing(b)?1:0;
@@ -561,7 +583,8 @@ const escAttr=s=>(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/<
 function openDetail(t){
   if(!t)return;
   const sc=STATUS_COLOR[t.status]||'#7ad7ff';
-  const badge=`<span class="d-badge" style="background:${sc}22;color:${sc};border:1px solid ${sc}55">${STATUS_LABEL[t.status]}</span>`;
+  const live=t.status==='旅行中';
+  const badge=`<span class="d-badge${live?' live':''}" style="background:${sc}22;color:${sc};border:1px solid ${sc}55">${live?'<span class="dot"></span>':''}${STATUS_LABEL[t.status]}</span>`;
   const chips=[];
   if(t.start)chips.push(`🗓 ${t.start}${t.end?' → '+t.end:''}`);
   if(t.place)chips.push(`📍 ${t.place}`);
@@ -644,6 +667,10 @@ function openDetail(t){
     panes.forEach(p=>{p.hidden = p.dataset.pane!==b.dataset.pane;});
     panel.scrollTop=0;
   });
+  // 依狀態決定預設開哪個 tab（旅行中→💰花費、回顧→📸回顧、其餘→🗺️行程；該 tab 尚未做出來時 fallback 行程）
+  const PANE_FOR_STATUS={'旅行中':'finance','行程回顧':'recap','規劃中':'itin','許願池':'itin'};
+  const wantBtn=detailBody.querySelector(`.dtab[data-pane="${PANE_FOR_STATUS[t.status]||'itin'}"]`);
+  if(wantBtn && !wantBtn.classList.contains('active')) wantBtn.click();
   detailBody.querySelectorAll('.collapse-h').forEach(h=>h.onclick=()=>h.closest('.collapsible').classList.toggle('collapsed'));
   const updProg=()=>{const n=detailBody.querySelectorAll('.shop-item').length,d=detailBody.querySelectorAll('.shop-item.done').length,f=detailBody.querySelector('#shopFill'),p=detailBody.querySelector('#shopPct');if(f)f.style.width=(n?d/n*100:0)+'%';if(p)p.textContent=`${d} / ${n} 已買`;};
   // 已勾選的自動排到該分類最下面(FLIP 滑動回饋)
