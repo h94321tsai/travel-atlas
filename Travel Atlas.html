@@ -273,7 +273,7 @@
   .itin-hl .hl-star{color:var(--gold);} .itin-hl .hl-rem{color:#9aa3b6;}
   table.sched{width:100%;border-collapse:collapse;font-size:.82rem;margin-bottom:12px;}
   table.sched td{padding:6px 8px;border-bottom:1px solid rgba(255,255,255,.055);color:#c3cada;vertical-align:top;}
-  table.sched td:first-child{color:var(--gold);font-family:"Space Mono",monospace;white-space:nowrap;width:68px;font-size:.76rem;}
+  table.sched td:first-child{color:var(--gold);font-family:"Space Mono",monospace;width:72px;font-size:.76rem;line-height:1.35;overflow-wrap:break-word;}
   .itin-spots{display:flex;flex-wrap:wrap;gap:8px;}
   .itin-spot{font-size:.76rem;color:#c3cada;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:8px;
     padding:5px 10px;text-decoration:none;transition:.2s;}
@@ -326,7 +326,7 @@
     .itin-meta{padding:12px 14px;}
     .itin-dhead{flex-wrap:wrap;}
     .itin-day .dtitle-in{flex-basis:100%;margin-left:0;margin-top:3px;}
-    table.sched td:first-child{width:58px;font-size:.72rem;}
+    table.sched td:first-child{width:64px;font-size:.72rem;}
     .shop-item{padding:11px 4px;}
     .shop-item.rich{gap:11px;}
     .shop-item .ithumb{width:58px;height:58px;}
@@ -431,9 +431,9 @@
 
 <script src="./assets/globe.gl.min.js"></script>
 <script src="./assets/countries.js"></script>
-<script src="./assets/trips.js?v=1791309690"></script>
+<script src="./assets/trips.js?v=1791869026"></script>
 <script>
-// 資料來源：assets/trips.js?v=1791309690
+// 資料來源：assets/trips.js?v=1791869026
 const RAW = (window.__TRIPS__ || []);
 const TRIPS = RAW.map(t=>({
   ...t,
@@ -551,7 +551,7 @@ function openDetail(t){
       return `<div class="im-row">🏨 ${nm}${s.when?` <span class="im-when">(${s.when})</span>`:''}</div>`;};
     const meta=(m.subtitle||m.flights||m.stays)?`<div class="itin-meta">${m.subtitle?`<div class="im-sub">${m.subtitle}</div>`:''}${(m.flights||[]).map(x=>`<div class="im-row">✈️ ${x}</div>`).join('')}${(m.stays||[]).map(stayRow).join('')}</div>`:'';
     const days=t.itineraryRich.map(day=>{
-      const sched=(day.schedule||[]).map(r=>`<tr><td>${r[0]||''}</td><td>${r[1]||''}</td></tr>`).join('');
+      const sched=(day.schedule||[]).map(r=>`<tr><td>${(r[0]||'').replace(/[–—-]/g,'–<wbr>')}</td><td>${r[1]||''}</td></tr>`).join('');
       const spots=(day.spots||[]).map(s=>{const q=s.c?`https://www.google.com/maps/search/?api=1&query=${s.c}`:null;const inner=`${s.n}${s.note?`<span class="sp-note"> · ${s.note}</span>`:''}`;return q?`<a class="itin-spot" href="${q}" target="_blank" rel="noopener">📍 ${inner}</a>`:`<span class="itin-spot">📍 ${inner}</span>`;}).join('');
       return `<div class="itin-day collapsible">
         <div class="itin-dhead collapse-h"><span class="dd">${day.d||''}</span><span class="ddate">${day.date||''}</span><span class="dtitle-in">${day.title||''}</span><span class="chev">▾</span></div>
