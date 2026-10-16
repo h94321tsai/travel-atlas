@@ -585,9 +585,9 @@
 
 <script src="./assets/globe.gl.min.js"></script>
 <script src="./assets/countries.js"></script>
-<script src="./assets/trips.js?v=1792142431"></script>
+<script src="./assets/trips.js?v=1792146780"></script>
 <script>
-// 資料來源：assets/trips.js?v=1792142431
+// 資料來源：assets/trips.js?v=1792146780
 const RAW = (window.__TRIPS__ || []);
 // ---- 今天（台灣時間），可用 ?today=YYYY-MM-DD 模擬 ----
 function twToday(){
@@ -1018,10 +1018,12 @@ function openOcrConfig(){ const c=ocrCfg();
     <p class="fin-hint">設定好後,記帳時就能用「📷 掃描收據」自動帶入金額。這兩個值只存在你這台裝置。</p>`,
     ()=>{ localStorage.setItem(OCR_CFG_KEY,JSON.stringify({url:document.getElementById('ocrUrl').value.trim(),secret:document.getElementById('ocrSecret').value.trim()})); closeSheet(); });
 }
-async function ocrScan(file){ const c=ocrCfg(); if(!c.url)throw new Error('尚未設定收據辨識(右下⚙️)');
-  const b64=await new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(file);});
-  const r=await fetch(c.url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({secret:c.secret,image:b64,today:TODAY})});
-  if(!r.ok)throw new Error('辨識失敗('+r.status+')'); return await r.json();
+async function ocrScan(dataUrl){ const c=ocrCfg(); if(!c.url)throw new Error('尚未設定收據辨識(右下⚙️)');
+  const r=await fetch(c.url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({secret:c.secret,image:dataUrl,today:TODAY})});
+  let j={}; try{j=await r.json();}catch(e){}
+  if(!r.ok) throw new Error(j.error||('HTTP '+r.status));
+  if(j&&j.error) throw new Error(j.error);
+  return j;
 }
 
 /* ---------- 收據圖片儲存(IndexedDB) ---------- */
@@ -1087,16 +1089,24 @@ function openExpenseSheet(t,exp){ const d=finLoad(t), me=d.members[0]||'我', ed
   const fileEl=sh.querySelector('#fFile'), prev=sh.querySelector('#fReceiptPrev');
   sh.querySelector('#fScan').onclick=()=>fileEl.click();
   fileEl.onchange=async()=>{ const f=fileEl.files[0]; if(!f)return;
-    const url=await resizeImg(f); receiptKey=receiptKey||('rcpt_'+finUid()); await idbPut(receiptKey,url); prev.innerHTML=`<img src="${url}">`;
-    const cfg=ocrCfg(); if(cfg.url){ const ing=document.createElement('span'); ing.className='ocr-ing'; ing.textContent='辨識中…'; prev.appendChild(ing);
-      try{ const res=await ocrScan(f);
-        if(res.amount)amtEl.value=res.amount;
-        if(res.currency&&FIN_CURRENCIES.includes(res.currency)){cur=res.currency;curEl.value=cur;await loadRate();}
-        if(res.date&&/^\d{4}-\d{2}-\d{2}$/.test(res.date)){dateEl.value=res.date;updDay();}
-        if(res.merchant)sh.querySelector('#fTitle').value=res.merchant;
-        if(res.category){const cc=sh.querySelector('.cat-chip[data-k="'+res.category+'"]');if(cc){sh.querySelectorAll('.cat-chip').forEach(x=>x.classList.remove('on'));cc.classList.add('on');}}
-        updTwd(); ing.remove(); }
-      catch(err){ ing.textContent='辨識失敗:'+err.message; ing.classList.add('err'); } } };
+    prev.innerHTML=`<span class="ocr-ing">讀取照片…</span>`;
+    let url;
+    try{ url=await resizeImg(f); }
+    catch(err){ prev.innerHTML=`<span class="ocr-ing err">照片讀不了,可能是 HEIC 格式。請改用 JPG,或直接用相機拍。</span>`; fileEl.value=''; return; }
+    receiptKey=receiptKey||('rcpt_'+finUid()); try{await idbPut(receiptKey,url);}catch(e){}
+    prev.innerHTML=`<img src="${url}">`;
+    const cfg=ocrCfg();
+    if(!cfg.url){ const s=document.createElement('span'); s.className='ocr-ing'; s.textContent='已附收據(未設定辨識,右下⚙️)'; prev.appendChild(s); fileEl.value=''; return; }
+    const ing=document.createElement('span'); ing.className='ocr-ing'; ing.textContent='辨識中…'; prev.appendChild(ing);
+    try{ const res=await ocrScan(url);
+      if(res.amount)amtEl.value=res.amount;
+      if(res.currency&&FIN_CURRENCIES.includes(res.currency)){cur=res.currency;curEl.value=cur;await loadRate();}
+      if(res.date&&/^\d{4}-\d{2}-\d{2}$/.test(res.date)){dateEl.value=res.date;updDay();}
+      if(res.merchant)sh.querySelector('#fTitle').value=res.merchant;
+      if(res.category){const cc=sh.querySelector('.cat-chip[data-k="'+res.category+'"]');if(cc){sh.querySelectorAll('.cat-chip').forEach(x=>x.classList.remove('on'));cc.classList.add('on');}}
+      updTwd(); ing.textContent='✓ 已帶入,請確認'; setTimeout(()=>ing.remove(),2000); }
+    catch(err){ ing.textContent='辨識失敗:'+(err.message||err); ing.classList.add('err'); }
+    fileEl.value=''; };
   if(receiptKey) idbGet(receiptKey).then(u=>{if(u)prev.innerHTML=`<img src="${u}">`;});
   const del=sh.querySelector('#fDelete'); if(del)del.onclick=()=>{ if(!confirm('刪除這筆花費?'))return; const i=d.expenses.findIndex(x=>x.id===e.id); if(i>=0){d.expenses[i].deleted=true;d.expenses[i].updatedAt=Date.now();finSave(t,d);} closeSheet(); renderFinance(t); };
   function save(){ const amount=parseFloat(amtEl.value)||0; if(amount<=0){amtEl.focus();return;}
