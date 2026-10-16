@@ -32,7 +32,9 @@ window.__TRIPS__ = [
   ],
   "itineraryRich": null,
   "tripMeta": null,
-  "recap": null
+  "recap": null,
+  "members": [],
+  "currency": null
  },
  {
   "name": "2025-03 韓國 首爾（尬屁屁之旅）",
@@ -65,7 +67,9 @@ window.__TRIPS__ = [
   ],
   "itineraryRich": null,
   "tripMeta": null,
-  "recap": null
+  "recap": null,
+  "members": [],
+  "currency": null
  },
  {
   "name": "2025-06 韓國 釜山（尬小榮家）",
@@ -100,7 +104,9 @@ window.__TRIPS__ = [
   ],
   "itineraryRich": null,
   "tripMeta": null,
-  "recap": null
+  "recap": null,
+  "members": [],
+  "currency": null
  },
  {
   "name": "2025-09 泰國 曼谷",
@@ -135,7 +141,9 @@ window.__TRIPS__ = [
   ],
   "itineraryRich": null,
   "tripMeta": null,
-  "recap": null
+  "recap": null,
+  "members": [],
+  "currency": null
  },
  {
   "name": "2025-11 泰國 曼谷 PATTAYA",
@@ -170,7 +178,9 @@ window.__TRIPS__ = [
   ],
   "itineraryRich": null,
   "tripMeta": null,
-  "recap": null
+  "recap": null,
+  "members": [],
+  "currency": null
  },
  {
   "name": "2026-03 日本 野澤 滑雪 Season 3",
@@ -205,7 +215,9 @@ window.__TRIPS__ = [
   ],
   "itineraryRich": null,
   "tripMeta": null,
-  "recap": null
+  "recap": null,
+  "members": [],
+  "currency": null
  },
  {
   "name": "2026-04 韓國 濟州（尬小榮家）",
@@ -245,7 +257,9 @@ window.__TRIPS__ = [
   ],
   "itineraryRich": null,
   "tripMeta": null,
-  "recap": null
+  "recap": null,
+  "members": [],
+  "currency": null
  },
  {
   "name": "2026-10 日本 廣島倉敷高松",
@@ -1552,7 +1566,11 @@ window.__TRIPS__ = [
     }
    ],
    "unclassified": []
-  }
+  },
+  "members": [
+   "我"
+  ],
+  "currency": "JPY"
  },
  {
   "name": "峴港（啊政群）",
@@ -1587,7 +1605,9 @@ window.__TRIPS__ = [
   ],
   "itineraryRich": null,
   "tripMeta": null,
-  "recap": null
+  "recap": null,
+  "members": [],
+  "currency": null
  },
  {
   "name": "首爾 醫美",
@@ -1622,6 +1642,8 @@ window.__TRIPS__ = [
   ],
   "itineraryRich": null,
   "tripMeta": null,
-  "recap": null
+  "recap": null,
+  "members": [],
+  "currency": null
  }
 ];
