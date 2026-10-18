@@ -345,6 +345,25 @@
   .set-transfer.done{opacity:.5;}
   .set-transfer.done .tr-done{background:rgba(95,224,208,.18);color:#5fe0d0;border-color:rgba(95,224,208,.4);}
   .set-transfer.done .tr-amt{text-decoration:line-through;}
+  /* 📊 花費分析圖表 */
+  .fin-charts{margin-top:18px;margin-bottom:4px;}
+  .chart-donut-wrap{display:flex;align-items:center;gap:20px;background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px;flex-wrap:wrap;}
+  .donut-box{position:relative;width:116px;height:116px;flex-shrink:0;}
+  .chart-donut{width:100%;height:100%;border-radius:50%;-webkit-mask:radial-gradient(circle,transparent 32px,#000 33px);mask:radial-gradient(circle,transparent 32px,#000 33px);}
+  .donut-lbl{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.66rem;color:var(--muted);pointer-events:none;letter-spacing:.04em;}
+  .chart-legend{flex:1;min-width:148px;display:flex;flex-direction:column;gap:7px;}
+  .lg-row{display:grid;grid-template-columns:auto 1fr auto auto;gap:8px;align-items:center;font-size:.76rem;}
+  .lg-sw{width:11px;height:11px;border-radius:3px;flex-shrink:0;}
+  .lg-n{color:#eef2fb;white-space:nowrap;}
+  .lg-v{color:var(--muted);font-variant-numeric:tabular-nums;text-align:right;}
+  .lg-p{color:var(--faint);font-variant-numeric:tabular-nums;min-width:36px;text-align:right;}
+  .bars-wrap{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:14px 12px 10px;}
+  .bars-cap{font-size:.74rem;color:var(--muted);margin-bottom:10px;padding-left:2px;}
+  .bars-row{display:flex;align-items:flex-end;gap:6px;height:112px;overflow-x:auto;padding-bottom:2px;}
+  .bar-col{flex:1 0 auto;min-width:28px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:3px;}
+  .bar-v{font-size:.58rem;color:var(--faint);font-variant-numeric:tabular-nums;white-space:nowrap;}
+  .bar{width:68%;max-width:24px;border-radius:5px 5px 2px 2px;background:linear-gradient(180deg,var(--gold),var(--gold2));min-height:4px;}
+  .bar-d{font-size:.6rem;color:var(--muted);white-space:nowrap;}
   .fin-tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;}
   .fin-tbtn{font-size:.76rem;color:var(--muted);background:var(--glass);border:1px solid var(--line);border-radius:20px;padding:8px 14px;cursor:pointer;transition:.2s;}
   .fin-tbtn:hover{color:var(--ink);border-color:var(--gold);}
@@ -585,9 +604,9 @@
 
 <script src="./assets/globe.gl.min.js"></script>
 <script src="./assets/countries.js"></script>
-<script src="./assets/trips.js?v=1792146780"></script>
+<script src="./assets/trips.js?v=1792348219"></script>
 <script>
-// 資料來源：assets/trips.js?v=1792146780
+// 資料來源：assets/trips.js?v=1792348219
 const RAW = (window.__TRIPS__ || []);
 // ---- 今天（台灣時間），可用 ?today=YYYY-MM-DD 模擬 ----
 function twToday(){
@@ -973,6 +992,23 @@ function renderFinance(t){ finTrip=t; const root=detailBody.querySelector('#finR
   const summary=`<div class="fin-summary"><div class="fin-main"><span class="fv">${twdFmt(total)}</span><span class="fl">總花費</span></div>
     <div class="fin-subs"><div><b>${twdFmt(myPaid)}</b><span>我付的</span></div><div><b>${twdFmt(perAvg)}</b><span>每人平均</span></div></div>
     ${foreign?`<div class="fin-foreign">原幣 ${foreign}</div>`:''}</div>`;
+  // 📊 花費分析:類別圓餅 + 每日長條
+  let chartHTML='';
+  if(exps.length&&total>0){
+    const CATC={food:'#ff9f6b',transit:'#5fe0d0',stay:'#a98bff',shop:'#ff8ec7',ticket:'#ffd166',other:'#8ea0b5'};
+    const byCat={}; exps.forEach(e=>{const k=e.category||'other'; byCat[k]=(byCat[k]||0)+(e.twd||0);});
+    const catArr=FIN_CATS.map(c=>({...c,v:byCat[c.k]||0})).filter(c=>c.v>0).sort((a,b)=>b.v-a.v);
+    let acc=0; const stops=catArr.map(c=>{const from=acc/total*360; acc+=c.v; const to=acc/total*360; return `${CATC[c.k]} ${from.toFixed(1)}deg ${to.toFixed(1)}deg`;}).join(',');
+    const legend=catArr.map(c=>`<div class="lg-row"><span class="lg-sw" style="background:${CATC[c.k]}"></span><span class="lg-n">${c.i} ${c.n}</span><span class="lg-v">${twdFmt(c.v)}</span><span class="lg-p">${Math.round(c.v/total*100)}%</span></div>`).join('');
+    const dayMap={}; exps.forEach(e=>{dayMap[e.date]=(dayMap[e.date]||0)+(e.twd||0);});
+    const dayKeys=Object.keys(dayMap).sort(); const maxD=Math.max(...Object.values(dayMap),1);
+    const bars=dayKeys.map(dt=>{const v=dayMap[dt]; const h=Math.max(4,v/maxD*100); const dn=tripDayOf(t,dt);
+      const lab=dn?('D'+dn):(dt||'').slice(5).replace('-','/'); const vs=v>=1000?(v/1000).toFixed(v>=10000?0:1)+'k':Math.round(v);
+      return `<div class="bar-col" title="${dt}　${twdFmt(v)}"><span class="bar-v">${vs}</span><div class="bar" style="height:${h.toFixed(1)}%"></div><span class="bar-d">${lab}</span></div>`;}).join('');
+    chartHTML=`<div class="fin-sec fin-charts"><div class="fin-sec-h">📊 花費分析</div>
+      <div class="chart-donut-wrap"><div class="donut-box"><div class="chart-donut" style="background:conic-gradient(${stops})"></div><span class="donut-lbl">類別</span></div><div class="chart-legend">${legend}</div></div>
+      ${dayKeys.length>1?`<div class="bars-wrap"><div class="bars-cap">每日花費</div><div class="bars-row">${bars}</div></div>`:''}</div>`;
+  }
   // 明細:依日期(Day)分組
   let detailHTML='';
   if(exps.length){
@@ -999,7 +1035,7 @@ function renderFinance(t){ finTrip=t; const root=detailBody.querySelector('#finR
     settleHTML=`<div class="fin-sec"><div class="fin-sec-h">🤝 分帳結算</div><div class="set-table">${rows}</div><div class="set-transfers">${tr}</div></div>`;
   }
   const tools=`<div class="fin-tools"><button class="fin-tbtn" id="finMembers">👥 成員(${d.members.length})</button><button class="fin-tbtn" id="finExport">💾 匯出備份</button><button class="fin-tbtn" id="finOcrCfg">⚙️ 收據辨識設定</button></div>`;
-  root.innerHTML=summary+detailHTML+settleHTML+tools+`<button class="fin-fab" id="finAdd" aria-label="記一筆">＋</button>`;
+  root.innerHTML=summary+chartHTML+detailHTML+settleHTML+tools+`<button class="fin-fab" id="finAdd" aria-label="記一筆">＋</button>`;
   // wire
   root.querySelector('#finAdd').onclick=()=>openExpenseSheet(t,null);
   root.querySelectorAll('.fin-item').forEach(el=>el.onclick=()=>{const e=d.expenses.find(x=>x.id===el.dataset.id); if(e)openExpenseSheet(t,e);});
