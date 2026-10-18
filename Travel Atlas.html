@@ -111,6 +111,8 @@
   .tcard.live:hover{border-color:rgba(95,224,208,.8);}
   .tcard .body{position:relative;z-index:3;padding:24px;}
   .tcard .yr{font-family:"Space Mono",monospace;font-size:.7rem;letter-spacing:.18em;color:var(--gold);margin-bottom:9px;font-weight:700;}
+  .tcard .tc-cd{display:inline-block;font-family:"Space Mono",monospace;font-size:.66rem;font-weight:700;letter-spacing:.06em;color:#ffdca3;background:rgba(245,195,122,.15);border:1px solid rgba(245,195,122,.45);border-radius:14px;padding:3px 11px;margin-bottom:11px;}
+  .tcard .tc-cd.soon{color:#ffe0dc;background:rgba(255,138,138,.16);border-color:rgba(255,138,138,.5);}
   .tcard h3{font-size:1.4rem;font-weight:600;line-height:1.22;margin-bottom:14px;color:#fff;}
   .tcard .meta{display:flex;gap:18px;font-family:"Space Mono",monospace;font-size:.7rem;color:#aab2c7;letter-spacing:.04em;}
   .tcard .meta span{display:flex;align-items:center;gap:5px;}
@@ -270,6 +272,10 @@
   .lb-close{position:absolute;top:22px;right:26px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);
     background:rgba(255,255,255,.06);color:#fff;font-size:1.1rem;cursor:pointer;transition:.25s;}
   .lb-close:hover{background:var(--gold);color:#000;}
+  .lb-cover{position:absolute;top:24px;left:26px;z-index:5;font-size:.76rem;padding:9px 15px;border-radius:20px;border:1px solid var(--line);
+    background:rgba(0,0,0,.45);color:#eef2fb;cursor:pointer;backdrop-filter:blur(4px);transition:.15s;display:none;}
+  .lb-cover:hover{border-color:var(--gold);color:var(--gold);}
+  .lb-cover.is-cover{background:rgba(245,195,122,.2);color:var(--gold);border-color:var(--gold);cursor:default;}
   .lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:54px;height:54px;border-radius:50%;
     border:1px solid var(--line);background:rgba(255,255,255,.06);color:#fff;font-size:1.8rem;line-height:1;cursor:pointer;transition:.25s;}
   .lb-nav:hover{background:var(--gold);color:#000;}
@@ -285,6 +291,7 @@
   .recap-cover .rc-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,9,16,.85),transparent 55%);}
   .recap-cover .rc-meta{position:absolute;left:14px;bottom:12px;display:flex;gap:8px;align-items:center;color:#eef2fb;
     font-family:"Space Mono",monospace;font-size:.78rem;letter-spacing:.06em;text-shadow:0 1px 6px rgba(0,0,0,.6);}
+  .recap-cover .rc-hint{position:absolute;right:12px;top:11px;font-size:.64rem;color:#dce2ee;background:rgba(0,0,0,.4);padding:4px 10px;border-radius:12px;backdrop-filter:blur(3px);}
   .recap-day{margin-bottom:26px;}
   .recap-dhead{margin-bottom:12px;}
   .recap-spot{margin-bottom:16px;scroll-margin-top:12px;border-radius:10px;transition:box-shadow .4s,background .4s;}
@@ -325,7 +332,13 @@
   .fi-t{font-size:.92rem;color:#eef2fb;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .fi-rc{opacity:.7;font-size:.8rem;}
   .fi-sub{font-size:.72rem;color:var(--faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px;}
+  .fi-rcpt{flex-shrink:0;width:38px;height:38px;border-radius:8px;object-fit:cover;border:1px solid var(--line);cursor:zoom-in;}
   .fi-amt{flex-shrink:0;text-align:right;}
+  .quick-wrap{margin-bottom:15px;}
+  .quick-lbl{font-size:.7rem;color:var(--muted);margin-bottom:8px;letter-spacing:.03em;}
+  .quick-row{display:flex;flex-wrap:wrap;gap:7px;}
+  .quick-chip{font-size:.8rem;color:#eef2fb;background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:16px;padding:6px 13px;cursor:pointer;transition:.15s;}
+  .quick-chip:hover,.quick-chip:active{border-color:var(--gold);color:var(--gold);background:rgba(245,195,122,.08);}
   .fi-twd{font-size:.95rem;font-weight:600;color:#eef2fb;font-variant-numeric:tabular-nums;}
   .fi-ori{font-size:.68rem;color:var(--faint);font-family:"Space Mono",monospace;}
   .est{color:var(--gold2);}
@@ -588,6 +601,7 @@
 <!-- 圖片燈箱 -->
 <div class="lightbox" id="lightbox">
   <button class="lb-close" id="lbClose" aria-label="close">✕</button>
+  <button class="lb-cover" id="lbCover">☆ 設為封面</button>
   <button class="lb-nav lb-prev" id="lbPrev" aria-label="prev">‹</button>
   <img id="lbImg" alt="">
   <button class="lb-nav lb-next" id="lbNext" aria-label="next">›</button>
@@ -604,9 +618,9 @@
 
 <script src="./assets/globe.gl.min.js"></script>
 <script src="./assets/countries.js"></script>
-<script src="./assets/trips.js?v=1792348219"></script>
+<script src="./assets/trips.js?v=1792349443"></script>
 <script>
-// 資料來源：assets/trips.js?v=1792348219
+// 資料來源：assets/trips.js?v=1792349443
 const RAW = (window.__TRIPS__ || []);
 // ---- 今天（台灣時間），可用 ?today=YYYY-MM-DD 模擬 ----
 function twToday(){
@@ -687,6 +701,9 @@ world.onPointClick(p=>{world.controls().autoRotate=false;world.pointOfView({lat:
 /* ---------- CARDS ---------- */
 const cardsEl=document.getElementById('cards');
 const isOngoing=t=>t.status==='旅行中';
+function daysUntil(dateStr){ if(!dateStr)return null; try{ const a=new Date(TODAY+'T00:00:00'), b=new Date(String(dateStr)+'T00:00:00'); return Math.round((b-a)/86400000); }catch(e){ return null; } }
+function coverKey(t){ return 'atlas:cover:'+t.name; }
+function getCover(t){ try{ const o=localStorage.getItem(coverKey(t)); if(o) return o; }catch(e){} return (t.recap&&t.recap.cover)||null; }
 function renderCards(f='all'){
   const list=TRIPS.filter(t=>f==='all'||t.status===f).slice().sort((a,b)=>{
     const ao=isOngoing(a)?1:0, bo=isOngoing(b)?1:0;
@@ -695,14 +712,19 @@ function renderCards(f='all'){
   });
   cardsEl.innerHTML=list.map(t=>{
     const rc=REGION_COLOR[t.region]||'#79b4ff';
-    const hasCover=t.status==='行程回顧'&&t.recap&&t.recap.cover;
+    const cov=getCover(t);
+    const hasCover=t.status==='行程回顧'&&!!cov;
     const cover=hasCover
-      ? `background:linear-gradient(to top,rgba(8,12,20,.9),rgba(8,12,20,.3) 52%,rgba(8,12,20,.08)),url('${encodeURI(t.recap.cover)}') center/cover;`
+      ? `background:linear-gradient(to top,rgba(8,12,20,.9),rgba(8,12,20,.3) 52%,rgba(8,12,20,.08)),url('${encodeURI(cov)}') center/cover;`
       : `background:radial-gradient(120% 110% at 72% 8%, ${rc}99, ${rc}33 38%, transparent 62%),linear-gradient(160deg,${rc}3a 0%,#0c1324 62%);`;
     const shopN=(t.shopping||[]).reduce((s,g)=>s+g.items.length,0);
     const meta=[t.days?`◷ ${t.days}D`:null, t.people?`◇ ${t.people}人`:null, shopN?`🛒 ${shopN}`:null, `◉ ${t.country}`].filter(Boolean)
       .map(x=>`<span>${x}</span>`).join('');
     const live=isOngoing(t);
+    const cd=(t.status==='規劃中'&&t.start)?daysUntil(t.start):null;
+    const countdown=(cd!=null&&cd>=0)
+      ? `<div class="tc-cd ${cd<=14?'soon':''}">${cd===0?'🔥 就是今天出發':cd===1?'🔥 明天出發':'✈️ 還有 '+cd+' 天'}</div>`
+      : '';
     const badge=live
       ? `<div class="badge live"><span class="dot"></span>執行中</div>`
       : `<div class="badge" style="background:${STATUS_COLOR[t.status]}22;color:${STATUS_COLOR[t.status]};border:1px solid ${STATUS_COLOR[t.status]}55">${STATUS_LABEL[t.status]}</div>`;
@@ -711,7 +733,7 @@ function renderCards(f='all'){
       <div class="ghost">${t.flag}</div>
       <div class="flag">${t.flag}</div>
       ${badge}
-      <div class="body"><div class="yr">${t.year}</div><h3>${t.title}</h3><div class="meta">${meta}</div></div>
+      <div class="body">${countdown}<div class="yr">${t.year}</div><h3>${t.title}</h3><div class="meta">${meta}</div></div>
     </article>`;}).join('');
   cardsEl.querySelectorAll('.tcard').forEach(c=>c.onclick=()=>openDetail(TRIPS[+c.dataset.i]));
 }
@@ -809,7 +831,8 @@ function openDetail(t){
   const recapLists=[];   // recapLists[di] = [{full,caption,time}]（lightbox 跨整天）
   let recapHTML;
   if(recap&&recap.count){
-    const cover=recap.cover?`<div class="recap-cover" style="background-image:url('${encodeURI(recap.cover)}')"><div class="rc-grad"></div><div class="rc-meta"><span>📸 ${recap.count} 張</span><span>·</span><span>${recap.days.length} 天</span></div></div>`:'';
+    const _cov=getCover(t);
+    const cover=_cov?`<div class="recap-cover" id="recapCover" style="background-image:url('${encodeURI(_cov)}')"><div class="rc-grad"></div><div class="rc-meta"><span>📸 ${recap.count} 張</span><span>·</span><span>${recap.days.length} 天</span></div><div class="rc-hint">點照片右上「設為封面」可換</div></div>`:'';
     const daysHTML=recap.days.map((rd,di)=>{
       const list=[]; recapLists[di]=list;
       const pthumb=(p)=>{const idx=list.length; list.push({full:p.full,caption:p.caption||'',time:p.time||''});
@@ -856,7 +879,7 @@ function openDetail(t){
   if(wantBtn && !wantBtn.classList.contains('active')) wantBtn.click();
   detailBody.querySelectorAll('.collapse-h').forEach(h=>h.onclick=()=>h.closest('.collapsible').classList.toggle('collapsed'));
   // 回顧:縮圖開 lightbox(跨整天左右滑)、行程景點縮圖跳到回顧對應位置
-  detailBody.querySelectorAll('.rphoto').forEach(img=>img.onclick=()=>openRecapLightbox(recapLists[+img.dataset.rd],+img.dataset.ri));
+  detailBody.querySelectorAll('.rphoto').forEach(img=>img.onclick=()=>openRecapLightbox(recapLists[+img.dataset.rd],+img.dataset.ri,t));
   detailBody.querySelectorAll('.spot-photos').forEach(b=>b.onclick=(e)=>{e.preventDefault();e.stopPropagation();
     const rt=detailBody.querySelector('.dtab[data-pane="recap"]'); if(rt)rt.click();
     const el=detailBody.querySelector('#'+b.dataset.anchor);
@@ -1019,8 +1042,9 @@ function renderFinance(t){ finTrip=t; const root=detailBody.querySelector('#finR
       const rows=items.map(e=>{ const c=catOf(e.category); const sp=splitExpense(e); const who=Object.keys(sp);
         const splitTxt=who.length>=d.members.length?'全員':(who.length<=1?(who[0]||''):who.join('、'));
         return `<div class="fin-item" data-id="${e.id}"><div class="fi-ic">${c.i}</div>
-          <div class="fi-mid"><div class="fi-t">${e.title||c.n}${e.receipt?' <span class="fi-rc">📎</span>':''}</div>
+          <div class="fi-mid"><div class="fi-t">${e.title||c.n}</div>
           <div class="fi-sub">${e.payer} 付・分 ${splitTxt}${e.note?'・'+e.note:''}</div></div>
+          ${e.receipt?`<img class="fi-rcpt" data-rk="${e.receipt}" alt="收據" hidden>`:''}
           <div class="fi-amt"><div class="fi-twd">${twdFmt(e.twd)}</div>${e.currency!=='TWD'?`<div class="fi-ori">${e.currency} ${nfInt.format(Math.round(e.amount))}${e.est?' <span class="est">暫估</span>':''}</div>`:''}</div></div>`;}).join('');
       return `<div class="fin-daygrp"><div class="fin-dayhead"><span>${label}</span><span class="fin-daysub">${twdFmt(sub)}</span></div>${rows}</div>`;}).join('');
   } else detailHTML=`<div class="d-empty">還沒有任何花費。點右下 ＋ 開始記帳。</div>`;
@@ -1039,6 +1063,7 @@ function renderFinance(t){ finTrip=t; const root=detailBody.querySelector('#finR
   // wire
   root.querySelector('#finAdd').onclick=()=>openExpenseSheet(t,null);
   root.querySelectorAll('.fin-item').forEach(el=>el.onclick=()=>{const e=d.expenses.find(x=>x.id===el.dataset.id); if(e)openExpenseSheet(t,e);});
+  root.querySelectorAll('.fi-rcpt[data-rk]').forEach(img=>{ idbGet(img.dataset.rk).then(u=>{if(u){img.src=u;img.hidden=false;}}); img.onclick=(ev)=>{ev.stopPropagation(); if(img.src)openLightbox([img.src],0);}; });
   root.querySelectorAll('.tr-done').forEach(b=>b.onclick=()=>{const k=b.closest('.set-transfer').dataset.k; d.settled[k]=!d.settled[k]; finSave(t,d); renderFinance(t);});
   const mb=root.querySelector('#finMembers'); if(mb)mb.onclick=()=>openMembersSheet(t);
   root.querySelector('#finExport').onclick=()=>exportFinance(t);
@@ -1094,7 +1119,17 @@ function openExpenseSheet(t,exp){ const d=finLoad(t), me=d.members[0]||'我', ed
     return `<div class="sp-row"><label class="sp-ck"><input type="checkbox" class="sp-on" data-m="${m}" ${on?'checked':''}><span>${m}</span></label>
       <span class="sp-share"><button class="sp-dec" data-m="${m}">−</button><b class="sp-n" data-m="${m}">${sh}</b><button class="sp-inc" data-m="${m}">＋</button></span>
       <input class="sp-extra" data-m="${m}" inputmode="decimal" placeholder="加點$" value="${ex}"></div>`;}).join('');
-  const body=`<div class="amt-wrap"><input id="fAmt" class="amt-in" inputmode="decimal" placeholder="0" value="${e.amount||''}"><select id="fCur" class="cur-sel">${curOpts}</select></div>
+  // 快速帶入:這趟最近用過的(類別+名稱)+ 幾個常見預設
+  let quickHTML='';
+  if(!editing){
+    const seen=new Set(), recents=[];
+    d.expenses.filter(x=>!x.deleted&&x.title).sort((a,b)=>(b.createdAt||0)-(a.createdAt||0)).forEach(x=>{const key=(x.category||'other')+'|'+x.title; if(!seen.has(key)){seen.add(key);recents.push({c:x.category||'other',t:x.title});}});
+    const defaults=[{c:'food',t:'便利商店'},{c:'food',t:'餐廳'},{c:'transit',t:'計程車'},{c:'transit',t:'車票'},{c:'ticket',t:'門票'},{c:'shop',t:'藥妝'}];
+    const quick=recents.slice(0,6); defaults.forEach(dq=>{if(quick.length<6&&!quick.some(q=>q.t===dq.t))quick.push(dq);});
+    const chips=quick.slice(0,6).map(q=>{const c=catOf(q.c);return `<button type="button" class="quick-chip" data-cat="${q.c}" data-title="${q.t.replace(/"/g,'&quot;')}">${c.i} ${q.t}</button>`;}).join('');
+    if(chips)quickHTML=`<div class="quick-wrap"><div class="quick-lbl">⚡ 快速帶入</div><div class="quick-row">${chips}</div></div>`;
+  }
+  const body=`${quickHTML}<div class="amt-wrap"><input id="fAmt" class="amt-in" inputmode="decimal" placeholder="0" value="${e.amount||''}"><select id="fCur" class="cur-sel">${curOpts}</select></div>
     <div id="fTwd" class="twd-preview"></div>
     <div class="cat-row">${cats}</div>
     <input id="fTitle" class="fin-in" placeholder="名稱(選填,例:島田水產)" value="${(e.title||'').replace(/"/g,'&quot;')}">
@@ -1117,6 +1152,9 @@ function openExpenseSheet(t,exp){ const d=finLoad(t), me=d.members[0]||'我', ed
   amtEl.oninput=updTwd; curEl.onchange=()=>{cur=curEl.value;loadRate();};
   if(rate==null) loadRate(); else updTwd();
   sh.querySelectorAll('.cat-chip').forEach(c=>c.onclick=()=>{sh.querySelectorAll('.cat-chip').forEach(x=>x.classList.remove('on'));c.classList.add('on');});
+  sh.querySelectorAll('.quick-chip').forEach(b=>b.onclick=()=>{ sh.querySelector('#fTitle').value=b.dataset.title;
+    const cc=sh.querySelector('.cat-chip[data-k="'+b.dataset.cat+'"]'); if(cc){sh.querySelectorAll('.cat-chip').forEach(x=>x.classList.remove('on'));cc.classList.add('on');}
+    amtEl.focus(); });
   const dateEl=sh.querySelector('#fDate'), dayHint=sh.querySelector('#fDayHint');
   const updDay=()=>{const n=tripDayOf(t,dateEl.value);dayHint.textContent=n?`→ Day ${n}`:'';}; dateEl.onchange=updDay; updDay();
   sh.querySelectorAll('.sp-quick button').forEach(b=>b.onclick=()=>{const all=b.dataset.q==='all'; sh.querySelectorAll('.sp-on').forEach(ck=>ck.checked=all?true:(ck.dataset.m===me));});
@@ -1202,16 +1240,22 @@ function financeMd(t,d){ const exps=d.expenses.filter(e=>!e.deleted).slice().sor
 
 /* ---------- 圖片燈箱(可左右滑) ---------- */
 const lightbox=document.getElementById('lightbox'), lbImg=document.getElementById('lbImg'), lbCount=document.getElementById('lbCount');
-let lbList=[], lbIdx=0, lbCaps=[];
+let lbList=[], lbIdx=0, lbCaps=[], lbCoverTrip=null;
 function lbShow(){ lbImg.src=encodeURI(lbList[lbIdx]); lbCount.textContent=`${lbIdx+1} / ${lbList.length}`;
   const multi=lbList.length>1; document.getElementById('lbPrev').style.display=document.getElementById('lbNext').style.display=multi?'':'none';
-  const capEl=document.getElementById('lbCap'); if(capEl){const c=lbCaps[lbIdx]||''; capEl.textContent=c; capEl.style.display=c?'':'none';} }
-function openLightbox(list,i,caps){ lbList=list||[]; lbCaps=caps||[]; if(!lbList.length)return; lbIdx=i||0; lbShow(); lightbox.classList.add('on'); }
-function openRecapLightbox(dayList,i){ if(!dayList)return; openLightbox(dayList.map(p=>p.full), i, dayList.map(p=>[p.time,p.caption].filter(Boolean).join('　·　'))); }
+  const capEl=document.getElementById('lbCap'); if(capEl){const c=lbCaps[lbIdx]||''; capEl.textContent=c; capEl.style.display=c?'':'none';}
+  const cb=document.getElementById('lbCover');
+  if(cb){ if(lbCoverTrip){ const isNow=getCover(lbCoverTrip)===lbList[lbIdx]; cb.style.display='inline-block'; cb.classList.toggle('is-cover',isNow); cb.textContent=isNow?'★ 目前封面':'☆ 設為封面'; } else cb.style.display='none'; } }
+function openLightbox(list,i,caps){ lbCoverTrip=null; lbList=list||[]; lbCaps=caps||[]; if(!lbList.length)return; lbIdx=i||0; lbShow(); lightbox.classList.add('on'); }
+function openRecapLightbox(dayList,i,t){ if(!dayList)return; openLightbox(dayList.map(p=>p.full), i, dayList.map(p=>[p.time,p.caption].filter(Boolean).join('　·　'))); lbCoverTrip=t||null; lbShow(); }
+function lbSetCover(){ if(!lbCoverTrip)return; const url=lbList[lbIdx]; try{localStorage.setItem(coverKey(lbCoverTrip),url);}catch(e){}
+  const rc=document.getElementById('recapCover'); if(rc)rc.style.backgroundImage=`url('${encodeURI(url)}')`;
+  renderCards(document.querySelector('#tabs button.active')?.dataset.f||'all'); lbShow(); }
 function lbClose(){ lightbox.classList.remove('on'); }
 function lbNext(){ lbIdx=(lbIdx+1)%lbList.length; lbShow(); }
 function lbPrev(){ lbIdx=(lbIdx-1+lbList.length)%lbList.length; lbShow(); }
 document.getElementById('lbClose').onclick=lbClose;
+document.getElementById('lbCover').onclick=e=>{e.stopPropagation();lbSetCover();};
 document.getElementById('lbNext').onclick=e=>{e.stopPropagation();lbNext();};
 document.getElementById('lbPrev').onclick=e=>{e.stopPropagation();lbPrev();};
 lightbox.onclick=e=>{ if(e.target===lightbox||e.target===lbImg)lbClose(); };
