@@ -1,6 +1,6 @@
 window.__TRIPS__ = [
  {
-  "name": "2025-02 日本 越後湯澤 滑雪 Season 2",
+  "name": "2025-02 日本 越後湯澤 Snow Season 2",
   "country": "日本",
   "flag": "🇯🇵",
   "place": "越後湯澤",
@@ -183,7 +183,7 @@ window.__TRIPS__ = [
   "currency": null
  },
  {
-  "name": "2026-03 日本 野澤 滑雪 Season 3",
+  "name": "2026-03 日本 野澤 Snow Season 3",
   "country": "日本",
   "flag": "🇯🇵",
   "place": "野澤溫泉",
@@ -1573,7 +1573,7 @@ window.__TRIPS__ = [
   "currency": "JPY"
  },
  {
-  "name": "2027-01 日本 藏王滑雪",
+  "name": "2027-01 日本 藏王 Snow Season 4",
   "country": "日本",
   "flag": "🇯🇵",
   "place": "藏王, 山形, 東京",
