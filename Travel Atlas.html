@@ -146,7 +146,7 @@
   .note-banner{position:fixed;top:0;left:0;right:0;z-index:20;background:#2c2a26;color:#f1ebdd;text-align:center;font-family:"Space Mono",monospace;font-size:.6rem;letter-spacing:.14em;padding:6px;text-transform:uppercase;}
   .empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:40px;font-family:"Huninn","Noto Sans TC",sans-serif;}
 </style>
-<link rel="stylesheet" href="assets/proto-detail.css?v=shopping-heading-revert-20261021-66">
+<link rel="stylesheet" href="assets/proto-detail.css?v=all-trips-20261021-67">
 <link rel="stylesheet" href="assets/proto-finance.css?v=layout5">
 </head>
 <body>
@@ -170,7 +170,7 @@
   <footer>Travel Atlas · 每一趟旅程，都值得收藏</footer>
 </div>
 
-<script src="assets/trips.js?v=1792592061"></script>
+<script src="assets/trips.js?v=1792592448"></script>
 <script>
   const RAW = window.__TRIPS__ || [];
   const TODAY = new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Taipei'});
@@ -256,19 +256,8 @@
     document.querySelectorAll('.fil').forEach(x=>x.classList.remove('on')); b.classList.add('on');
     const f=b.dataset.f; folders.forEach(d=>{ d.style.display=(f==='all'||d.dataset.status===f)?'':'none'; }); });
 </script>
-<script src="assets/proto-detail.js?v=shopping-heading-revert-20261021-66"></script>
-<script src="assets/proto-finance.js?v=layout5"></script>
-<script>
-// 廣島使用新內頁；其他旅程接續原版完整功能。
-folders.forEach((folder,i)=>{
-  const trip=trips[i];
-  if(/廣島.*倉敷.*高松/.test(trip._title))return;
-  const target='travel-legacy.html?trip='+encodeURIComponent(trip.name);
-  folder.setAttribute('role','link');folder.tabIndex=0;
-  folder.setAttribute('aria-label','打開 '+trip._title);
-  folder.addEventListener('click',()=>location.href=target);
-  folder.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();location.href=target;}});
-});
-</script>
+<script src="assets/proto-detail.js?v=all-trips-20261021-67"></script>
+<script src="assets/proto-finance.js?v=alltrips6"></script>
+
 </body>
 </html>

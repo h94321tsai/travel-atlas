@@ -689,3 +689,8 @@ body.trip-detail-open{background-color:#e7dfd0;background-image:radial-gradient(
 /* 頁籤間距稍微收緊。 */
 .trip-tabs{gap:9px;}
 @media(max-width:650px){.trip-tabs{gap:7px;}}
+
+/* 沒有回顧照片的旅程使用自己的代表物件，不套用其他旅程照片。 */
+.editorial-overview .overview-hero .overview-illustration{display:flex;align-items:center;justify-content:center;background:none;padding:18px;box-shadow:none;width:160px;min-height:160px;}
+.overview-illustration .sticker-art{font-size:5rem;line-height:1;}.editorial-overview .overview-hero .overview-illustration img{width:130px;height:130px;aspect-ratio:auto;object-fit:contain;}
+.editorial-overview .overview-hero .trip-overview-photo .emoji-sticker{display:flex;align-items:center;justify-content:center;font-size:4rem;line-height:1;}

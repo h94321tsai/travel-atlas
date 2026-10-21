@@ -1,7 +1,6 @@
 // 沿用 Travel Atlas.html 的記帳邏輯與 atlas:fin: 儲存格式。
 (() => {
-  const detailBody=document.getElementById('trip-panel-finance');
-  if(!detailBody)return;
+  const detailBody={querySelector:selector=>document.getElementById('trip-panel-finance')?.querySelector(selector)};
   const TODAY=new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Taipei'});
   function openLightbox(list,i=0){
     const dialog=document.createElement('dialog');dialog.className='trip-lightbox';dialog.setAttribute('aria-label','收據照片');
