@@ -694,3 +694,26 @@ body.trip-detail-open{background-color:#e7dfd0;background-image:radial-gradient(
 .editorial-overview .overview-hero .overview-illustration{display:flex;align-items:center;justify-content:center;background:none;padding:18px;box-shadow:none;width:160px;min-height:160px;}
 .overview-illustration .sticker-art{font-size:5rem;line-height:1;}.editorial-overview .overview-hero .overview-illustration img{width:130px;height:130px;aspect-ratio:auto;object-fit:contain;}
 .editorial-overview .overview-hero .trip-overview-photo .emoji-sticker{display:flex;align-items:center;justify-content:center;font-size:4rem;line-height:1;}
+
+/* Undated source collections stay separate from the confirmed itinerary. */
+.itinerary-collection{margin-top:30px;padding-top:22px;border-top:1px solid #d9d4c7}
+.itinerary-collection h3{font-size:1rem;color:#7389a4;margin:0 0 8px}
+.itinerary-collection ul{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px 24px;padding-left:20px;font-size:.86rem;line-height:1.7}
+.itinerary-collection a{color:inherit;text-underline-offset:4px}
+
+.transport-note-section{margin-top:24px;max-width:760px}
+.transport-note-section h4{font-size:.88rem;color:#7389a4;margin:0 0 12px}
+.transport-note-section dl{margin:0;display:grid;gap:14px}
+.transport-note-section dt{font-size:.86rem;font-weight:700;margin-bottom:4px}
+.transport-note-section dd{margin:0;font-size:.84rem;line-height:1.85;color:#807564;overflow-wrap:anywhere}
+
+.itinerary-collection.trip-note{background:#fff;border:1px solid #dedbd3;border-radius:4px;padding:0;margin-top:20px}
+.trip-note>summary{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 22px;cursor:pointer;list-style:none}
+.trip-note>summary::-webkit-details-marker{display:none}
+.trip-note>summary h3{margin:0;font-size:.95rem}
+.trip-note>summary::after{content:'＋';color:#8c938f;font-size:1.1rem;flex:none}
+.trip-note[open]>summary::after{content:'−'}
+.trip-note>summary:focus-visible{outline:2px solid #7389a4;outline-offset:3px}
+.trip-note-body{padding:0 22px 22px}
+.trip-note-body>p:first-child{margin-top:0}
+@media(max-width:540px){.trip-note>summary{padding:16px}.trip-note-body{padding:0 16px 18px}}

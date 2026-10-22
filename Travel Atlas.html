@@ -146,8 +146,8 @@
   .note-banner{position:fixed;top:0;left:0;right:0;z-index:20;background:#2c2a26;color:#f1ebdd;text-align:center;font-family:"Space Mono",monospace;font-size:.6rem;letter-spacing:.14em;padding:6px;text-transform:uppercase;}
   .empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:40px;font-family:"Huninn","Noto Sans TC",sans-serif;}
 </style>
-<link rel="stylesheet" href="assets/proto-detail.css?v=all-trips-20261021-67">
-<link rel="stylesheet" href="assets/proto-finance.css?v=layout5">
+<link rel="stylesheet" href="assets/proto-detail.css?v=personal-20261022-76">
+<link rel="stylesheet" href="assets/proto-finance.css?v=personal76">
 </head>
 <body>
 
@@ -170,7 +170,7 @@
   <footer>Travel Atlas · 每一趟旅程，都值得收藏</footer>
 </div>
 
-<script src="assets/trips.js?v=1792592448"></script>
+<script src="assets/trips.js?v=1792641561"></script>
 <script>
   const RAW = window.__TRIPS__ || [];
   const TODAY = new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Taipei'});
@@ -181,7 +181,7 @@
   // 每個狀態:[亮色, 深色(同色相的暗部,不是灰)]
   const PKC={'規劃中':['#f7d2d8','#dd8ea0'],'旅行中':['#f3b89b','#d6713f'],'行程回顧':['#f6f1e6','#d2c6ac'],'許願池':['#c8daea','#86a7cb']};
   function daysUntil(d){ if(!d)return null; try{return Math.round((new Date(d+'T00:00:00')-new Date(TODAY+'T00:00:00'))/864e5);}catch(e){return null;} }
-  const REP=[[/滑雪|雪季|snow|season|ski/i,'⛷️'],[/溫泉|温泉/i,'♨️'],[/樹冰/i,'❄️'],[/購物|shop/i,'🛍️'],
+  const REP=[[/滑雪|雪季|snow|season|ski|ss\s*\d/i,'⛷️'],[/溫泉|温泉/i,'♨️'],[/樹冰/i,'❄️'],[/購物|shop/i,'🛍️'],
     [/牡蠣|廣島|oyster|蚵/,'🦪'],
     [/美食|燒肉|拉麵|烏龍|food/i,'🍜'],[/醫美/i,'💄'],[/櫻|賞花/i,'🌸'],[/濟州|jeju/i,'🍊'],
     [/芭達雅|pattaya|峴港|海|沙灘/i,'🏖️'],[/瀨戶內|宮島|嚴島|神社|島/i,'⛩️'],[/寺|廟|曼谷/i,'🛕'],
@@ -192,7 +192,7 @@
     if(out.length<2){ const c=CEMO[t.country]; if(c&&!out.includes(c))out.push(c); } if(!out.length)out.push(t.flag||'📁'); return out.slice(0,2); }
 
   const trips = RAW.map(t=>({...t, _status:computeStatus(t),
-    _title:(t.name||'').replace(/^\d{4}-\d{2}\s+\S+\s+/,'').trim()||t.name }))
+    _title:(t.name||'').replace(/^\d{4}-\d{2}\s+\S+\s+/,'').trim().replace(/\s*Snow\s+Season\s*(\d+)\b/gi,' SS$1')||t.name }))
     .sort((a,b)=> (b.start||'').localeCompare(a.start||''));
 
   function stickerMarkup(icon){
@@ -256,8 +256,8 @@
     document.querySelectorAll('.fil').forEach(x=>x.classList.remove('on')); b.classList.add('on');
     const f=b.dataset.f; folders.forEach(d=>{ d.style.display=(f==='all'||d.dataset.status===f)?'':'none'; }); });
 </script>
-<script src="assets/proto-detail.js?v=all-trips-20261021-67"></script>
-<script src="assets/proto-finance.js?v=alltrips6"></script>
+<script src="assets/proto-detail.js?v=personal-20261022-76"></script>
+<script src="assets/proto-finance.js?v=personal76"></script>
 
 </body>
 </html>

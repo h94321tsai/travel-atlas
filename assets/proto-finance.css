@@ -218,3 +218,14 @@
  #finRoot .fi-amt{grid-column:2;grid-row:2;text-align:left;}
  #finRoot .fi-rcpt{grid-row:3;}
 }
+
+.fin-source{margin:22px 0 30px;background:#fff;padding:22px;border:1px solid #e0ddd5;border-radius:4px;min-width:0}
+.fin-source-note{font-size:.78rem;line-height:1.8;color:#8c8170}
+.fin-source-totals{display:flex;gap:24px;flex-wrap:wrap;margin:18px 0;color:#7389a4}
+.fin-source-scroll{overflow-x:auto;max-width:100%}
+.fin-source table{border-collapse:collapse;min-width:850px;width:100%;font-size:.78rem;line-height:1.7;text-align:left}
+.fin-source th{color:#8c8170;font-weight:500;white-space:nowrap;padding:10px 12px;border-bottom:1px solid #dcd8ce}
+.fin-source td{padding:12px;vertical-align:top;border-bottom:1px solid #eeeae2}
+.fin-source td:first-child,.fin-source td:nth-child(4),.fin-source td:nth-child(5){white-space:nowrap;font-variant-numeric:tabular-nums}
+.fin-source td small{display:block;color:#968b79;max-width:240px;min-width:170px;margin-top:4px}
+@media(max-width:540px){.fin-source{padding:16px 12px}.fin-source-scroll{padding-bottom:8px}}

@@ -20,7 +20,42 @@ function finLoad(t){ let d=null; try{d=JSON.parse(localStorage.getItem(finKey(t)
   if(!Array.isArray(d.members)||!d.members.length) d.members=(t.members&&t.members.length)?t.members.slice():['我'];
   if(!Array.isArray(d.expenses)) d.expenses=[];
   if(!d.settled||typeof d.settled!=='object') d.settled={};
+  const history=t.financeSource?.historicalRates;
+  if(d.notionImported&&history&&!d.notionImported.historicalVersion){
+    const snapshot=localStorage.getItem(finKey(t));
+    if(snapshot&&!localStorage.getItem(finKey(t)+':before-historical'))localStorage.setItem(finKey(t)+':before-historical',snapshot);
+    for(const e of d.expenses){
+      const rt=history.rates[e.date];
+      if(!e.id?.startsWith('notion-')||e.deleted||e.currency!=='THB'||!rt)continue;
+      e.rate=rt;e.twd=Math.round(e.amount*rt);e.est=true;
+      e.note=(e.note||'').replace(/匯入時參考匯率[^\n]*/g,'').trim()+`\n歷史參考匯率：1 THB = ${rt} TWD（${e.date}；${/2025-11-0[12]/.test(e.date)?'週末沿用10/31；':''}Exchange-Rates.org），非實際刷卡／換鈔匯率。`;
+      e.updatedAt=Date.now();
+    }
+    d.notionImported.historicalVersion=1;d.notionImported.rateSource=history.source;
+    localStorage.setItem(finKey(t),JSON.stringify(d));
+  }
   return d; }
+// Source IDs remain stable so edits and deleted rows are never imported twice.
+function importNotionFinance(t,rate){
+  const records=t.financeSource?.records||[];if(!records.length||!(rate>0))return;
+  const d=finLoad(t);if(d.notionImported)return;
+  const prior=localStorage.getItem(finKey(t));
+  if(prior&&!localStorage.getItem(finKey(t)+':before-notion'))localStorage.setItem(finKey(t)+':before-notion',prior);
+  d.members=Array.from(new Set([...(d.members.length===1&&d.members[0]==='我'&&!d.expenses.length?[]:d.members),'若涵','屁屁']));
+  for(const row of records){
+    if((row.twd===null&&row.thb===null)||d.expenses.some(e=>e.id===row.id))continue;
+    const shared=row.consumer==='平分',currency=row.twd!==null?'TWD':'THB';
+    const original=currency==='TWD'?row.twd:row.thb,amount=Math.abs(original)*(shared?2:1),rt=currency==='TWD'?1:rate;
+    const payer=row.payer==='屁屁'?'屁屁':'若涵';
+    d.expenses.push({id:row.id,date:row.date.slice(0,10),title:row.title,amount,currency,rate:rt,est:currency!=='TWD',twd:Math.round(amount*rt),
+      category:row.category==='飯店'?'stay':row.category==='交通'?'transit':row.category==='吃+點心'?'food':/按摩|指甲/.test(row.title)?'ticket':row.category==='阿哩不噠'?'shop':'other',payer,
+      shares:shared?{'若涵':1,'屁屁':1}:{'若涵':1},extras:{},
+      note:[row.note,`Notion 原金額：${currency} ${original}；付款欄：${row.payer}；消費欄：${row.consumer}`,shared?'依每人份還原兩人總額；此為匯入假設。':'JOHAN／若涵個人消費對應若涵。',currency==='THB'?`匯入時參考匯率 ${rate}，非歷史成交匯率，台幣暫估。`:''].filter(Boolean).join('\n'),
+      createdAt:Date.parse(row.date.slice(0,10)+'T00:00:00')||0,updatedAt:Date.now(),deleted:false});
+  }
+  d.notionImported={at:new Date().toISOString(),rate,rule:'shared-personal-share-times-two',pending:records.filter(row=>row.twd===null&&row.thb===null).map(row=>row.id)};
+  finSave(t,d);
+}
 function finSave(t,d){ localStorage.setItem(finKey(t),JSON.stringify(d)); }
 function tripDayOf(t,dateStr){ if(!t.start||!dateStr)return null; const s=new Date(t.start+'T00:00:00'),x=new Date(dateStr+'T00:00:00'); const diff=Math.round((x-s)/86400000); return (diff>=0 && (!t.days||diff<t.days))?(diff+1):null; }
 // 匯率:open.er-api.com,每日每幣別快取;抓不到沿用最近一次並標暫估
@@ -51,16 +86,16 @@ function computeSettle(t,d){ const per={}; d.members.forEach(m=>per[m]={paid:0,o
 
 let finTrip=null;
 function renderFinance(t){ finTrip=t; const root=detailBody.querySelector('#finRoot'); if(!root)return;
-  const d=finLoad(t), me=d.members[0]||'我';
+  const d=finLoad(t), me=t.financeSource?.owner||d.members[0]||'我';
   const exps=d.expenses.filter(e=>!e.deleted).slice().sort((a,b)=>(b.date||'').localeCompare(a.date||'')||((b.createdAt||0)-(a.createdAt||0)));
   const total=exps.reduce((s,e)=>s+(e.twd||0),0);
   const myPaid=exps.filter(e=>e.payer===me).reduce((s,e)=>s+(e.twd||0),0);
-  const perAvg=d.members.length?total/d.members.length:0;
+  const mySpent=exps.reduce((sum,e)=>sum+(splitExpense(e)[me]||0),0);
   const byCur={}; exps.forEach(e=>byCur[e.currency]=(byCur[e.currency]||0)+(+e.amount||0));
   const foreign=Object.entries(byCur).filter(([c])=>c!=='TWD').map(([c,a])=>`${c} ${nfInt.format(Math.round(a))}`).join('　·　');
-  const summary=`<div class="fin-summary"><div class="fin-main"><span class="fv">${twdFmt(total)}</span><span class="fl">總花費</span></div>
-    <div class="fin-subs"><div><b>${twdFmt(myPaid)}</b><span>我付的</span></div><div><b>${twdFmt(perAvg)}</b><span>每人平均</span></div></div>
-    ${foreign?`<div class="fin-foreign">原幣 ${foreign}</div>`:''}</div>`;
+  const summary=`<div class="fin-summary"><div class="fin-main"><span class="fv">${twdFmt(mySpent)}</span><span class="fl">我的個人總花費${exps.some(e=>e.est)?'（暫估）':''}</span></div>
+    <div class="fin-subs"><div><b>${twdFmt(myPaid)}</b><span>我付的</span></div><div><b>${twdFmt(total)}</b><span>已記錄全體支出</span></div></div>
+    ${foreign?`<div class="fin-foreign">全體支出原幣 ${foreign}</div>`:''}</div>`;
   // 📊 花費分析:類別圓餅 + 每日長條
   let chartHTML='';
   if(exps.length&&total>0){
@@ -107,7 +142,12 @@ function renderFinance(t){ finTrip=t; const root=detailBody.querySelector('#finR
   const tools=`<div class="fin-tools"><button class="fin-tbtn" id="finMembers">👥 成員(${d.members.length})</button><button class="fin-tbtn" id="finExport">💾 匯出備份</button><button class="fin-tbtn" id="finOcrCfg">⚙️ 收據辨識設定</button></div>`;
   const heading=`<div class="fin-page-heading"><div><p>EXPENSES / 旅行記帳</p><span>金額統一換算為新台幣</span></div><button class="fin-fab" id="finAdd" aria-label="記一筆">＋ 新增一筆</button></div>`;
   const detailSection=`<section class="fin-details"><h3 class="fin-sec-h">花費明細</h3>${detailHTML}</section>`;
-  root.innerHTML=heading+summary+chartHTML+detailSection+settleHTML+tools;
+  const sourceRows=t.financeSource?.records||[];
+  const sourceText=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const sourceAmount=(value,currency)=>value===null||value===undefined?'—':`${currency} ${nfInt.format(value)}`;
+  const imported=sourceRows.length?`<details class="fin-source"><summary class="fin-sec-h">Notion 原始記帳 · ${sourceRows.length} 筆（含2筆待確認）</summary><p class="fin-source-note">原始資料備查；此處的欄位合計不重複計入統計。待確認：機票未填金額；乙萱代買THB1,720僅記在備註、付款與分攤待補。</p><div class="fin-source-totals"><strong>${sourceAmount(sourceRows.reduce((sum,row)=>sum+(row.twd||0),0),'NT$')}</strong><strong>${sourceAmount(sourceRows.reduce((sum,row)=>sum+(row.thb||0),0),'THB')}</strong></div><div class="fin-source-scroll" role="region" aria-label="Notion 原始記帳明細" tabindex="0"><table><thead><tr><th>日期</th><th>項目／備註</th><th>類別</th><th>台幣</th><th>泰銖</th><th>付款人（原欄位）</th><th>消費對象（原欄位）</th></tr></thead><tbody>${sourceRows.map(row=>`<tr data-source-id="${sourceText(row.id)}"><td>${sourceText(row.date)}</td><td><b>${sourceText(row.title)}</b>${row.note?`<small>${sourceText(row.note)}</small>`:''}${row.twd===null&&row.thb===null?'<small>金額欄未填</small>':''}</td><td>${sourceText(row.category)}</td><td>${sourceAmount(row.twd,'NT$')}</td><td>${sourceAmount(row.thb,'THB')}</td><td>${sourceText(row.payer)||'未填'}</td><td>${sourceText(row.consumer)||'未填'}</td></tr>`).join('')}</tbody></table></div></details>`:'';
+  const importNotice=sourceRows.length?`<p class="fin-source-note">匯入規則：平分金額按每人份×2還原，負數轉為屁屁付款；JOHAN對應若涵。泰銖依支出日期的歷史參考匯率換算；11/1–11/2沿用10/31。統計與結算仍為估算，不含銀行價差與手續費。${d.notionImported?'已轉入63筆，可點明細修改；原表65筆保留於下方。':'正在套用歷史匯率；完成後會轉入明細。'}</p>`:'';
+  root.innerHTML=heading+importNotice+((sourceRows.length&&!exps.length)?'<p class="fin-source-note">目前沒有另外新增的記帳；可使用「新增一筆」補記。</p>':summary+chartHTML+detailSection+settleHTML)+imported+tools;
   // wire
   root.querySelector('#finAdd').onclick=()=>openExpenseSheet(t,null);
   root.querySelectorAll('.fin-item').forEach(el=>el.onclick=()=>{const e=d.expenses.find(x=>x.id===el.dataset.id); if(e)openExpenseSheet(t,e);});
@@ -287,6 +327,16 @@ function financeMd(t,d){ const exps=d.expenses.filter(e=>!e.deleted).slice().sor
   return md; }
 
 
-  window.renderProtoFinance=t=>renderFinance(t);
+  window.renderProtoFinance=t=>{
+    renderFinance(t);
+    if(!t.financeSource?.records?.length||finLoad(t).notionImported)return;
+    if(t.financeSource.historicalRates){importNotionFinance(t,1);renderFinance(t);return;}
+    const root=detailBody.querySelector('#finRoot');
+    finRate('THB').then(result=>{
+      if(finTrip!==t||detailBody.querySelector('#finRoot')!==root)return;
+      if(result.rate>0){importNotionFinance(t,result.rate);renderFinance(t);}
+      else {const notice=root.querySelector('.fin-source-note');if(notice)notice.textContent='目前無法取得泰銖匯率，原始65筆已保留；重新開啟記帳頁可再試。未以錯誤匯率計入總額。';}
+    });
+  };
   window.addEventListener('storage',e=>{if(finTrip&&e.key===finKey(finTrip))renderFinance(finTrip);});
 })();

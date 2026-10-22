@@ -34,7 +34,8 @@ window.__TRIPS__ = [
   "tripMeta": null,
   "recap": null,
   "members": [],
-  "currency": null
+  "currency": null,
+  "financeSource": null
  },
  {
   "name": "2025-03 韓國 首爾（尬屁屁之旅）",
@@ -69,7 +70,8 @@ window.__TRIPS__ = [
   "tripMeta": null,
   "recap": null,
   "members": [],
-  "currency": null
+  "currency": null,
+  "financeSource": null
  },
  {
   "name": "2025-06 韓國 釜山（尬小榮家）",
@@ -106,7 +108,8 @@ window.__TRIPS__ = [
   "tripMeta": null,
   "recap": null,
   "members": [],
-  "currency": null
+  "currency": null,
+  "financeSource": null
  },
  {
   "name": "2025-09 泰國 曼谷",
@@ -143,7 +146,8 @@ window.__TRIPS__ = [
   "tripMeta": null,
   "recap": null,
   "members": [],
-  "currency": null
+  "currency": null,
+  "financeSource": null
  },
  {
   "name": "2025-11 泰國 曼谷 PATTAYA",
@@ -152,14 +156,18 @@ window.__TRIPS__ = [
   "place": "曼谷,芭達雅",
   "region": "泰國",
   "status": "行程回顧",
-  "start": "2025-11-01",
+  "start": "2025-10-28",
   "end": "2025-11-06",
-  "year": "2025.11",
+  "year": "2025.10",
   "people": null,
-  "days": 6,
-  "companions": [],
+  "days": 10,
+  "companions": [
+   "屁屁"
+  ],
   "tags": [
-   "海島"
+   "Chill",
+   "2025",
+   "曼谷"
   ],
   "lat": 13.7563,
   "lng": 100.5018,
@@ -169,18 +177,1390 @@ window.__TRIPS__ = [
   "itinerary": [
    [
     "D1",
-    "",
-    "",
-    "",
-    "",
+    "10/28",
+    "出發曼谷",
+    "[沃爾沃曼谷酒店](https://www.booking.com/Share-lfqaO6)（10/28–10/31，3晚）"
+   ],
+   [
+    "D4",
+    "10/31",
+    "住宿轉往 PATTAYA",
+    "PATTAYA（10/31–11/03，3晚）"
+   ],
+   [
+    "D7",
+    "11/03",
+    "住宿回到曼谷",
+    "曼谷第二段（11/03–11/06，3晚）"
+   ],
+   [
+    "D10",
+    "11/06",
+    "回台灣",
     ""
    ]
   ],
-  "itineraryRich": null,
-  "tripMeta": null,
-  "recap": null,
+  "itineraryRich": [
+   {
+    "d": "Day 1",
+    "date": "10/28",
+    "title": "出發曼谷",
+    "highlight": "住宿：沃爾沃曼谷酒店",
+    "remind": "航班班號與時間尚未填寫。",
+    "schedule": [],
+    "spots": []
+   },
+   {
+    "d": "Day 2",
+    "date": "10/29",
+    "title": "曼谷停留",
+    "highlight": "住宿：沃爾沃曼谷酒店",
+    "remind": "Notion 尚未填寫當日活動與時間。",
+    "schedule": [],
+    "spots": []
+   },
+   {
+    "d": "Day 3",
+    "date": "10/30",
+    "title": "曼谷停留",
+    "highlight": "住宿：沃爾沃曼谷酒店",
+    "remind": "Notion 尚未填寫當日活動與時間。",
+    "schedule": [],
+    "spots": []
+   },
+   {
+    "d": "Day 4",
+    "date": "10/31",
+    "title": "曼谷 → PATTAYA（住宿轉換）",
+    "highlight": "住宿：PATTAYA",
+    "remind": "Notion 尚未填寫當日活動與時間。",
+    "schedule": [],
+    "spots": []
+   },
+   {
+    "d": "Day 5",
+    "date": "11/1",
+    "title": "PATTAYA 停留",
+    "highlight": "住宿：PATTAYA",
+    "remind": "Notion 尚未填寫當日活動與時間。",
+    "schedule": [],
+    "spots": []
+   },
+   {
+    "d": "Day 6",
+    "date": "11/2",
+    "title": "PATTAYA 停留",
+    "highlight": "住宿：PATTAYA",
+    "remind": "Notion 尚未填寫當日活動與時間。",
+    "schedule": [],
+    "spots": []
+   },
+   {
+    "d": "Day 7",
+    "date": "11/3",
+    "title": "PATTAYA → 曼谷（住宿轉換）",
+    "highlight": "住宿：曼谷第二段",
+    "remind": "Notion 尚未填寫當日活動與時間。",
+    "schedule": [],
+    "spots": []
+   },
+   {
+    "d": "Day 8",
+    "date": "11/4",
+    "title": "曼谷停留",
+    "highlight": "住宿：曼谷第二段",
+    "remind": "Notion 尚未填寫當日活動與時間。",
+    "schedule": [],
+    "spots": []
+   },
+   {
+    "d": "Day 9",
+    "date": "11/5",
+    "title": "曼谷停留",
+    "highlight": "住宿：曼谷第二段",
+    "remind": "Notion 尚未填寫當日活動與時間。",
+    "schedule": [],
+    "spots": []
+   },
+   {
+    "d": "Day 10",
+    "date": "11/6",
+    "title": "回台灣",
+    "highlight": "返程日",
+    "remind": "航班班號與時間尚未填寫。",
+    "schedule": [],
+    "spots": []
+   }
+  ],
+  "tripMeta": {
+   "source": "https://app.notion.com/p/2025-11-PATTAYA-27822763bf8180098b2dcd2aee855b4d",
+   "flights": [
+    "去 10/28 出發曼谷（班號與時間未填）",
+    "回 11/06 回台灣（班號與時間未填）"
+   ],
+   "stays": [
+    {
+     "n": "沃爾沃曼谷酒店",
+     "when": "10/28–10/31 · 3晚",
+     "url": "https://www.booking.com/Share-lfqaO6"
+    },
+    {
+     "n": "PATTAYA（飯店未填）",
+     "when": "10/31–11/03 · 3晚"
+    },
+    {
+     "n": "曼谷（第二段；飯店未填）",
+     "when": "11/03–11/06 · 3晚"
+    }
+   ],
+   "collections": [
+    {
+     "title": "待安排收藏",
+     "note": "Notion 收藏，尚未指定日期；不代表已造訪。",
+     "items": [
+      {
+       "n": "芭堤雅大象園"
+      },
+      {
+       "n": "高爾夫"
+      },
+      {
+       "n": "動物園"
+      },
+      {
+       "n": "嵩越路"
+      },
+      {
+       "n": "芭堤雅海邊按摩 spa"
+      }
+     ]
+    },
+    {
+     "title": "飯店候選",
+     "note": "原筆記的搜集清單，並非已確認住宿。",
+     "items": [
+      {
+       "n": "市角酒店",
+       "url": "https://www.booking.com/Share-hTqAJT"
+      },
+      {
+       "n": "Saan Hotel Sathorn - Charoennakorn",
+       "url": "https://maps.app.goo.gl/XsKYyiDnwZFDwxvG6"
+      },
+      {
+       "n": "dusitD2 Hua Hin（華欣，未列入本次行程）",
+       "url": "https://www.booking.com/Share-n0T10w"
+      }
+     ],
+     "collapsible": true
+    },
+    {
+     "title": "芭堤雅雙條車 Baht Bus",
+     "note": "原旅行筆記（2025）：記錄共8條路線，遊客常用橘、藍、紫線。以下路線與約略票價依原筆記保留。",
+     "items": [
+      {
+       "n": "查看雙條車路線地圖",
+       "url": "https://www.google.com/maps/d/edit?mid=10uUSEizilxF3Itr6BRcK9dD2IINqqos&usp=sharing"
+      }
+     ],
+     "sections": [
+      {
+       "title": "常用路線",
+       "items": [
+        {
+         "label": "橘線｜芭達雅海灘環線",
+         "text": "沿 Pattaya Beach 繞行。沿線地點：Terminal 21、Tiffany’s Show、Art in Paradise 3D美術館、Siam @ Siam Design Hotel、Central Marina、Alcazar Show、AVANI Pattaya Resort。"
+        },
+        {
+         "label": "藍線｜芭達雅海灘 ↔ 中天海灘",
+         "text": "Pattaya Beach 至 Jomtien Beach。"
+        },
+        {
+         "label": "紫線｜芭達雅海灘 ↔ 納歌",
+         "text": "Pattaya Beach 至 Naklua。"
+        }
+       ]
+      },
+      {
+       "title": "道路方向",
+       "items": [
+        {
+         "label": "雙向道路",
+         "text": "Jomtien Beach Road（中天海灘臨海側）；Pattaya 3rd Road（芭達雅三路，原筆記記載班次較少）。"
+        },
+        {
+         "label": "單向道路",
+         "text": "Pattaya Beach Road：北 → 南；Pattaya 2nd Road：南 → 北，兩路構成海灘環線。"
+        },
+        {
+         "label": "東西向連接",
+         "text": "原筆記提到 Central Festival 等商場周邊有一路、二路間的連接通道，可用來轉往不同方向。"
+        }
+       ]
+      },
+      {
+       "title": "搭乘方式與留意事項",
+       "items": [
+        {
+         "label": "上車",
+         "text": "原筆記：直接上車找位置坐，無需先與司機溝通。"
+        },
+        {
+         "label": "下車與付款",
+         "text": "接近目的地時按鈴，下車後付費。原筆記車資約10泰銖。"
+        },
+        {
+         "label": "路線可能變動",
+         "text": "有些司機可能未行駛全程，或轉往其他路線。若發現偏離目的地，可按鈴下車，再轉搭下一台。"
+        }
+       ]
+      }
+     ],
+     "collapsible": true
+    }
+   ]
+  },
+  "recap": {
+   "cover": "assets/images/bangkok-pattaya/cover.png",
+   "count": 49,
+   "days": [
+    {
+     "d": "Day 2",
+     "date": "10/29",
+     "note": "",
+     "spots": [],
+     "others": [
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009752.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009752.jpg",
+       "src": "R0009752.JPG",
+       "time": "14:59",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009754.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009754.jpg",
+       "src": "R0009754.JPG",
+       "time": "15:17",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009755.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009755.jpg",
+       "src": "R0009755.JPG",
+       "time": "15:17",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009757.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009757.jpg",
+       "src": "R0009757.JPG",
+       "time": "15:17",
+       "caption": ""
+      }
+     ]
+    },
+    {
+     "d": "Day 6",
+     "date": "11/2",
+     "note": "",
+     "spots": [],
+     "others": [
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009768.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009768.jpg",
+       "src": "R0009768.JPG",
+       "time": "12:26",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009777.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009777.jpg",
+       "src": "R0009777.JPG",
+       "time": "12:32",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009793.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009793.jpg",
+       "src": "R0009793.JPG",
+       "time": "12:41",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009798.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009798.jpg",
+       "src": "R0009798.JPG",
+       "time": "12:44",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009821.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009821.jpg",
+       "src": "R0009821.JPG",
+       "time": "12:54",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009828.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009828.jpg",
+       "src": "R0009828.JPG",
+       "time": "13:24",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009837.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009837.jpg",
+       "src": "R0009837.JPG",
+       "time": "13:33",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009840.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009840.jpg",
+       "src": "R0009840.JPG",
+       "time": "13:41",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009844.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009844.jpg",
+       "src": "R0009844.JPG",
+       "time": "13:45",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009846.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009846.jpg",
+       "src": "R0009846.JPG",
+       "time": "13:45",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009855.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009855.jpg",
+       "src": "R0009855.JPG",
+       "time": "13:47",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009861.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009861.jpg",
+       "src": "R0009861.JPG",
+       "time": "13:49",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009863.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009863.jpg",
+       "src": "R0009863.JPG",
+       "time": "13:54",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009869.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009869.jpg",
+       "src": "R0009869.JPG",
+       "time": "13:56",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009882.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009882.jpg",
+       "src": "R0009882.JPG",
+       "time": "14:22",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009909.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009909.jpg",
+       "src": "R0009909.JPG",
+       "time": "15:01",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009910.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009910.jpg",
+       "src": "R0009910.JPG",
+       "time": "15:01",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009911.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009911.jpg",
+       "src": "R0009911.JPG",
+       "time": "15:01",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009925.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009925.jpg",
+       "src": "R0009925.JPG",
+       "time": "15:05",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009936.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009936.jpg",
+       "src": "R0009936.JPG",
+       "time": "15:50",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009951.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009951.jpg",
+       "src": "R0009951.JPG",
+       "time": "16:17",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009969.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009969.jpg",
+       "src": "R0009969.JPG",
+       "time": "19:55",
+       "caption": ""
+      }
+     ]
+    },
+    {
+     "d": "Day 8",
+     "date": "11/4",
+     "note": "",
+     "spots": [],
+     "others": [
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009997.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009997.jpg",
+       "src": "R0009997.JPG",
+       "time": "00:12",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009998.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009998.jpg",
+       "src": "R0009998.JPG",
+       "time": "00:12",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010005.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010005.jpg",
+       "src": "R0010005.JPG",
+       "time": "12:25",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010011.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010011.jpg",
+       "src": "R0010011.JPG",
+       "time": "12:26",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010015.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010015.jpg",
+       "src": "R0010015.JPG",
+       "time": "12:29",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010017.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010017.jpg",
+       "src": "R0010017.JPG",
+       "time": "12:35",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010024.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010024.jpg",
+       "src": "R0010024.JPG",
+       "time": "12:45",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010060.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010060.jpg",
+       "src": "R0010060.JPG",
+       "time": "15:00",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010061.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010061.jpg",
+       "src": "R0010061.JPG",
+       "time": "15:00",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010067.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010067.jpg",
+       "src": "R0010067.JPG",
+       "time": "15:02",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010070.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010070.jpg",
+       "src": "R0010070.JPG",
+       "time": "15:02",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010071.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010071.jpg",
+       "src": "R0010071.JPG",
+       "time": "15:02",
+       "caption": ""
+      }
+     ]
+    },
+    {
+     "d": "Day 9",
+     "date": "11/5",
+     "note": "",
+     "spots": [],
+     "others": [
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010111.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010111.jpg",
+       "src": "R0010111.JPG",
+       "time": "14:19",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010119.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010119.jpg",
+       "src": "R0010119.JPG",
+       "time": "16:24",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010132.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010132.jpg",
+       "src": "R0010132.JPG",
+       "time": "16:30",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010135.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010135.jpg",
+       "src": "R0010135.JPG",
+       "time": "16:59",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010143.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010143.jpg",
+       "src": "R0010143.JPG",
+       "time": "20:35",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010144.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010144.jpg",
+       "src": "R0010144.JPG",
+       "time": "20:35",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010156.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010156.jpg",
+       "src": "R0010156.JPG",
+       "time": "20:37",
+       "caption": ""
+      }
+     ]
+    },
+    {
+     "d": "Day 10",
+     "date": "11/6",
+     "note": "",
+     "spots": [],
+     "others": [
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010165.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010165.jpg",
+       "src": "R0010165.JPG",
+       "time": "10:52",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010174.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010174.jpg",
+       "src": "R0010174.JPG",
+       "time": "10:53",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010175.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010175.jpg",
+       "src": "R0010175.JPG",
+       "time": "10:54",
+       "caption": ""
+      },
+      {
+       "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010181.jpg",
+       "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010181.jpg",
+       "src": "R0010181.JPG",
+       "time": "11:01",
+       "caption": ""
+      }
+     ]
+    }
+   ],
+   "unclassified": [
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_pataya.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_pataya.jpg",
+     "src": "pataya.png",
+     "time": "",
+     "caption": ""
+    }
+   ]
+  },
   "members": [],
-  "currency": null
+  "currency": null,
+  "financeSource": {
+   "source": "https://app.notion.com/p/27822763bf8181ffb59be06dce0c993d?v=27822763bf818159ba30000cd52ff968",
+   "importedAt": "2026-10-22",
+   "mode": "original-records",
+   "records": [
+    {
+     "date": "2025-10-28",
+     "title": "機票",
+     "category": "交通",
+     "twd": null,
+     "thb": null,
+     "payer": "",
+     "consumer": "",
+     "note": "給屁屁",
+     "id": "notion-27822763-ca5430839d93"
+    },
+    {
+     "date": "2025-10-28",
+     "title": "曼谷 住宿",
+     "category": "飯店",
+     "twd": 4754.0,
+     "thb": null,
+     "payer": "若涵",
+     "consumer": "平分",
+     "note": "沃爾沃曼谷酒店 含早餐 14:00入住 12:00退房 總價9508",
+     "id": "notion-27822763-fb577545f232"
+    },
+    {
+     "date": "2025-10-28",
+     "title": "pattaya 住宿",
+     "category": "飯店",
+     "twd": 4171.0,
+     "thb": null,
+     "payer": "若涵",
+     "consumer": "平分",
+     "note": "14:00入住 12:00退房 總價8342",
+     "id": "notion-29922763-ce428973ba57"
+    },
+    {
+     "date": "2025-10-28",
+     "title": "曼谷 住宿 2",
+     "category": "飯店",
+     "twd": 3444.0,
+     "thb": null,
+     "payer": "若涵",
+     "consumer": "平分",
+     "note": "不含早餐 15:00入住 12:00退房 總價6888",
+     "id": "notion-29222763-e9a32477032d"
+    },
+    {
+     "date": "2025-10-28 19:44",
+     "title": "晚餐 nara",
+     "category": "吃+點心",
+     "twd": null,
+     "thb": 235.0,
+     "payer": "若涵",
+     "consumer": "平分",
+     "note": "",
+     "id": "notion-29a22763-c2ae8761107c"
+    },
+    {
+     "date": "2025-10-28 23:41",
+     "title": "按摩 NAPAR Thai Massage",
+     "category": "阿哩不噠",
+     "twd": null,
+     "thb": 650.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-29a22763-c0eaf12e119d"
+    },
+    {
+     "date": "2025-10-28 23:43",
+     "title": "手標泰奶",
+     "category": "吃+點心",
+     "twd": null,
+     "thb": 50.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-29a22763-fbb903f03df0"
+    },
+    {
+     "date": "2025-10-29 00:08",
+     "title": "泰拳褲子",
+     "category": "阿哩不噠",
+     "twd": null,
+     "thb": 1090.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-29a22763-ef42338e6cf9"
+    },
+    {
+     "date": "2025-10-29 16:10",
+     "title": "芒果糯米",
+     "category": "吃+點心",
+     "twd": null,
+     "thb": 80.0,
+     "payer": "若涵",
+     "consumer": "平分",
+     "note": "",
+     "id": "notion-29b22763-d8c70a7e8d0e"
+    },
+    {
+     "date": "2025-10-29 19:14",
+     "title": "霸王茶姬",
+     "category": "吃+點心",
+     "twd": null,
+     "thb": 115.0,
+     "payer": "若涵",
+     "consumer": "平分",
+     "note": "",
+     "id": "notion-29b22763-c381c289d51a"
+    },
+    {
+     "date": "2025-10-29 19:15",
+     "title": "晚餐 雞絲麵 冬陰功",
+     "category": "吃+點心",
+     "twd": null,
+     "thb": 170.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-29b22763-de012455c1bf"
+    },
+    {
+     "date": "2025-10-29 19:16",
+     "title": "BTS",
+     "category": "交通",
+     "twd": null,
+     "thb": 40.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-29b22763-f503cb5ba192"
+    },
+    {
+     "date": "2025-10-29 20:16",
+     "title": "書店 貼紙",
+     "category": "阿哩不噠",
+     "twd": null,
+     "thb": 149.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-29c22763-f1bb8562b4ff"
+    },
+    {
+     "date": "2025-10-29 22:00",
+     "title": "按摩",
+     "category": "阿哩不噠",
+     "twd": null,
+     "thb": 600.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-29c22763-dd7b7c9fbb9d"
+    },
+    {
+     "date": "2025-10-29 22:42",
+     "title": "Wee",
+     "category": "阿哩不噠",
+     "twd": null,
+     "thb": 500.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-29c22763-e50c7279434d"
+    },
+    {
+     "date": "2025-10-30 11:00",
+     "title": "抹茶草莓",
+     "category": "吃+點心",
+     "twd": null,
+     "thb": 160.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-29c22763-d1ba395a7e05"
+    },
+    {
+     "date": "2025-10-30 15:39",
+     "title": "牛奶 Tops",
+     "category": "吃+點心",
+     "twd": null,
+     "thb": 46.5,
+     "payer": "若涵",
+     "consumer": "平分",
+     "note": "",
+     "id": "notion-29c22763-e7a48abcc861"
+    },
+    {
+     "date": "2025-10-30 16:37",
+     "title": "榮泰",
+     "category": "吃+點心",
+     "twd": null,
+     "thb": 110.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-29c22763-ca9ffca9ebeb"
+    },
+    {
+     "date": "2025-10-30 16:41",
+     "title": "711 攜帶式粉底",
+     "category": "阿哩不噠",
+     "twd": null,
+     "thb": 59.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-29c22763-d9dc924cb3f2"
+    },
+    {
+     "date": "2025-10-30 17:03",
+     "title": "乙萱 bask project",
+     "category": "代買",
+     "twd": null,
+     "thb": null,
+     "payer": "代買",
+     "consumer": "",
+     "note": "文字欄金額THB1720；兩個金額欄皆空白",
+     "id": "notion-29c22763-c260b3bad4b4"
+    },
+    {
+     "date": "2025-10-30 17:06",
+     "title": "Bask project",
+     "category": "阿哩不噠",
+     "twd": null,
+     "thb": 1560.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-29c22763-ceb4f69f1030"
+    },
+    {
+     "date": "2025-10-30 19:26",
+     "title": "咖啡",
+     "category": "阿哩不噠",
+     "twd": null,
+     "thb": 380.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-29c22763-f98f57f3e8a0"
+    },
+    {
+     "date": "2025-10-30 20:50",
+     "title": "Eveandboy",
+     "category": "阿哩不噠",
+     "twd": null,
+     "thb": 926.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-29c22763-cfafe1cb03b5"
+    },
+    {
+     "date": "2025-10-30 21:21",
+     "title": "按摩",
+     "category": "阿哩不噠",
+     "twd": null,
+     "thb": 600.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-29c22763-c08def08bbf4"
+    },
+    {
+     "date": "2025-10-31 16:38",
+     "title": "21 午餐",
+     "category": "吃+點心",
+     "twd": null,
+     "thb": 570.0,
+     "payer": "若涵",
+     "consumer": "平分",
+     "note": "",
+     "id": "notion-29d22763-d8f668f6d1b8"
+    },
+    {
+     "date": "2025-10-31 21:25",
+     "title": "按摩",
+     "category": "阿哩不噠",
+     "twd": null,
+     "thb": 600.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-29e22763-ca4ed552f7e1"
+    },
+    {
+     "date": "2025-10-31 22:23",
+     "title": "晚餐鹹豬肉飯",
+     "category": "吃+點心",
+     "twd": null,
+     "thb": 150.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-29e22763-ececb6a577de"
+    },
+    {
+     "date": "2025-10-31 22:25",
+     "title": "椰子",
+     "category": "吃+點心",
+     "twd": null,
+     "thb": 60.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-29e22763-e421d92c7825"
+    },
+    {
+     "date": "2025-11-01 14:26",
+     "title": "Tops 藍莓",
+     "category": "吃+點心",
+     "twd": null,
+     "thb": 100.0,
+     "payer": "若涵",
+     "consumer": "平分",
+     "note": "",
+     "id": "notion-29e22763-f80c3a7f"
+    },
+    {
+     "date": "2025-11-01 17:08",
+     "title": "好吃中餐",
+     "category": "吃+點心",
+     "twd": null,
+     "thb": 772.5,
+     "payer": "若涵",
+     "consumer": "平分",
+     "note": "",
+     "id": "notion-29e22763-d48a18f17b94"
+    },
+    {
+     "date": "2025-11-01 18:25",
+     "title": "Eveandboy",
+     "category": "阿哩不噠",
+     "twd": null,
+     "thb": 3222.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-29e22763-d93826f25705"
+    },
+    {
+     "date": "2025-11-01 18:26",
+     "title": "洋裝",
+     "category": "阿哩不噠",
+     "twd": null,
+     "thb": 891.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-29e22763-fa3c8cc2a608"
+    },
+    {
+     "date": "2025-11-01 18:29",
+     "title": "Noes tea",
+     "category": "吃+點心",
+     "twd": null,
+     "thb": 150.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-29e22763-d5df443bc3c2"
+    },
+    {
+     "date": "2025-11-02 01:16",
+     "title": "做指甲",
+     "category": "阿哩不噠",
+     "twd": null,
+     "thb": 700.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-29e22763-c6010937ff02"
+    },
+    {
+     "date": "2025-11-02 01:18",
+     "title": "按摩",
+     "category": "阿哩不噠",
+     "twd": null,
+     "thb": 350.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-29e22763-f763fa558298"
+    },
+    {
+     "date": "2025-11-02 01:19",
+     "title": "宵夜",
+     "category": "吃+點心",
+     "twd": null,
+     "thb": 265.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-29e22763-dbf671ded875"
+    },
+    {
+     "date": "2025-11-02 01:19",
+     "title": "香蕉煎餅",
+     "category": "吃+點心",
+     "twd": null,
+     "thb": 80.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-29e22763-e95c9d5d4a8f"
+    },
+    {
+     "date": "2025-11-02 13:29",
+     "title": "草莓抹茶",
+     "category": "吃+點心",
+     "twd": null,
+     "thb": 125.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-29f22763-d9154a19150e"
+    },
+    {
+     "date": "2025-11-02 13:30",
+     "title": "香氛油",
+     "category": "阿哩不噠",
+     "twd": null,
+     "thb": 490.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-29f22763-fc8820eaa91e"
+    },
+    {
+     "date": "2025-11-02 16:11",
+     "title": "下午茶",
+     "category": "吃+點心",
+     "twd": null,
+     "thb": -395.0,
+     "payer": "屁屁",
+     "consumer": "平分",
+     "note": "",
+     "id": "notion-29f22763-c23178f56345"
+    },
+    {
+     "date": "2025-11-02 16:42",
+     "title": "美容夾",
+     "category": "阿哩不噠",
+     "twd": null,
+     "thb": 79.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-29f22763-c7474a2dc2d2"
+    },
+    {
+     "date": "2025-11-02 20:15",
+     "title": "海邊按摩",
+     "category": "阿哩不噠",
+     "twd": null,
+     "thb": 600.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-29f22763-fde649026474"
+    },
+    {
+     "date": "2025-11-02 20:15",
+     "title": "護唇膏",
+     "category": "阿哩不噠",
+     "twd": null,
+     "thb": 498.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-29f22763-d5d47886f45d"
+    },
+    {
+     "date": "2025-11-02 20:46",
+     "title": "記帳溜",
+     "category": "阿哩不噠",
+     "twd": null,
+     "thb": 300.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-29f22763-d3bd1816793a"
+    },
+    {
+     "date": "2025-11-03 17:12",
+     "title": "亂買一通",
+     "category": "阿哩不噠",
+     "twd": null,
+     "thb": 1680.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-2a022763-cf8e89ba6c8b"
+    },
+    {
+     "date": "2025-11-03 17:13",
+     "title": "手標",
+     "category": "吃+點心",
+     "twd": null,
+     "thb": 65.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-2a022763-dae8ed5a92f0"
+    },
+    {
+     "date": "2025-11-03 20:13",
+     "title": "椰子汁",
+     "category": "吃+點心",
+     "twd": null,
+     "thb": 160.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-2a022763-f58f283a3740"
+    },
+    {
+     "date": "2025-11-03 20:14",
+     "title": "晚餐",
+     "category": "吃+點心",
+     "twd": null,
+     "thb": 230.0,
+     "payer": "若涵",
+     "consumer": "平分",
+     "note": "",
+     "id": "notion-2a022763-d7f08c9ca4eb"
+    },
+    {
+     "date": "2025-11-03 22:34",
+     "title": "按摩",
+     "category": "阿哩不噠",
+     "twd": null,
+     "thb": 600.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-2a022763-ffc5aa7a5258"
+    },
+    {
+     "date": "2025-11-04",
+     "title": "歐咪呀給",
+     "category": "阿哩不噠",
+     "twd": null,
+     "thb": 890.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-2a122763-ebc04c6d8259"
+    },
+    {
+     "date": "2025-11-04 13:36",
+     "title": "The living room",
+     "category": "吃+點心",
+     "twd": null,
+     "thb": 270.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-2a122763-fc2ae8b70dd8"
+    },
+    {
+     "date": "2025-11-04 15:42",
+     "title": "手標",
+     "category": "吃+點心",
+     "twd": null,
+     "thb": 65.0,
+     "payer": "若涵",
+     "consumer": "平分",
+     "note": "",
+     "id": "notion-2a122763-c033a203ece1"
+    },
+    {
+     "date": "2025-11-04 17:42",
+     "title": "買鞋",
+     "category": "阿哩不噠",
+     "twd": null,
+     "thb": 2175.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-2a122763-f1da373b094d"
+    },
+    {
+     "date": "2025-11-04 17:42",
+     "title": "坐船",
+     "category": "交通",
+     "twd": null,
+     "thb": 21.0,
+     "payer": "若涵",
+     "consumer": "平分",
+     "note": "",
+     "id": "notion-2a122763-fe28df5f45b6"
+    },
+    {
+     "date": "2025-11-04 21:54",
+     "title": "After you",
+     "category": "吃+點心",
+     "twd": null,
+     "thb": 429.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "咖啡 & 購物袋",
+     "id": "notion-2a122763-d34937225b0e"
+    },
+    {
+     "date": "2025-11-04 21:55",
+     "title": "按摩",
+     "category": "阿哩不噠",
+     "twd": null,
+     "thb": 700.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-2a122763-f18a38f696db"
+    },
+    {
+     "date": "2025-11-05 01:14",
+     "title": "小點心椰子煎餅",
+     "category": "吃+點心",
+     "twd": null,
+     "thb": 60.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-2a122763-ccac8b82a609"
+    },
+    {
+     "date": "2025-11-05 19:18",
+     "title": "霸王茶姬",
+     "category": "吃+點心",
+     "twd": null,
+     "thb": 120.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-2a222763-ec7e7694e41c"
+    },
+    {
+     "date": "2025-11-05 19:19",
+     "title": "香氛",
+     "category": "阿哩不噠",
+     "twd": null,
+     "thb": 350.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-2a222763-e90d7a64b4b2"
+    },
+    {
+     "date": "2025-11-05 19:19",
+     "title": "思通敏",
+     "category": "吃+點心",
+     "twd": null,
+     "thb": 344.5,
+     "payer": "若涵",
+     "consumer": "平分",
+     "note": "",
+     "id": "notion-2a222763-c44cf8749c42"
+    },
+    {
+     "date": "2025-11-05 20:48",
+     "title": "🦪",
+     "category": "吃+點心",
+     "twd": null,
+     "thb": -380.0,
+     "payer": "屁屁",
+     "consumer": "平分",
+     "note": "",
+     "id": "notion-2a222763-db5aa88d35a4"
+    },
+    {
+     "date": "2025-11-05 23:17",
+     "title": "記帳溜",
+     "category": "吃+點心",
+     "twd": null,
+     "thb": 836.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-2a222763-f7a5625135df"
+    },
+    {
+     "date": "2025-11-05 23:19",
+     "title": "按摩",
+     "category": "阿哩不噠",
+     "twd": null,
+     "thb": 600.0,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-2a222763-d6889e39caff"
+    },
+    {
+     "date": "2025-11-06 14:34",
+     "title": "最後的手標",
+     "category": "吃+點心",
+     "twd": null,
+     "thb": 65.0,
+     "payer": "若涵",
+     "consumer": "平分",
+     "note": "",
+     "id": "notion-2a322763-f31ffa72be0e"
+    },
+    {
+     "date": "2025-11-06 14:34",
+     "title": "香水",
+     "category": "阿哩不噠",
+     "twd": 2110.0,
+     "thb": null,
+     "payer": "若涵個人消費",
+     "consumer": "JOHAN",
+     "note": "",
+     "id": "notion-2a322763-f6ca252e0c1e"
+    }
+   ],
+   "historicalRates": {
+    "currency": "THB",
+    "base": "TWD",
+    "source": "https://www.exchange-rates.org/exchange-rate-history/thb-twd-2025",
+    "weekendPolicy": "previous-business-day",
+    "rates": {
+     "2025-10-28": 0.944,
+     "2025-10-29": 0.947,
+     "2025-10-30": 0.9501,
+     "2025-10-31": 0.9557,
+     "2025-11-01": 0.9557,
+     "2025-11-02": 0.9557,
+     "2025-11-03": 0.9526,
+     "2025-11-04": 0.9498,
+     "2025-11-05": 0.9513,
+     "2025-11-06": 0.9563
+    }
+   },
+   "owner": "若涵"
+  }
  },
  {
   "name": "2026-03 日本 野澤 Snow Season 3",
@@ -217,7 +1597,8 @@ window.__TRIPS__ = [
   "tripMeta": null,
   "recap": null,
   "members": [],
-  "currency": null
+  "currency": null,
+  "financeSource": null
  },
  {
   "name": "2026-04 韓國 濟州（尬小榮家）",
@@ -259,7 +1640,8 @@ window.__TRIPS__ = [
   "tripMeta": null,
   "recap": null,
   "members": [],
-  "currency": null
+  "currency": null,
+  "financeSource": null
  },
  {
   "name": "2026-10 日本 廣島倉敷高松",
@@ -1570,7 +2952,8 @@ window.__TRIPS__ = [
   "members": [
    "我"
   ],
-  "currency": "JPY"
+  "currency": "JPY",
+  "financeSource": null
  },
  {
   "name": "2027-01 日本 藏王 Snow Season 4",
@@ -1670,7 +3053,8 @@ window.__TRIPS__ = [
    "屁屁",
    "阿政"
   ],
-  "currency": "JPY"
+  "currency": "JPY",
+  "financeSource": null
  },
  {
   "name": "峴港（啊政群）",
@@ -1707,7 +3091,8 @@ window.__TRIPS__ = [
   "tripMeta": null,
   "recap": null,
   "members": [],
-  "currency": null
+  "currency": null,
+  "financeSource": null
  },
  {
   "name": "首爾 醫美",
@@ -1744,6 +3129,7 @@ window.__TRIPS__ = [
   "tripMeta": null,
   "recap": null,
   "members": [],
-  "currency": null
+  "currency": null,
+  "financeSource": null
  }
 ];
