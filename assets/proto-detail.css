@@ -717,3 +717,32 @@ body.trip-detail-open{background-color:#e7dfd0;background-image:radial-gradient(
 .trip-note-body{padding:0 22px 22px}
 .trip-note-body>p:first-child{margin-top:0}
 @media(max-width:540px){.trip-note>summary{padding:16px}.trip-note-body{padding:0 16px 18px}}
+
+/* Memories: chronological mosaic with a large opening photo per group. */
+.trip-memory-mosaic{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:clamp(105px,22cqw,180px);grid-auto-flow:row;gap:8px;padding:0}
+.trip-memory-mosaic .trip-photo-button:nth-child(n){position:relative;display:block;overflow:hidden;isolation:isolate;padding:0;border:0;border-radius:4px;background:#e7e3dc;box-shadow:none;transform:none;min-height:0;height:100%;transition:filter .2s}
+.trip-memory-mosaic .trip-photo-button img{width:100%;height:100%;aspect-ratio:auto;object-fit:cover;object-position:center;transition:transform .35s ease}
+.trip-memory-mosaic .trip-photo-button small{position:absolute;inset:auto 0 0;width:auto;min-height:0;margin:0;padding:22px 10px 8px;background:linear-gradient(transparent,rgba(20,24,24,.45));color:#fff;text-align:left;font-size:.64rem;line-height:1.4;pointer-events:none}
+.trip-memory-mosaic .memory-feature{grid-column:span 2;grid-row:span 2}
+.trip-memory-mosaic .memory-wide{grid-column:span 2}
+.trip-memory-mosaic .trip-photo-button:hover{box-shadow:none;filter:brightness(1.035)}
+.trip-memory-mosaic .trip-photo-button:focus-visible{outline:3px solid #617faa;outline-offset:2px;z-index:1}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){.trip-memory-mosaic .trip-photo-button:hover img{transform:scale(1.025)}}
+@container trip-content (min-width:620px){.trip-memory-mosaic{grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:clamp(120px,16cqw,190px);gap:9px}}
+@container trip-content (min-width:1000px){.trip-memory-mosaic{grid-template-columns:repeat(6,minmax(0,1fr));grid-auto-rows:clamp(140px,14cqw,190px)}}
+@container trip-content (max-width:300px){.trip-memory-mosaic{gap:6px;grid-auto-rows:110px}.trip-memory-mosaic .trip-photo-button:nth-child(n){padding:0}}
+.trip-memory-mosaic:has(>.trip-photo-button:only-child)>.trip-photo-button{grid-column:1/-1;grid-row:span 2}
+@container trip-content (min-width:620px){.trip-memory-mosaic:has(>.trip-photo-button:nth-child(4):last-child)>.trip-photo-button:not(.memory-feature){grid-column:span 2}}
+
+/* Keep the smaller landscape tiles close to 4:3 rather than shallow strips. */
+.trip-memory-mosaic{grid-auto-rows:clamp(140px,32cqw,220px)}
+@container trip-content (min-width:620px){.trip-memory-mosaic{grid-auto-rows:clamp(170px,23cqw,260px)}}
+@container trip-content (min-width:1000px){.trip-memory-mosaic{grid-auto-rows:clamp(150px,16cqw,210px)}}
+@container trip-content (max-width:300px){.trip-memory-mosaic{grid-auto-rows:140px}}
+/* Four-photo story: large square left; two squares above a landscape on the right. */
+.trip-memory-mosaic:has(>.trip-photo-button:nth-child(4):last-child){grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));grid-auto-rows:auto;aspect-ratio:2/1;gap:8px}
+.trip-memory-mosaic:has(>.trip-photo-button:nth-child(4):last-child)>.trip-photo-button:nth-child(1){grid-column:1/3;grid-row:1/3}
+.trip-memory-mosaic:has(>.trip-photo-button:nth-child(4):last-child)>.trip-photo-button:nth-child(2){grid-column:3;grid-row:1}
+.trip-memory-mosaic:has(>.trip-photo-button:nth-child(4):last-child)>.trip-photo-button:nth-child(3){grid-column:4;grid-row:1}
+.trip-memory-mosaic:has(>.trip-photo-button:nth-child(4):last-child)>.trip-photo-button:nth-child(4){grid-column:3/5;grid-row:2}
+@container trip-content (max-width:400px){.trip-memory-mosaic:has(>.trip-photo-button:nth-child(4):last-child){gap:5px}.trip-memory-mosaic:has(>.trip-photo-button:nth-child(4):last-child) small{font-size:.55rem;padding:15px 5px 4px}}

@@ -146,8 +146,8 @@
   .note-banner{position:fixed;top:0;left:0;right:0;z-index:20;background:#2c2a26;color:#f1ebdd;text-align:center;font-family:"Space Mono",monospace;font-size:.6rem;letter-spacing:.14em;padding:6px;text-transform:uppercase;}
   .empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:40px;font-family:"Huninn","Noto Sans TC",sans-serif;}
 </style>
-<link rel="stylesheet" href="assets/proto-detail.css?v=personal-20261022-76">
-<link rel="stylesheet" href="assets/proto-finance.css?v=personal76">
+<link rel="stylesheet" href="assets/proto-detail.css?v=split-20261022-85">
+<link rel="stylesheet" href="assets/proto-finance.css?v=split85">
 </head>
 <body>
 
@@ -170,7 +170,7 @@
   <footer>Travel Atlas · 每一趟旅程，都值得收藏</footer>
 </div>
 
-<script src="assets/trips.js?v=1792641561"></script>
+<script src="assets/trips.js?v=split-20261022-85"></script>
 <script>
   const RAW = window.__TRIPS__ || [];
   const TODAY = new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Taipei'});
@@ -256,8 +256,8 @@
     document.querySelectorAll('.fil').forEach(x=>x.classList.remove('on')); b.classList.add('on');
     const f=b.dataset.f; folders.forEach(d=>{ d.style.display=(f==='all'||d.dataset.status===f)?'':'none'; }); });
 </script>
-<script src="assets/proto-detail.js?v=personal-20261022-76"></script>
-<script src="assets/proto-finance.js?v=personal76"></script>
+<script src="assets/proto-detail.js?v=split-20261022-85"></script>
+<script src="assets/proto-finance.js?v=split85"></script>
 
 </body>
 </html>

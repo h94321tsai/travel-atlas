@@ -1,0 +1,398 @@
+{
+ "cover": "assets/images/bangkok-pattaya/cover.png",
+ "count": 49,
+ "days": [
+  {
+   "d": "Day 2",
+   "date": "10/29",
+   "note": "",
+   "spots": [],
+   "others": [
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009752.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009752.jpg",
+     "src": "R0009752.JPG",
+     "time": "14:59",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009754.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009754.jpg",
+     "src": "R0009754.JPG",
+     "time": "15:17",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009755.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009755.jpg",
+     "src": "R0009755.JPG",
+     "time": "15:17",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009757.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009757.jpg",
+     "src": "R0009757.JPG",
+     "time": "15:17",
+     "caption": ""
+    }
+   ]
+  },
+  {
+   "d": "Day 6",
+   "date": "11/2",
+   "note": "",
+   "spots": [],
+   "others": [
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009768.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009768.jpg",
+     "src": "R0009768.JPG",
+     "time": "12:26",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009777.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009777.jpg",
+     "src": "R0009777.JPG",
+     "time": "12:32",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009793.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009793.jpg",
+     "src": "R0009793.JPG",
+     "time": "12:41",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009798.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009798.jpg",
+     "src": "R0009798.JPG",
+     "time": "12:44",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009821.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009821.jpg",
+     "src": "R0009821.JPG",
+     "time": "12:54",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009828.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009828.jpg",
+     "src": "R0009828.JPG",
+     "time": "13:24",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009837.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009837.jpg",
+     "src": "R0009837.JPG",
+     "time": "13:33",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009840.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009840.jpg",
+     "src": "R0009840.JPG",
+     "time": "13:41",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009844.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009844.jpg",
+     "src": "R0009844.JPG",
+     "time": "13:45",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009846.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009846.jpg",
+     "src": "R0009846.JPG",
+     "time": "13:45",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009855.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009855.jpg",
+     "src": "R0009855.JPG",
+     "time": "13:47",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009861.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009861.jpg",
+     "src": "R0009861.JPG",
+     "time": "13:49",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009863.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009863.jpg",
+     "src": "R0009863.JPG",
+     "time": "13:54",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009869.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009869.jpg",
+     "src": "R0009869.JPG",
+     "time": "13:56",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009882.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009882.jpg",
+     "src": "R0009882.JPG",
+     "time": "14:22",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009909.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009909.jpg",
+     "src": "R0009909.JPG",
+     "time": "15:01",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009910.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009910.jpg",
+     "src": "R0009910.JPG",
+     "time": "15:01",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009911.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009911.jpg",
+     "src": "R0009911.JPG",
+     "time": "15:01",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009925.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009925.jpg",
+     "src": "R0009925.JPG",
+     "time": "15:05",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009936.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009936.jpg",
+     "src": "R0009936.JPG",
+     "time": "15:50",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009951.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009951.jpg",
+     "src": "R0009951.JPG",
+     "time": "16:17",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009969.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009969.jpg",
+     "src": "R0009969.JPG",
+     "time": "19:55",
+     "caption": ""
+    }
+   ]
+  },
+  {
+   "d": "Day 8",
+   "date": "11/4",
+   "note": "",
+   "spots": [],
+   "others": [
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009997.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009997.jpg",
+     "src": "R0009997.JPG",
+     "time": "00:12",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0009998.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0009998.jpg",
+     "src": "R0009998.JPG",
+     "time": "00:12",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010005.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010005.jpg",
+     "src": "R0010005.JPG",
+     "time": "12:25",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010011.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010011.jpg",
+     "src": "R0010011.JPG",
+     "time": "12:26",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010015.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010015.jpg",
+     "src": "R0010015.JPG",
+     "time": "12:29",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010017.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010017.jpg",
+     "src": "R0010017.JPG",
+     "time": "12:35",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010024.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010024.jpg",
+     "src": "R0010024.JPG",
+     "time": "12:45",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010060.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010060.jpg",
+     "src": "R0010060.JPG",
+     "time": "15:00",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010061.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010061.jpg",
+     "src": "R0010061.JPG",
+     "time": "15:00",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010067.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010067.jpg",
+     "src": "R0010067.JPG",
+     "time": "15:02",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010070.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010070.jpg",
+     "src": "R0010070.JPG",
+     "time": "15:02",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010071.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010071.jpg",
+     "src": "R0010071.JPG",
+     "time": "15:02",
+     "caption": ""
+    }
+   ]
+  },
+  {
+   "d": "Day 9",
+   "date": "11/5",
+   "note": "",
+   "spots": [],
+   "others": [
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010111.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010111.jpg",
+     "src": "R0010111.JPG",
+     "time": "14:19",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010119.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010119.jpg",
+     "src": "R0010119.JPG",
+     "time": "16:24",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010132.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010132.jpg",
+     "src": "R0010132.JPG",
+     "time": "16:30",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010135.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010135.jpg",
+     "src": "R0010135.JPG",
+     "time": "16:59",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010143.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010143.jpg",
+     "src": "R0010143.JPG",
+     "time": "20:35",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010144.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010144.jpg",
+     "src": "R0010144.JPG",
+     "time": "20:35",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010156.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010156.jpg",
+     "src": "R0010156.JPG",
+     "time": "20:37",
+     "caption": ""
+    }
+   ]
+  },
+  {
+   "d": "Day 10",
+   "date": "11/6",
+   "note": "",
+   "spots": [],
+   "others": [
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010165.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010165.jpg",
+     "src": "R0010165.JPG",
+     "time": "10:52",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010174.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010174.jpg",
+     "src": "R0010174.JPG",
+     "time": "10:53",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010175.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010175.jpg",
+     "src": "R0010175.JPG",
+     "time": "10:54",
+     "caption": ""
+    },
+    {
+     "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_R0010181.jpg",
+     "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_R0010181.jpg",
+     "src": "R0010181.JPG",
+     "time": "11:01",
+     "caption": ""
+    }
+   ]
+  }
+ ],
+ "unclassified": [
+  {
+   "thumb": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/t_pataya.jpg",
+   "full": "assets/images/2025-11 泰國 曼谷 PATTAYA/recap/f_pataya.jpg",
+   "src": "pataya.png",
+   "time": "",
+   "caption": ""
+  }
+ ]
+}

@@ -1,0 +1,222 @@
+{
+  "meta": {
+    "source": "https://app.notion.com/p/2025-11-PATTAYA-27822763bf8180098b2dcd2aee855b4d",
+    "flights": [
+      "去 10/28 出發曼谷（班號與時間未填）",
+      "回 11/06 回台灣（班號與時間未填）"
+    ],
+    "stays": [
+      {
+        "n": "沃爾沃曼谷酒店",
+        "when": "10/28–10/31 · 3晚",
+        "url": "https://www.booking.com/Share-lfqaO6"
+      },
+      {
+        "n": "PATTAYA（飯店未填）",
+        "when": "10/31–11/03 · 3晚"
+      },
+      {
+        "n": "曼谷（第二段；飯店未填）",
+        "when": "11/03–11/06 · 3晚"
+      }
+    ],
+    "collections": [
+      {
+        "title": "待安排收藏",
+        "note": "Notion 收藏，尚未指定日期；不代表已造訪。",
+        "items": [
+          {
+            "n": "芭堤雅大象園"
+          },
+          {
+            "n": "高爾夫"
+          },
+          {
+            "n": "動物園"
+          },
+          {
+            "n": "嵩越路"
+          },
+          {
+            "n": "芭堤雅海邊按摩 spa"
+          }
+        ]
+      },
+      {
+        "title": "飯店候選",
+        "note": "原筆記的搜集清單，並非已確認住宿。",
+        "items": [
+          {
+            "n": "市角酒店",
+            "url": "https://www.booking.com/Share-hTqAJT"
+          },
+          {
+            "n": "Saan Hotel Sathorn - Charoennakorn",
+            "url": "https://maps.app.goo.gl/XsKYyiDnwZFDwxvG6"
+          },
+          {
+            "n": "dusitD2 Hua Hin（華欣，未列入本次行程）",
+            "url": "https://www.booking.com/Share-n0T10w"
+          }
+        ],
+        "collapsible": true
+      },
+      {
+        "title": "芭堤雅雙條車 Baht Bus",
+        "note": "原旅行筆記（2025）：記錄共8條路線，遊客常用橘、藍、紫線。以下路線與約略票價依原筆記保留。",
+        "items": [
+          {
+            "n": "查看雙條車路線地圖",
+            "url": "https://www.google.com/maps/d/edit?mid=10uUSEizilxF3Itr6BRcK9dD2IINqqos&usp=sharing"
+          }
+        ],
+        "sections": [
+          {
+            "title": "常用路線",
+            "items": [
+              {
+                "label": "橘線｜芭達雅海灘環線",
+                "text": "沿 Pattaya Beach 繞行。沿線地點：Terminal 21、Tiffany’s Show、Art in Paradise 3D美術館、Siam @ Siam Design Hotel、Central Marina、Alcazar Show、AVANI Pattaya Resort。"
+              },
+              {
+                "label": "藍線｜芭達雅海灘 ↔ 中天海灘",
+                "text": "Pattaya Beach 至 Jomtien Beach。"
+              },
+              {
+                "label": "紫線｜芭達雅海灘 ↔ 納歌",
+                "text": "Pattaya Beach 至 Naklua。"
+              }
+            ]
+          },
+          {
+            "title": "道路方向",
+            "items": [
+              {
+                "label": "雙向道路",
+                "text": "Jomtien Beach Road（中天海灘臨海側）；Pattaya 3rd Road（芭達雅三路，原筆記記載班次較少）。"
+              },
+              {
+                "label": "單向道路",
+                "text": "Pattaya Beach Road：北 → 南；Pattaya 2nd Road：南 → 北，兩路構成海灘環線。"
+              },
+              {
+                "label": "東西向連接",
+                "text": "原筆記提到 Central Festival 等商場周邊有一路、二路間的連接通道，可用來轉往不同方向。"
+              }
+            ]
+          },
+          {
+            "title": "搭乘方式與留意事項",
+            "items": [
+              {
+                "label": "上車",
+                "text": "原筆記：直接上車找位置坐，無需先與司機溝通。"
+              },
+              {
+                "label": "下車與付款",
+                "text": "接近目的地時按鈴，下車後付費。原筆記車資約10泰銖。"
+              },
+              {
+                "label": "路線可能變動",
+                "text": "有些司機可能未行駛全程，或轉往其他路線。若發現偏離目的地，可按鈴下車，再轉搭下一台。"
+              }
+            ]
+          }
+        ],
+        "collapsible": true
+      }
+    ]
+  },
+  "days": [
+    {
+      "d": "Day 1",
+      "date": "10/28",
+      "title": "出發曼谷",
+      "highlight": "住宿：沃爾沃曼谷酒店",
+      "remind": "航班班號與時間尚未填寫。",
+      "schedule": [],
+      "spots": []
+    },
+    {
+      "d": "Day 2",
+      "date": "10/29",
+      "title": "曼谷停留",
+      "highlight": "住宿：沃爾沃曼谷酒店",
+      "remind": "Notion 尚未填寫當日活動與時間。",
+      "schedule": [],
+      "spots": []
+    },
+    {
+      "d": "Day 3",
+      "date": "10/30",
+      "title": "曼谷停留",
+      "highlight": "住宿：沃爾沃曼谷酒店",
+      "remind": "Notion 尚未填寫當日活動與時間。",
+      "schedule": [],
+      "spots": []
+    },
+    {
+      "d": "Day 4",
+      "date": "10/31",
+      "title": "曼谷 → PATTAYA（住宿轉換）",
+      "highlight": "住宿：PATTAYA",
+      "remind": "Notion 尚未填寫當日活動與時間。",
+      "schedule": [],
+      "spots": []
+    },
+    {
+      "d": "Day 5",
+      "date": "11/1",
+      "title": "PATTAYA 停留",
+      "highlight": "住宿：PATTAYA",
+      "remind": "Notion 尚未填寫當日活動與時間。",
+      "schedule": [],
+      "spots": []
+    },
+    {
+      "d": "Day 6",
+      "date": "11/2",
+      "title": "PATTAYA 停留",
+      "highlight": "住宿：PATTAYA",
+      "remind": "Notion 尚未填寫當日活動與時間。",
+      "schedule": [],
+      "spots": []
+    },
+    {
+      "d": "Day 7",
+      "date": "11/3",
+      "title": "PATTAYA → 曼谷（住宿轉換）",
+      "highlight": "住宿：曼谷第二段",
+      "remind": "Notion 尚未填寫當日活動與時間。",
+      "schedule": [],
+      "spots": []
+    },
+    {
+      "d": "Day 8",
+      "date": "11/4",
+      "title": "曼谷停留",
+      "highlight": "住宿：曼谷第二段",
+      "remind": "Notion 尚未填寫當日活動與時間。",
+      "schedule": [],
+      "spots": []
+    },
+    {
+      "d": "Day 9",
+      "date": "11/5",
+      "title": "曼谷停留",
+      "highlight": "住宿：曼谷第二段",
+      "remind": "Notion 尚未填寫當日活動與時間。",
+      "schedule": [],
+      "spots": []
+    },
+    {
+      "d": "Day 10",
+      "date": "11/6",
+      "title": "回台灣",
+      "highlight": "返程日",
+      "remind": "航班班號與時間尚未填寫。",
+      "schedule": [],
+      "spots": []
+    }
+  ]
+}

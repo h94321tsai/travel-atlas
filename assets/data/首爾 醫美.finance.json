@@ -1,0 +1,1166 @@
+{
+  "source": "https://app.notion.com/p/3a122763bf8180558ddbd9d4b97f510e",
+  "owner": "若涵",
+  "nativeExpenses": [
+    {
+      "id": "notion-62822763-81d220175233",
+      "title": "機票",
+      "category": "transit",
+      "payer": "若涵",
+      "consumers": [
+        "若涵"
+      ],
+      "amount": 11000,
+      "currency": "TWD",
+      "date": "",
+      "rate": 1,
+      "est": false,
+      "twd": 11000,
+      "shares": {
+        "若涵": 1
+      },
+      "extras": {},
+      "note": "依 Notion 原付款人與分攤者匯入；日期未填。",
+      "createdAt": 0,
+      "updatedAt": 0,
+      "deleted": false
+    },
+    {
+      "id": "notion-3a122763-c7f942e25728",
+      "title": "飯店",
+      "category": "stay",
+      "payer": "若涵",
+      "consumers": [
+        "若涵",
+        "屁屁"
+      ],
+      "amount": 15023,
+      "currency": "TWD",
+      "date": "",
+      "rate": 1,
+      "est": false,
+      "twd": 15023,
+      "shares": {
+        "若涵": 1,
+        "屁屁": 1
+      },
+      "extras": {},
+      "note": "依 Notion 原付款人與分攤者匯入；日期未填。",
+      "createdAt": 0,
+      "updatedAt": 0,
+      "deleted": false
+    },
+    {
+      "id": "notion-3a122763-c7c057c9bc3d",
+      "title": "歐莉芙羊",
+      "category": "shop",
+      "payer": "若涵",
+      "consumers": [
+        "若涵"
+      ],
+      "amount": 1882,
+      "currency": "TWD",
+      "date": "",
+      "rate": 1,
+      "est": false,
+      "twd": 1882,
+      "shares": {
+        "若涵": 1
+      },
+      "extras": {},
+      "note": "依 Notion 原付款人與分攤者匯入；日期未填。",
+      "createdAt": 0,
+      "updatedAt": 0,
+      "deleted": false
+    },
+    {
+      "id": "notion-3a122763-e89518aa682e",
+      "title": "炸雞",
+      "category": "food",
+      "payer": "若涵",
+      "consumers": [
+        "屁屁",
+        "若涵"
+      ],
+      "amount": 503,
+      "currency": "TWD",
+      "date": "",
+      "rate": 1,
+      "est": false,
+      "twd": 503,
+      "shares": {
+        "屁屁": 1,
+        "若涵": 1
+      },
+      "extras": {},
+      "note": "依 Notion 原付款人與分攤者匯入；日期未填。",
+      "createdAt": 0,
+      "updatedAt": 0,
+      "deleted": false
+    },
+    {
+      "id": "notion-3a122763-dbb42189ab90",
+      "title": "咖啡 星巴克",
+      "category": "food",
+      "payer": "屁屁",
+      "consumers": [
+        "屁屁",
+        "若涵"
+      ],
+      "amount": 255,
+      "currency": "TWD",
+      "date": "",
+      "rate": 1,
+      "est": false,
+      "twd": 255,
+      "shares": {
+        "屁屁": 1,
+        "若涵": 1
+      },
+      "extras": {},
+      "note": "依 Notion 原付款人與分攤者匯入；日期未填。",
+      "createdAt": 0,
+      "updatedAt": 0,
+      "deleted": false
+    },
+    {
+      "id": "notion-3a122763-c244a16e3ac3",
+      "title": "Uber → 弘大",
+      "category": "transit",
+      "payer": "屁屁",
+      "consumers": [
+        "屁屁",
+        "若涵"
+      ],
+      "amount": 189,
+      "currency": "TWD",
+      "date": "",
+      "rate": 1,
+      "est": false,
+      "twd": 189,
+      "shares": {
+        "屁屁": 1,
+        "若涵": 1
+      },
+      "extras": {},
+      "note": "依 Notion 原付款人與分攤者匯入；日期未填。",
+      "createdAt": 0,
+      "updatedAt": 0,
+      "deleted": false
+    },
+    {
+      "id": "notion-3a122763-e1f5298273a7",
+      "title": "醫美",
+      "category": "other",
+      "payer": "若涵",
+      "consumers": [
+        "若涵"
+      ],
+      "amount": 46666,
+      "currency": "TWD",
+      "date": "",
+      "rate": 1,
+      "est": false,
+      "twd": 46666,
+      "shares": {
+        "若涵": 1
+      },
+      "extras": {},
+      "note": "依 Notion 原付款人與分攤者匯入；日期未填。",
+      "createdAt": 0,
+      "updatedAt": 0,
+      "deleted": false
+    },
+    {
+      "id": "notion-3a122763-e470257fdefe",
+      "title": "醬蟹",
+      "category": "food",
+      "payer": "若涵",
+      "consumers": [
+        "若涵",
+        "屁屁"
+      ],
+      "amount": 70200,
+      "currency": "KRW",
+      "date": "",
+      "rate": 0.023,
+      "est": true,
+      "twd": 1615,
+      "shares": {
+        "若涵": 1,
+        "屁屁": 1
+      },
+      "extras": {},
+      "note": "依 Notion 原付款人與分攤者匯入；日期未填。韓元沿用原表匯率1 KRW=0.023 TWD。",
+      "createdAt": 0,
+      "updatedAt": 0,
+      "deleted": false
+    },
+    {
+      "id": "notion-3a122763-cab528b66d84",
+      "title": "藥妝店",
+      "category": "shop",
+      "payer": "若涵",
+      "consumers": [
+        "若涵"
+      ],
+      "amount": 2581,
+      "currency": "TWD",
+      "date": "",
+      "rate": 1,
+      "est": false,
+      "twd": 2581,
+      "shares": {
+        "若涵": 1
+      },
+      "extras": {},
+      "note": "依 Notion 原付款人與分攤者匯入；日期未填。",
+      "createdAt": 0,
+      "updatedAt": 0,
+      "deleted": false
+    },
+    {
+      "id": "notion-3a122763-c9579cb75391",
+      "title": "皮革編織包",
+      "category": "shop",
+      "payer": "若涵",
+      "consumers": [
+        "若涵"
+      ],
+      "amount": 873,
+      "currency": "TWD",
+      "date": "",
+      "rate": 1,
+      "est": false,
+      "twd": 873,
+      "shares": {
+        "若涵": 1
+      },
+      "extras": {},
+      "note": "依 Notion 原付款人與分攤者匯入；日期未填。",
+      "createdAt": 0,
+      "updatedAt": 0,
+      "deleted": false
+    },
+    {
+      "id": "notion-3a122763-d45c762eb809",
+      "title": "夾子",
+      "category": "shop",
+      "payer": "若涵",
+      "consumers": [
+        "若涵"
+      ],
+      "amount": 3000,
+      "currency": "KRW",
+      "date": "",
+      "rate": 0.023,
+      "est": true,
+      "twd": 69,
+      "shares": {
+        "若涵": 1
+      },
+      "extras": {},
+      "note": "依 Notion 原付款人與分攤者匯入；日期未填。韓元沿用原表匯率1 KRW=0.023 TWD。",
+      "createdAt": 0,
+      "updatedAt": 0,
+      "deleted": false
+    },
+    {
+      "id": "notion-3a122763-e6ebc1ee4f4a",
+      "title": "設計小物店 包包香包",
+      "category": "shop",
+      "payer": "若涵",
+      "consumers": [
+        "若涵"
+      ],
+      "amount": 1523,
+      "currency": "TWD",
+      "date": "",
+      "rate": 1,
+      "est": false,
+      "twd": 1523,
+      "shares": {
+        "若涵": 1
+      },
+      "extras": {},
+      "note": "依 Notion 原付款人與分攤者匯入；日期未填。",
+      "createdAt": 0,
+      "updatedAt": 0,
+      "deleted": false
+    },
+    {
+      "id": "notion-3a122763-c356bca0d0f2",
+      "title": "戒指",
+      "category": "shop",
+      "payer": "若涵",
+      "consumers": [
+        "若涵"
+      ],
+      "amount": 180,
+      "currency": "TWD",
+      "date": "",
+      "rate": 1,
+      "est": false,
+      "twd": 180,
+      "shares": {
+        "若涵": 1
+      },
+      "extras": {},
+      "note": "依 Notion 原付款人與分攤者匯入；日期未填。",
+      "createdAt": 0,
+      "updatedAt": 0,
+      "deleted": false
+    },
+    {
+      "id": "notion-3a122763-c59e3ad6ffc7",
+      "title": "小榮 T 帽子 🧢",
+      "category": "shop",
+      "payer": "若涵",
+      "consumers": [
+        "若涵"
+      ],
+      "amount": 1600,
+      "currency": "TWD",
+      "date": "",
+      "rate": 1,
+      "est": false,
+      "twd": 1600,
+      "shares": {
+        "若涵": 1
+      },
+      "extras": {},
+      "note": "依 Notion 原付款人與分攤者匯入；日期未填。",
+      "createdAt": 0,
+      "updatedAt": 0,
+      "deleted": false
+    },
+    {
+      "id": "notion-3a122763-f24a4189157c",
+      "title": "小章魚",
+      "category": "food",
+      "payer": "若涵",
+      "consumers": [
+        "若涵",
+        "屁屁"
+      ],
+      "amount": 876,
+      "currency": "TWD",
+      "date": "",
+      "rate": 1,
+      "est": false,
+      "twd": 876,
+      "shares": {
+        "若涵": 1,
+        "屁屁": 1
+      },
+      "extras": {},
+      "note": "依 Notion 原付款人與分攤者匯入；日期未填。",
+      "createdAt": 0,
+      "updatedAt": 0,
+      "deleted": false
+    },
+    {
+      "id": "notion-3a122763-c8fe50c1b982",
+      "title": "歐力芙陽",
+      "category": "shop",
+      "payer": "若涵",
+      "consumers": [
+        "若涵"
+      ],
+      "amount": 2348,
+      "currency": "TWD",
+      "date": "",
+      "rate": 1,
+      "est": false,
+      "twd": 2348,
+      "shares": {
+        "若涵": 1
+      },
+      "extras": {},
+      "note": "依 Notion 原付款人與分攤者匯入；日期未填。",
+      "createdAt": 0,
+      "updatedAt": 0,
+      "deleted": false
+    },
+    {
+      "id": "notion-3a122763-df40492080cd",
+      "title": "Uber → 飯店",
+      "category": "transit",
+      "payer": "屁屁",
+      "consumers": [
+        "若涵",
+        "屁屁"
+      ],
+      "amount": 252,
+      "currency": "TWD",
+      "date": "",
+      "rate": 1,
+      "est": false,
+      "twd": 252,
+      "shares": {
+        "若涵": 1,
+        "屁屁": 1
+      },
+      "extras": {},
+      "note": "依 Notion 原付款人與分攤者匯入；日期未填。",
+      "createdAt": 0,
+      "updatedAt": 0,
+      "deleted": false
+    },
+    {
+      "id": "notion-3a122763-d6a0b8c797de",
+      "title": "便利商店",
+      "category": "food",
+      "payer": "若涵",
+      "consumers": [
+        "若涵",
+        "屁屁"
+      ],
+      "amount": 641,
+      "currency": "TWD",
+      "date": "",
+      "rate": 1,
+      "est": false,
+      "twd": 641,
+      "shares": {
+        "若涵": 1,
+        "屁屁": 1
+      },
+      "extras": {},
+      "note": "依 Notion 原付款人與分攤者匯入；日期未填。",
+      "createdAt": 0,
+      "updatedAt": 0,
+      "deleted": false
+    },
+    {
+      "id": "notion-3a222763-f2125d2657f7",
+      "title": "地鐵 飯店 → 聖水",
+      "category": "transit",
+      "payer": "若涵",
+      "consumers": [
+        "若涵"
+      ],
+      "amount": 40,
+      "currency": "TWD",
+      "date": "",
+      "rate": 1,
+      "est": false,
+      "twd": 40,
+      "shares": {
+        "若涵": 1
+      },
+      "extras": {},
+      "note": "依 Notion 原付款人與分攤者匯入；日期未填。",
+      "createdAt": 0,
+      "updatedAt": 0,
+      "deleted": false
+    },
+    {
+      "id": "notion-3a222763-e56e4d7d1bce",
+      "title": "菜瓜布",
+      "category": "shop",
+      "payer": "若涵",
+      "consumers": [
+        "若涵"
+      ],
+      "amount": 139,
+      "currency": "TWD",
+      "date": "",
+      "rate": 1,
+      "est": false,
+      "twd": 139,
+      "shares": {
+        "若涵": 1
+      },
+      "extras": {},
+      "note": "依 Notion 原付款人與分攤者匯入；日期未填。",
+      "createdAt": 0,
+      "updatedAt": 0,
+      "deleted": false
+    },
+    {
+      "id": "notion-3a222763-f9318bc53cde",
+      "title": "中餐 三明治咖啡",
+      "category": "shop",
+      "payer": "若涵",
+      "consumers": [
+        "若涵",
+        "屁屁"
+      ],
+      "amount": 969,
+      "currency": "TWD",
+      "date": "",
+      "rate": 1,
+      "est": false,
+      "twd": 969,
+      "shares": {
+        "若涵": 1,
+        "屁屁": 1
+      },
+      "extras": {},
+      "note": "依 Notion 原付款人與分攤者匯入；日期未填。",
+      "createdAt": 0,
+      "updatedAt": 0,
+      "deleted": false
+    },
+    {
+      "id": "notion-3a222763-e671f4cd7d68",
+      "title": "水",
+      "category": "food",
+      "payer": "若涵",
+      "consumers": [
+        "屁屁",
+        "若涵"
+      ],
+      "amount": 50,
+      "currency": "TWD",
+      "date": "",
+      "rate": 1,
+      "est": false,
+      "twd": 50,
+      "shares": {
+        "屁屁": 1,
+        "若涵": 1
+      },
+      "extras": {},
+      "note": "依 Notion 原付款人與分攤者匯入；日期未填。",
+      "createdAt": 0,
+      "updatedAt": 0,
+      "deleted": false
+    },
+    {
+      "id": "notion-3a222763-c6e544b41a95",
+      "title": "Satur 屁屁衣服",
+      "category": "shop",
+      "payer": "若涵",
+      "consumers": [
+        "屁屁"
+      ],
+      "amount": 1522,
+      "currency": "TWD",
+      "date": "",
+      "rate": 1,
+      "est": false,
+      "twd": 1522,
+      "shares": {
+        "屁屁": 1
+      },
+      "extras": {},
+      "note": "依 Notion 原付款人與分攤者匯入；日期未填。",
+      "createdAt": 0,
+      "updatedAt": 0,
+      "deleted": false
+    },
+    {
+      "id": "notion-3a222763-fc6d87af698b",
+      "title": "小鏡子",
+      "category": "shop",
+      "payer": "若涵",
+      "consumers": [
+        "若涵",
+        "屁屁"
+      ],
+      "amount": 780,
+      "currency": "TWD",
+      "date": "",
+      "rate": 1,
+      "est": false,
+      "twd": 780,
+      "shares": {
+        "若涵": 1,
+        "屁屁": 1
+      },
+      "extras": {},
+      "note": "依 Notion 原付款人與分攤者匯入；日期未填。",
+      "createdAt": 0,
+      "updatedAt": 0,
+      "deleted": false
+    },
+    {
+      "id": "notion-3a222763-ffc2a3f2e17b",
+      "title": "歐莉芙羊 屁屁",
+      "category": "shop",
+      "payer": "若涵",
+      "consumers": [
+        "屁屁"
+      ],
+      "amount": 1180,
+      "currency": "TWD",
+      "date": "",
+      "rate": 1,
+      "est": false,
+      "twd": 1180,
+      "shares": {
+        "屁屁": 1
+      },
+      "extras": {},
+      "note": "依 Notion 原付款人與分攤者匯入；日期未填。",
+      "createdAt": 0,
+      "updatedAt": 0,
+      "deleted": false
+    },
+    {
+      "id": "notion-3a222763-dfb2c8860e06",
+      "title": "歐莉芙羊",
+      "category": "shop",
+      "payer": "若涵",
+      "consumers": [
+        "若涵"
+      ],
+      "amount": 2656,
+      "currency": "TWD",
+      "date": "",
+      "rate": 1,
+      "est": false,
+      "twd": 2656,
+      "shares": {
+        "若涵": 1
+      },
+      "extras": {},
+      "note": "依 Notion 原付款人與分攤者匯入；日期未填。",
+      "createdAt": 0,
+      "updatedAt": 0,
+      "deleted": false
+    },
+    {
+      "id": "notion-3a222763-df05be8b55ab",
+      "title": "APM 屁屁包包",
+      "category": "shop",
+      "payer": "若涵",
+      "consumers": [
+        "屁屁"
+      ],
+      "amount": 2928,
+      "currency": "TWD",
+      "date": "",
+      "rate": 1,
+      "est": false,
+      "twd": 2928,
+      "shares": {
+        "屁屁": 1
+      },
+      "extras": {},
+      "note": "依 Notion 原付款人與分攤者匯入；日期未填。",
+      "createdAt": 0,
+      "updatedAt": 0,
+      "deleted": false
+    },
+    {
+      "id": "notion-3a222763-e75de2b2b2c6",
+      "title": "嚕腳神器",
+      "category": "shop",
+      "payer": "若涵",
+      "consumers": [
+        "若涵",
+        "屁屁"
+      ],
+      "amount": 185,
+      "currency": "TWD",
+      "date": "",
+      "rate": 1,
+      "est": false,
+      "twd": 185,
+      "shares": {
+        "若涵": 1,
+        "屁屁": 1
+      },
+      "extras": {},
+      "note": "依 Notion 原付款人與分攤者匯入；日期未填。",
+      "createdAt": 0,
+      "updatedAt": 0,
+      "deleted": false
+    },
+    {
+      "id": "notion-3a222763-e38d903eb84f",
+      "title": "宵夜 豆腐鍋",
+      "category": "food",
+      "payer": "若涵",
+      "consumers": [
+        "若涵",
+        "屁屁"
+      ],
+      "amount": 600,
+      "currency": "TWD",
+      "date": "",
+      "rate": 1,
+      "est": false,
+      "twd": 600,
+      "shares": {
+        "若涵": 1,
+        "屁屁": 1
+      },
+      "extras": {},
+      "note": "依 Notion 原付款人與分攤者匯入；日期未填。",
+      "createdAt": 0,
+      "updatedAt": 0,
+      "deleted": false
+    },
+    {
+      "id": "notion-3a222763-ec66dfe6dc2d",
+      "title": "Uber 東大門 → 飯店",
+      "category": "transit",
+      "payer": "屁屁",
+      "consumers": [
+        "屁屁",
+        "若涵"
+      ],
+      "amount": 667,
+      "currency": "TWD",
+      "date": "",
+      "rate": 1,
+      "est": false,
+      "twd": 667,
+      "shares": {
+        "屁屁": 1,
+        "若涵": 1
+      },
+      "extras": {},
+      "note": "依 Notion 原付款人與分攤者匯入；日期未填。",
+      "createdAt": 0,
+      "updatedAt": 0,
+      "deleted": false
+    },
+    {
+      "id": "notion-3a522763-c39c0710e1b0",
+      "title": "Uber 飯店 → 金浦機場",
+      "category": "transit",
+      "payer": "屁屁",
+      "consumers": [
+        "屁屁",
+        "若涵"
+      ],
+      "amount": 362,
+      "currency": "TWD",
+      "date": "",
+      "rate": 1,
+      "est": false,
+      "twd": 362,
+      "shares": {
+        "屁屁": 1,
+        "若涵": 1
+      },
+      "extras": {},
+      "note": "依 Notion 原付款人與分攤者匯入；日期未填。",
+      "createdAt": 0,
+      "updatedAt": 0,
+      "deleted": false
+    },
+    {
+      "id": "notion-3a222763-cbabbeef57d5",
+      "title": "木星沙 鞋子*3 口紅*1",
+      "category": "shop",
+      "payer": "若涵",
+      "consumers": [],
+      "amount": 5393,
+      "currency": "TWD",
+      "date": "",
+      "rate": 1,
+      "est": false,
+      "twd": 5393,
+      "shares": {
+        "若涵": 1,
+        "屁屁": 1
+      },
+      "extras": {},
+      "splitEnabled": true,
+      "splitMode": "amount",
+      "allocations": {
+        "若涵": 1987,
+        "屁屁": 3406
+      },
+      "note": "兩雙鞋歸屁屁 TWD 3,406（當時匯率換算）；其餘歸若涵。日期未填。",
+      "createdAt": 0,
+      "updatedAt": 0,
+      "deleted": false
+    }
+  ],
+  "pending": [
+    {
+      "id": "notion-3a222763-ef91aef22271",
+      "title": "內衣",
+      "category": "shop",
+      "payer": "若涵",
+      "consumers": [],
+      "amount": 3305,
+      "currency": ""
+    }
+  ],
+  "originalRecords": [
+    {
+      "id": "notion-62822763-81d220175233",
+      "title": "機票",
+      "category": "transit",
+      "payer": "若涵",
+      "consumers": [
+        "若涵"
+      ],
+      "amount": 11000,
+      "currency": "TWD"
+    },
+    {
+      "id": "notion-3a122763-c7f942e25728",
+      "title": "飯店",
+      "category": "stay",
+      "payer": "若涵",
+      "consumers": [
+        "若涵",
+        "屁屁"
+      ],
+      "amount": 15023,
+      "currency": "TWD"
+    },
+    {
+      "id": "notion-3a122763-c7c057c9bc3d",
+      "title": "歐莉芙羊",
+      "category": "shop",
+      "payer": "若涵",
+      "consumers": [
+        "若涵"
+      ],
+      "amount": 1882,
+      "currency": "TWD"
+    },
+    {
+      "id": "notion-3a122763-e89518aa682e",
+      "title": "炸雞",
+      "category": "food",
+      "payer": "若涵",
+      "consumers": [
+        "屁屁",
+        "若涵"
+      ],
+      "amount": 503,
+      "currency": "TWD"
+    },
+    {
+      "id": "notion-3a122763-dbb42189ab90",
+      "title": "咖啡 星巴克",
+      "category": "food",
+      "payer": "屁屁",
+      "consumers": [
+        "屁屁",
+        "若涵"
+      ],
+      "amount": 255,
+      "currency": "TWD"
+    },
+    {
+      "id": "notion-3a122763-c244a16e3ac3",
+      "title": "Uber → 弘大",
+      "category": "transit",
+      "payer": "屁屁",
+      "consumers": [
+        "屁屁",
+        "若涵"
+      ],
+      "amount": 189,
+      "currency": "TWD"
+    },
+    {
+      "id": "notion-3a122763-e1f5298273a7",
+      "title": "醫美",
+      "category": "other",
+      "payer": "若涵",
+      "consumers": [
+        "若涵"
+      ],
+      "amount": 46666,
+      "currency": "TWD"
+    },
+    {
+      "id": "notion-3a122763-e470257fdefe",
+      "title": "醬蟹",
+      "category": "food",
+      "payer": "若涵",
+      "consumers": [
+        "若涵",
+        "屁屁"
+      ],
+      "amount": 70200,
+      "currency": "KRW"
+    },
+    {
+      "id": "notion-3a122763-cab528b66d84",
+      "title": "藥妝店",
+      "category": "shop",
+      "payer": "若涵",
+      "consumers": [
+        "若涵"
+      ],
+      "amount": 2581,
+      "currency": "TWD"
+    },
+    {
+      "id": "notion-3a122763-c9579cb75391",
+      "title": "皮革編織包",
+      "category": "shop",
+      "payer": "若涵",
+      "consumers": [
+        "若涵"
+      ],
+      "amount": 873,
+      "currency": "TWD"
+    },
+    {
+      "id": "notion-3a122763-d45c762eb809",
+      "title": "夾子",
+      "category": "shop",
+      "payer": "若涵",
+      "consumers": [
+        "若涵"
+      ],
+      "amount": 3000,
+      "currency": "KRW"
+    },
+    {
+      "id": "notion-3a122763-e6ebc1ee4f4a",
+      "title": "設計小物店 包包香包",
+      "category": "shop",
+      "payer": "若涵",
+      "consumers": [
+        "若涵"
+      ],
+      "amount": 1523,
+      "currency": "TWD"
+    },
+    {
+      "id": "notion-3a122763-c356bca0d0f2",
+      "title": "戒指",
+      "category": "shop",
+      "payer": "若涵",
+      "consumers": [
+        "若涵"
+      ],
+      "amount": 180,
+      "currency": "TWD"
+    },
+    {
+      "id": "notion-3a122763-c59e3ad6ffc7",
+      "title": "小榮 T 帽子 🧢",
+      "category": "shop",
+      "payer": "若涵",
+      "consumers": [
+        "若涵"
+      ],
+      "amount": 1600,
+      "currency": "TWD"
+    },
+    {
+      "id": "notion-3a122763-f24a4189157c",
+      "title": "小章魚",
+      "category": "food",
+      "payer": "若涵",
+      "consumers": [
+        "若涵",
+        "屁屁"
+      ],
+      "amount": 876,
+      "currency": "TWD"
+    },
+    {
+      "id": "notion-3a122763-c8fe50c1b982",
+      "title": "歐力芙陽",
+      "category": "shop",
+      "payer": "若涵",
+      "consumers": [
+        "若涵"
+      ],
+      "amount": 2348,
+      "currency": "TWD"
+    },
+    {
+      "id": "notion-3a122763-df40492080cd",
+      "title": "Uber → 飯店",
+      "category": "transit",
+      "payer": "屁屁",
+      "consumers": [
+        "若涵",
+        "屁屁"
+      ],
+      "amount": 252,
+      "currency": "TWD"
+    },
+    {
+      "id": "notion-3a122763-d6a0b8c797de",
+      "title": "便利商店",
+      "category": "food",
+      "payer": "若涵",
+      "consumers": [
+        "若涵",
+        "屁屁"
+      ],
+      "amount": 641,
+      "currency": "TWD"
+    },
+    {
+      "id": "notion-3a222763-f2125d2657f7",
+      "title": "地鐵 飯店 → 聖水",
+      "category": "transit",
+      "payer": "若涵",
+      "consumers": [
+        "若涵"
+      ],
+      "amount": 40,
+      "currency": "TWD"
+    },
+    {
+      "id": "notion-3a222763-e56e4d7d1bce",
+      "title": "菜瓜布",
+      "category": "shop",
+      "payer": "若涵",
+      "consumers": [
+        "若涵"
+      ],
+      "amount": 139,
+      "currency": "TWD"
+    },
+    {
+      "id": "notion-3a222763-f9318bc53cde",
+      "title": "中餐 三明治咖啡",
+      "category": "shop",
+      "payer": "若涵",
+      "consumers": [
+        "若涵",
+        "屁屁"
+      ],
+      "amount": 969,
+      "currency": "TWD"
+    },
+    {
+      "id": "notion-3a222763-ef91aef22271",
+      "title": "內衣",
+      "category": "shop",
+      "payer": "若涵",
+      "consumers": [],
+      "amount": 3305,
+      "currency": ""
+    },
+    {
+      "id": "notion-3a222763-e671f4cd7d68",
+      "title": "水",
+      "category": "food",
+      "payer": "若涵",
+      "consumers": [
+        "屁屁",
+        "若涵"
+      ],
+      "amount": 50,
+      "currency": "TWD"
+    },
+    {
+      "id": "notion-3a222763-c6e544b41a95",
+      "title": "Satur 屁屁衣服",
+      "category": "shop",
+      "payer": "若涵",
+      "consumers": [
+        "屁屁"
+      ],
+      "amount": 1522,
+      "currency": "TWD"
+    },
+    {
+      "id": "notion-3a222763-fc6d87af698b",
+      "title": "小鏡子",
+      "category": "shop",
+      "payer": "若涵",
+      "consumers": [
+        "若涵",
+        "屁屁"
+      ],
+      "amount": 780,
+      "currency": "TWD"
+    },
+    {
+      "id": "notion-3a222763-cbabbeef57d5",
+      "title": "木星沙 鞋子*3 口紅*1",
+      "category": "shop",
+      "payer": "若涵",
+      "consumers": [],
+      "amount": 5393,
+      "currency": "TWD"
+    },
+    {
+      "id": "notion-3a222763-ffc2a3f2e17b",
+      "title": "歐莉芙羊 屁屁",
+      "category": "shop",
+      "payer": "若涵",
+      "consumers": [
+        "屁屁"
+      ],
+      "amount": 1180,
+      "currency": "TWD"
+    },
+    {
+      "id": "notion-3a222763-dfb2c8860e06",
+      "title": "歐莉芙羊",
+      "category": "shop",
+      "payer": "若涵",
+      "consumers": [
+        "若涵"
+      ],
+      "amount": 2656,
+      "currency": "TWD"
+    },
+    {
+      "id": "notion-3a222763-df05be8b55ab",
+      "title": "APM 屁屁包包",
+      "category": "shop",
+      "payer": "若涵",
+      "consumers": [
+        "屁屁"
+      ],
+      "amount": 2928,
+      "currency": "TWD"
+    },
+    {
+      "id": "notion-3a222763-e75de2b2b2c6",
+      "title": "嚕腳神器",
+      "category": "shop",
+      "payer": "若涵",
+      "consumers": [
+        "若涵",
+        "屁屁"
+      ],
+      "amount": 185,
+      "currency": "TWD"
+    },
+    {
+      "id": "notion-3a222763-e38d903eb84f",
+      "title": "宵夜 豆腐鍋",
+      "category": "food",
+      "payer": "若涵",
+      "consumers": [
+        "若涵",
+        "屁屁"
+      ],
+      "amount": 600,
+      "currency": "TWD"
+    },
+    {
+      "id": "notion-3a222763-ec66dfe6dc2d",
+      "title": "Uber 東大門 → 飯店",
+      "category": "transit",
+      "payer": "屁屁",
+      "consumers": [
+        "屁屁",
+        "若涵"
+      ],
+      "amount": 667,
+      "currency": "TWD"
+    },
+    {
+      "id": "notion-3a522763-c39c0710e1b0",
+      "title": "Uber 飯店 → 金浦機場",
+      "category": "transit",
+      "payer": "屁屁",
+      "consumers": [
+        "屁屁",
+        "若涵"
+      ],
+      "amount": 362,
+      "currency": "TWD"
+    }
+  ],
+  "importVersion": "seoul-notion-v2",
+  "sourceNote": "依指定連結更新首爾醫美。原頁內資料庫名稱為「濟州開銷」，明細含弘大、聖水、東大門與金浦機場。原表無日期；保留未填，不推算旅程日期。韓元使用原表0.023匯率。"
+}

@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>原型 · 口袋資料夾首頁</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* jf open 粉圓（圓潤黑體，OFL 開源，繁中完整） */
+  @font-face{ font-family:"Huninn"; src:url("assets/fonts/huninn.woff2") format("woff2"); font-display:swap; }
+  :root{
+    --paper:#f1ebdd; --paper2:#ece4d3; --ink:#2c2a26; --muted:#8c8372; --faint:#b3a893;
+    --line:rgba(44,42,38,.13);
+    --rose:#d98c93; --peri:#6f7cc9; --mustard:#c9913f; --teal:#4f9e8c; --coral:#e8795f;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--paper);
+    background-image:radial-gradient(130% 90% at 50% -8%, #f8f2e4 0%, var(--paper) 44%, var(--paper2) 100%);
+    color:var(--ink);font-family:"Space Grotesk","Noto Sans TC",sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;overflow-x:hidden;}
+  body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.4;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.3'/%3E%3C/svg%3E");}
+  .wrap{position:relative;z-index:1;max-width:1120px;margin:0 auto;padding:0 18px 120px;}
+
+  /* 刊頭 */
+  header{padding:58px 4px 24px;position:relative;}
+  .eyebrow{font-family:"Space Mono",monospace;font-size:.66rem;letter-spacing:.32em;text-transform:uppercase;color:var(--mustard);font-weight:700;}
+  header h1{font-family:"Noto Sans TC","Space Grotesk",sans-serif;font-size:clamp(2.5rem,8.6vw,3.4rem);line-height:1.05;margin-top:10px;font-weight:700;letter-spacing:-.015em;}
+  header h1 em{font-style:normal;font-weight:400;color:var(--coral);}
+  .sub{margin-top:12px;font-size:.9rem;color:var(--muted);max-width:360px;line-height:1.6;}
+  .hdr-stamp{position:absolute;top:56px;right:6px;width:84px;height:84px;border:2px solid rgba(201,145,63,.5);border-radius:50%;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(-12deg);color:#a9742a;opacity:.72;
+    font-family:"Space Mono",monospace;text-align:center;mix-blend-mode:multiply;}
+  .hdr-stamp b{font-size:.72rem;letter-spacing:.1em;} .hdr-stamp span{font-size:.5rem;letter-spacing:.18em;margin-top:2px;}
+  @media(max-width:520px){ .hdr-stamp{width:64px;height:64px;top:52px;} .hdr-stamp b{font-size:.58rem;} }
+  .filters{display:inline-flex;gap:2px;margin-top:20px;max-width:100%;padding:4px;background:#f3ecdc;
+    border:1px solid var(--line);border-radius:30px;box-shadow:inset 0 1px 3px rgba(60,48,30,.12);overflow-x:auto;}
+  .fil{flex:0 0 auto;font-family:"Space Mono",monospace;font-size:.68rem;letter-spacing:.04em;color:var(--muted);
+    background:transparent;border:none;border-radius:22px;padding:8px 15px;cursor:pointer;transition:.18s;white-space:nowrap;}
+  .fil:hover{color:var(--ink);}
+  .fil.on{background:var(--ink);color:var(--paper);box-shadow:0 3px 8px -3px rgba(44,42,38,.4);}
+  .rule{display:flex;align-items:center;gap:12px;margin:24px 0 4px;font-family:"Space Mono",monospace;font-size:.6rem;letter-spacing:.2em;color:var(--faint);text-transform:uppercase;}
+  .rule::before,.rule::after{content:"";height:1px;background:var(--line);flex:1;}
+
+  /* 口袋格線 */
+  #cards{display:grid;grid-template-columns:repeat(2,1fr);grid-auto-rows:1fr;gap:58px 16px;margin-top:18px;padding-top:46px;}
+  @media(min-width:680px){ #cards{grid-template-columns:repeat(3,1fr);gap:64px 22px;} }
+  @media(min-width:1000px){ #cards{grid-template-columns:repeat(4,1fr);} }
+
+  /* 一個資料夾（四層：① 底色塊 → ② 內容照片+標籤 → ③ 前色塊 → ④ 文字） */
+  .folder{position:relative;display:flex;flex-direction:column;transform:rotate(var(--rot,0deg));transition:transform .4s cubic-bezier(.2,.8,.2,1);cursor:pointer;perspective:1000px;}
+  .folder:hover{transform:rotate(0) translateY(-6px);z-index:9;}
+  /* hover：前片開口往上掀開（上寬下窄） */
+  .folder:hover .f-front{transform:rotateX(-14deg);}
+
+  /* ① 底色色塊（背片）：只比前片高一點點，露出開口內襯的深色薄緣 */
+  .f-back{position:absolute;left:0;right:0;top:-13px;bottom:0;z-index:0;border-radius:15px 15px 18px 18px;
+    border:1px solid color-mix(in srgb, var(--pk-sh), transparent 40%);
+    background:linear-gradient(155deg,color-mix(in srgb,var(--pk-sh),transparent 38%),color-mix(in srgb,var(--pk),transparent 73%));
+    box-shadow:inset 0 2px 3px rgba(255,255,255,.7),inset 0 -3px 6px color-mix(in srgb,var(--pk-sh),transparent 50%);}
+
+  /* 內層文件橫向鋪滿，介於底色與物件之間。 */
+  .f-papers{position:absolute;inset:0;z-index:1;pointer-events:none;}
+  .folder-paper{position:absolute;left:5%;right:6%;top:-9px;bottom:13px;
+    background:#fffdf8;border:1px solid rgba(163,149,121,.16);border-radius:1px;
+    box-shadow:0 2px 5px -3px rgba(74,58,33,.22);transform-origin:center;
+    transition:transform .42s cubic-bezier(.2,.85,.3,1.12);}
+  .folder-paper.paper-back{left:7%;right:4%;top:-8px;bottom:15px;transform:rotate(1.2deg);background:#f5f0e7;}
+  .folder-paper.paper-front{transform:rotate(-1.7deg);}
+  .folder:hover .folder-paper.paper-back{transform:translateY(-5px) rotate(1.2deg);}
+  .folder:hover .folder-paper.paper-front{transform:translateY(-8px) rotate(-1.7deg);}
+  @media(prefers-reduced-motion:reduce){.folder-paper{transition:none;}}
+
+  /* ② 內藏拍立得與輪廓貼紙；定位隨資料夾高度調整。 */
+  .f-content{position:absolute;inset:0;z-index:2;pointer-events:none;}
+  .pk-item{position:absolute;transform-origin:bottom center;
+    transition:top .42s cubic-bezier(.2,.85,.3,1.12),left .42s cubic-bezier(.2,.85,.3,1.12),transform .42s cubic-bezier(.2,.85,.3,1.12),box-shadow .25s ease;}
+  .pk-item .thumb{height:100%;background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;}
+  .pk-item.i0{left:23%;top:-36px;width:72px;height:78px;transform:rotate(-14deg);z-index:1;}
+  .pk-item.photo{padding:5px 5px 15px;background:#fff;border:0;border-radius:0;
+    box-shadow:0 5px 10px -6px rgba(60,48,30,.4);}
+  .pk-item.photo .thumb{border-radius:0;background-color:#dededb;font-size:1.8rem;}
+  .pk-item.i1{left:calc(23% + 44px);top:-26px;width:52px;height:52px;transform:rotate(12deg);z-index:2;
+    background:transparent;border:0;overflow:visible;box-shadow:none;}
+  .pk-item.i1 .thumb{font-size:2.35rem;line-height:1;}
+  /* 透明圖案先描出白色外沿，再加一層細陰影。 */
+  .sticker-image{display:block;width:100%;height:100%;object-fit:contain;}
+  :root{--sticker-edge:drop-shadow(2px 0 0 #fff) drop-shadow(-2px 0 0 #fff) drop-shadow(0 2px 0 #fff) drop-shadow(0 -2px 0 #fff);}
+  .sticker-art{display:block;filter:var(--sticker-edge);}
+  .sticker-image{filter:var(--sticker-edge);}
+  .folder:hover .pk-item.i0{left:23%;top:-64px;transform:rotate(-14deg) scale(1.3);
+    box-shadow:0 16px 26px -9px rgba(60,48,30,.5);}
+  .folder:hover .pk-item.i1{left:48%;top:-41px;transform:rotate(12deg) scale(1.23);}
+  @media(prefers-reduced-motion:reduce){.pk-item{transition:none;}}
+
+  .pk-item.icon-sticker{background:transparent;border:0;padding:0;box-shadow:none;}
+  .pk-item.icon-sticker .thumb{font-size:3rem;line-height:1;}
+  .folder:hover .pk-item.icon-sticker{box-shadow:none;}
+
+  /* 透明玻璃前片：只模糊玻璃後方物件，文字保持清晰。 */
+  .f-front{position:relative;z-index:3;flex:1;min-height:192px;border-radius:20px;padding:17px 16px 16px;overflow:hidden;
+    transform-origin:50% 100%;transition:transform .42s cubic-bezier(.2,.85,.3,1),box-shadow .3s;
+    display:flex;flex-direction:column;color:#352f26;border:1px solid rgba(255,255,255,.78);
+    -webkit-backdrop-filter:blur(9px) saturate(135%);backdrop-filter:blur(9px) saturate(135%);
+    background:
+      radial-gradient(ellipse at 15% 4%,rgba(255,255,255,.6),transparent 40%),
+      linear-gradient(145deg,color-mix(in srgb,var(--pk),transparent 64%),color-mix(in srgb,var(--pk),transparent 78%) 50%,color-mix(in srgb,var(--pk-sh),transparent 62%));
+    box-shadow:0 18px 26px -19px color-mix(in srgb,var(--pk-sh),transparent 15%),
+      0 7px 14px -10px rgba(75,38,46,.3),inset 0 2px 3px rgba(255,255,255,.95),
+      inset 2px 0 4px rgba(255,255,255,.6),inset -2px 0 5px color-mix(in srgb,var(--pk-sh),transparent 60%),
+      inset 0 -3px 3px rgba(255,255,255,.85),inset 0 -8px 10px -5px color-mix(in srgb,var(--pk-sh),transparent 20%);}
+  .f-front::before{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+    background:
+      radial-gradient(ellipse 48% 65% at 0% 0%,rgba(255,255,255,.46) 0%,rgba(255,255,255,.2) 36%,rgba(255,255,255,0) 75%),
+      radial-gradient(ellipse 18% 60% at 100% 78%,rgba(255,255,255,.2) 0%,rgba(255,255,255,0) 85%);
+    box-shadow:inset 0 0 0 2px rgba(255,255,255,.12);}
+  .f-front::after{content:"";position:absolute;left:10%;right:8%;bottom:5px;height:5px;border-radius:50%;pointer-events:none;
+    background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--pk-sh),transparent 25%),rgba(255,255,255,.85),transparent);filter:blur(1px);}
+  .f-front > *{position:relative;z-index:1;}
+  @supports not ((backdrop-filter:blur(9px)) or (-webkit-backdrop-filter:blur(9px))){
+    .f-front{background:color-mix(in srgb,var(--pk),transparent 15%);}
+  }
+
+  .pk-top{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:22px;margin-bottom:13px;}
+  .pk-head{font-family:"Space Mono",monospace;font-size:.62rem;letter-spacing:.08em;color:#75645e;}
+  .ttl{font-family:"Huninn","Noto Sans TC",sans-serif;font-size:clamp(1.25rem,2.3vw,1.65rem);line-height:1.25;font-weight:400;letter-spacing:.025em;overflow-wrap:anywhere;text-wrap:pretty;}
+  .ttl-main{display:block;-webkit-text-stroke:.35px currentColor;}
+  .place{font-family:"Huninn","Noto Sans TC",sans-serif;font-size:.75rem;color:#796b63;margin-top:9px;line-height:1.5;}
+  .pk-foot{margin-top:auto;padding-top:18px;}
+  .pk-foot-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:7px 12px;border-top:1px solid rgba(86,61,52,.14);padding-top:10px;}
+  .pk-date{font-family:"Space Grotesk","Noto Sans TC",sans-serif;font-size:.72rem;letter-spacing:.025em;color:#6c5b54;line-height:1.4;}
+  .tag-cd{display:flex;align-items:baseline;gap:4px;font-family:"Huninn","Noto Sans TC",sans-serif;color:#80504e;white-space:nowrap;}
+  .cd-label{font-size:.63rem;}
+  .cd-value{font-size:.63rem;display:flex;align-items:baseline;gap:2px;}
+  .cd-value strong{font-family:"Space Grotesk",sans-serif;font-size:1.06rem;font-weight:600;font-variant-numeric:tabular-nums;}
+  .cd-soon{font-size:.72rem;}
+  .pk-status{font-family:"Huninn","Noto Sans TC",sans-serif;font-weight:400;font-size:.61rem;letter-spacing:.025em;padding:4px 7px;border-radius:6px;background:rgba(255,255,255,.45);white-space:nowrap;}
+  .pk-status .dot{display:inline-block;width:5px;height:5px;border-radius:50%;margin-right:4px;vertical-align:middle;}
+  .st-visited{color:#b24e3f;} .st-planning{color:#3f5bb0;} .st-traveling{color:#2f8a76;} .st-wishlist{color:#7a5fb0;}
+  .st-visited .dot{background:#b24e3f;} .st-planning .dot{background:#3f5bb0;} .st-traveling .dot{background:#2f8a76;} .st-wishlist .dot{background:#7a5fb0;}
+
+  footer{text-align:center;padding:50px 0 10px;font-family:"Space Mono",monospace;font-size:.6rem;letter-spacing:.2em;color:var(--faint);text-transform:uppercase;}
+  .note-banner{position:fixed;top:0;left:0;right:0;z-index:20;background:#2c2a26;color:#f1ebdd;text-align:center;font-family:"Space Mono",monospace;font-size:.6rem;letter-spacing:.14em;padding:6px;text-transform:uppercase;}
+  .empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:40px;font-family:"Huninn","Noto Sans TC",sans-serif;}
+</style>
+<link rel="stylesheet" href="assets/proto-detail.css?v=split-20261022-85">
+<link rel="stylesheet" href="assets/proto-finance.css?v=split85">
+</head>
+<body>
+<div class="note-banner">原型預覽 · 首頁=一個個口袋（闔上）· 點進去才是頁籤內頁</div>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Travel Atlas · 手帳改版原型</div>
+    <h1>旅行的<em> 檔案室</em></h1>
+    <div class="sub">每一趟旅程都是一個口袋,露出代表那趟的照片與小票。</div>
+    <div class="hdr-stamp"><b>FILED</b><span>足跡</span></div>
+    <div class="filters" id="filters">
+      <button class="fil on" data-f="all">全部</button>
+      <button class="fil" data-f="規劃中">規劃</button>
+      <button class="fil" data-f="旅行中">旅行</button>
+      <button class="fil" data-f="行程回顧">回顧</button>
+      <button class="fil" data-f="許願池">許願</button>
+    </div>
+    <div class="rule">Journeys / 足跡</div>
+  </header>
+  <div id="cards"></div>
+  <footer>Archive · 點廣島口袋，翻開旅程</footer>
+</div>
+
+<script src="assets/trips.js?v=split-20261022-85"></script>
+<script>
+  const RAW = window.__TRIPS__ || [];
+  const TODAY = new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Taipei'});
+  function computeStatus(t){ if(t.start&&t.end){ if(TODAY<t.start)return'規劃中'; if(TODAY>t.end)return'行程回顧'; return'旅行中'; } return t.status||'規劃中'; }
+  const STAMP={'行程回顧':['visited','VISITED'],'規劃中':['planning','PLANNING'],'旅行中':['traveling','TRAVELING'],'許願池':['wishlist','WISHLIST']};
+  // 依「狀態」分色：進行中(規劃/旅行)=紅色調提醒，已結束(回顧)=淡白灰歸檔
+  // 配色參考黏土莫蘭迪色盤：乾燥玫瑰/陶土橘/暖米白/霧藍
+  // 每個狀態:[亮色, 深色(同色相的暗部,不是灰)]
+  const PKC={'規劃中':['#f7d2d8','#dd8ea0'],'旅行中':['#f3b89b','#d6713f'],'行程回顧':['#f6f1e6','#d2c6ac'],'許願池':['#c8daea','#86a7cb']};
+  function daysUntil(d){ if(!d)return null; try{return Math.round((new Date(d+'T00:00:00')-new Date(TODAY+'T00:00:00'))/864e5);}catch(e){return null;} }
+  const REP=[[/滑雪|雪季|snow|season|ski|ss\s*\d/i,'⛷️'],[/溫泉|温泉/i,'♨️'],[/樹冰/i,'❄️'],[/購物|shop/i,'🛍️'],
+    [/牡蠣|廣島|oyster|蚵/,'🦪'],
+    [/美食|燒肉|拉麵|烏龍|food/i,'🍜'],[/醫美/i,'💄'],[/櫻|賞花/i,'🌸'],[/濟州|jeju/i,'🍊'],
+    [/芭達雅|pattaya|峴港|海|沙灘/i,'🏖️'],[/瀨戶內|宮島|嚴島|神社|島/i,'⛩️'],[/寺|廟|曼谷/i,'🛕'],
+    [/紅葉|賞楓|楓/,'🍁'],[/極光|aurora/i,'🌌'],[/阿爾卑斯|少女峰|雪山|雪峰|健行/,'🏔️']];
+  const CEMO={'日本':'🗾','韓國':'🇰🇷','泰國':'🛕','越南':'🌴','冰島':'🇮🇸','瑞士':'🇨🇭'};
+  function repObjects(t){ const hay=((t.tags||[]).join(' ')+' '+(t._title||'')+' '+(t.place||'')).toLowerCase();
+    const out=[]; for(const [re,em] of REP){ if(out.length>=2)break; if(re.test(hay)&&!out.includes(em))out.push(em); }
+    if(out.length<2){ const c=CEMO[t.country]; if(c&&!out.includes(c))out.push(c); } if(!out.length)out.push(t.flag||'📁'); return out.slice(0,2); }
+
+  // ── 展示用假資料（看旅行中/許願池的資料夾顏色，正式套用時刪掉這段）──
+  const DEMO=[
+    {name:'2026-10 日本 京都紅葉', status:'旅行中', country:'日本', flag:'🇯🇵', place:'京都, 嵐山, 奈良', start:'2026-10-18', end:'2026-10-26', tags:['紅葉','美食'], days:9, people:2, year:'2026.10'},
+    {name:'冰島 極光', status:'許願池', country:'冰島', flag:'🇮🇸', place:'雷克雅維克', start:'', end:'', tags:['極光','溫泉'], people:2, year:'願望'},
+    {name:'瑞士 少女峰', status:'許願池', country:'瑞士', flag:'🇨🇭', place:'因特拉肯', start:'', end:'', tags:['少女峰','健行'], people:3, year:'願望'},
+  ];
+  const trips = RAW.concat(DEMO).map(t=>({...t, _status:computeStatus(t),
+    _title:(t.name||'').replace(/^\d{4}-\d{2}\s+\S+\s+/,'').trim().replace(/\s*Snow\s+Season\s*(\d+)\b/gi,' SS$1')||t.name }))
+    .sort((a,b)=> (b.start||'').localeCompare(a.start||''));
+
+  function stickerMarkup(icon){
+    const images={
+      '🦪':'assets/stickers/oyster-puffy-pink-v3.png',
+      '🍊':'assets/stickers/jeju-mandarin-orange-v2.png'
+    };
+    return images[icon]
+      ? `<img class="sticker-image" src="${images[icon]}" alt="" draggable="false">`
+      : `<span class="sticker-art">${icon}</span>`;
+  }
+
+  document.getElementById('cards').innerHTML = (trips.map((t,i)=>{
+    const rot=((i*53)%7-3)/3.6;
+    const [pk,pkSh]=PKC[t._status]||['#e7d8b6','#c0ad84'];
+    const [sc,sl]=STAMP[t._status]||['planning','PLANNING'];
+    const cd=(t._status==='規劃中'&&t.start)?daysUntil(t.start):null;
+    const reps=repObjects(t);
+    if(/濟州|jeju/i.test(t._title)) {
+      const orangeIndex = reps.indexOf('🍊');
+      const flagIndex = reps.indexOf('🇰🇷');
+      if(orangeIndex >= 0 && flagIndex >= 0) {
+        [reps[orangeIndex],reps[flagIndex]]=[reps[flagIndex],reps[orangeIndex]];
+      }
+    }
+    if(/曼谷.*PATTAYA/i.test(t._title)) {
+      const templeIndex = reps.findIndex(icon=>icon==='⛩️'||icon==='🛕');
+      if(templeIndex >= 0) reps[templeIndex] = '🛺';
+    }
+    if(/廣島.*倉敷.*高松/.test(t._title)) {
+      const shoppingIndex = reps.indexOf('🛍️');
+      if(shoppingIndex >= 0) reps[shoppingIndex] = '🦪';
+    }
+    const cardPhoto=/廣島.*倉敷.*高松/.test(t._title)
+      ? 'assets/images/廣島/recap/f_DSC05579.jpg' : t.recap&&t.recap.cover;
+    const hasPhoto=t._status==='行程回顧'&&cardPhoto;
+    const i0=hasPhoto?`<div class="thumb" style="background-image:url('${encodeURI(cardPhoto)}')"></div>`
+                     :`<div class="thumb">${stickerMarkup(reps[0]||'📁')}</div>`;
+    const i1=`<div class="thumb">${stickerMarkup(hasPhoto?(reps[0]||'✦'):(reps[1]||reps[0]||'✦'))}</div>`;
+    const dateTxt = t.start&&t.end ? `${t.start.slice(5).replace('-','.')} — ${t.end.slice(5).replace('-','.')}${t.start.slice(0,4)!==t.end.slice(0,4)?' · '+t.end.slice(0,4):''}`
+                   : (t.year||'') + (t.country?' · '+t.country:'');
+    return `<article class="folder" data-status="${t._status}" style="--rot:${rot}deg;--pk:${pk};--pk-sh:${pkSh}">
+      <div class="f-back"></div>
+      <div class="f-papers" aria-hidden="true"><div class="folder-paper paper-back"></div><div class="folder-paper paper-front"></div></div>
+      <div class="f-content" aria-hidden="true"><div class="pk-item i0 ${hasPhoto?'photo':'icon-sticker'}">${i0}</div><div class="pk-item i1">${i1}</div></div>
+      <div class="f-front">
+        <div class="pk-top"><div class="pk-head">${t.year||''}</div>
+          <div class="pk-status st-${sc}"><span class="dot"></span>${t._status}</div></div>
+        <h2 class="ttl"><span class="ttl-main">${t._title}</span></h2>
+        <div class="place">${t.place||''}</div>
+        <div class="pk-foot"><div class="pk-foot-inner">
+          <div class="pk-date">${dateTxt}</div>
+          ${cd!=null&&cd>=0?`<div class="tag-cd">${cd<=1?`<span class="cd-label">準備啟程</span><span class="cd-soon">${cd===0?'今天出發':'明天出發'}</span>`:`<span class="cd-label">還有</span><span class="cd-value"><strong>${cd}</strong>天</span>`}</div>`:''}
+        </div></div>
+      </div>
+    </article>`;
+  }).join('')) || `<div class="empty">沒有符合的旅程</div>`;
+
+  const folders=[...document.querySelectorAll('.folder')];
+  document.getElementById('filters').addEventListener('click',e=>{ const b=e.target.closest('.fil'); if(!b)return;
+    document.querySelectorAll('.fil').forEach(x=>x.classList.remove('on')); b.classList.add('on');
+    const f=b.dataset.f; folders.forEach(d=>{ d.style.display=(f==='all'||d.dataset.status===f)?'':'none'; }); });
+</script>
+<script src="assets/proto-detail.js?v=split-20261022-85"></script>
+<script src="assets/proto-finance.js?v=split85"></script>
+</body>
+</html>

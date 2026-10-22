@@ -229,3 +229,47 @@
 .fin-source td:first-child,.fin-source td:nth-child(4),.fin-source td:nth-child(5){white-space:nowrap;font-variant-numeric:tabular-nums}
 .fin-source td small{display:block;color:#968b79;max-width:240px;min-width:170px;margin-top:4px}
 @media(max-width:540px){.fin-source{padding:16px 12px}.fin-source-scroll{padding-bottom:8px}}
+
+.fin-followup-field{display:flex;gap:10px;align-items:flex-start;padding:14px;background:#f4f0e5;border:1px solid #e3dbc7;border-radius:4px;margin-top:14px;cursor:pointer}
+.fin-followup-field input{margin:4px 0;accent-color:#7389a4;flex:none}
+.fin-followup-field b{display:block;font-size:.85rem;color:#756850}
+.fin-followup-field small{display:block;font-size:.72rem;line-height:1.7;color:#96876e;margin-top:3px}
+.fin-followup-badge{display:inline-block;margin-left:8px;padding:2px 6px;background:#eee7d4;color:#8a7856;font-size:.62rem;font-weight:400;border-radius:3px;vertical-align:middle}
+.fin-followups{margin:20px 0;padding:18px;background:#fff;border:1px solid #e1d9c7;border-radius:4px}
+.fin-followup-open{display:flex;justify-content:space-between;gap:14px;width:100%;padding:12px 0;border:0;border-top:1px solid #eee9df;background:none;text-align:left;font:inherit;font-size:.83rem;cursor:pointer;color:#726650}
+.fin-followup-open span:last-child{font-size:.74rem;white-space:nowrap;color:#7389a4}
+
+/* 分帳：對象、方式與金額分層 */
+.fin-split-section{margin:22px 0;background:#fffdf8;border:1px solid #e6dfd2;border-radius:8px;padding:16px}
+.fin-split-section .split-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0;font-size:.84rem;color:#756b5e}
+.fin-split-section>.split-head{font-weight:600}
+.fin-segment{display:inline-flex;gap:2px;padding:3px;background:#eeebe3;border-radius:6px;flex:none}
+.fin-segment button{border:0;background:transparent;color:#958a79;padding:8px 14px;min-height:38px;border-radius:4px;font:inherit;font-size:.78rem;cursor:pointer;white-space:nowrap}
+.fin-segment button.on{background:#fffefa;color:#5f7e9e;box-shadow:0 1px 4px #55483213}
+.fin-split-section [hidden]{display:none!important}
+.fin-split-section #fSplit{margin-top:18px}
+.sp-people{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.sp-person{position:relative;cursor:pointer}
+.sp-person input{position:absolute;inset:0;opacity:0;width:100%;height:100%;margin:0;cursor:pointer}
+.sp-person span{display:flex;align-items:center;justify-content:center;min-height:40px;min-width:56px;padding:0 15px;border:1px solid #e7e0d4;border-radius:22px;color:#9b9181;background:transparent;font-size:.84rem}
+.sp-person input:checked+span{border-color:#bbcbda;background:#eaf0f4;color:#5c7794}
+.sp-person input:checked+span:before{content:'✓';margin-right:6px;font-size:.72rem}
+.sp-person input:focus-visible+span,.fin-segment button:focus-visible{outline:2px solid #7996b5;outline-offset:3px}
+.fin-split-section .sp-method{font-size:.74rem;font-weight:400;margin-bottom:18px}
+.sp-table-head{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:28px;color:#9b9080;font-size:.67rem;margin-bottom:4px}
+#fAutoWrap{display:flex;align-items:center;gap:6px}
+#fAutoMember{border:0;background:transparent;color:#7188a0;font:inherit;padding:6px 2px;max-width:130px}
+.sp-amounts{background:#f6f3ec;border-radius:5px;padding:4px 13px}
+.fin-split-section .sp-row{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px;padding:7px 0;margin:0}
+.sp-row+.sp-row{border-top:1px solid #eae5da}
+.sp-name{display:flex;align-items:center;gap:7px;font-size:.85rem;color:#6b6256;overflow-wrap:anywhere;min-width:0}
+.sp-auto-label{font-size:.6rem;color:#9d9486;font-weight:400;white-space:nowrap}
+.sp-value{flex:none;font-variant-numeric:tabular-nums}
+.sp-equal{font-size:1rem;color:#627e9e}
+.fin-split-section .sp-amount{width:126px;max-width:35vw;min-width:0;height:40px;font-size:16px;text-align:right;margin:0;padding:6px 10px;border:1px solid #e1dbce;border-radius:4px;background:#fffefa;color:#5c7592;font-variant-numeric:tabular-nums}
+.fin-split-section .sp-amount.is-auto{background:transparent;border-color:transparent;color:#71859a;padding-right:10px}
+.fin-split-total{text-align:right;margin-top:12px;font-size:.7rem;color:#9a8f7e;line-height:1.6}
+#fSplitError{font-size:.75rem;color:#a45d4d;margin-top:10px;line-height:1.6}
+#fSplitError:empty{display:none}
+.fsh-save:disabled{opacity:.45;cursor:not-allowed}
+@media(max-width:360px){.fin-split-section{padding:13px}.fin-segment button{padding:8px 11px}.sp-amounts{padding:3px 10px}.fin-split-section .sp-amount{width:105px}}

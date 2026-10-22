@@ -20,6 +20,15 @@ function finLoad(t){ let d=null; try{d=JSON.parse(localStorage.getItem(finKey(t)
   if(!Array.isArray(d.members)||!d.members.length) d.members=(t.members&&t.members.length)?t.members.slice():['我'];
   if(!Array.isArray(d.expenses)) d.expenses=[];
   if(!d.settled||typeof d.settled!=='object') d.settled={};
+  const seed=t.financeSource;
+  if(seed?.nativeExpenses?.length&&!d.sourceImports?.[seed.importVersion]){
+    const prior=localStorage.getItem(finKey(t));if(prior&&!localStorage.getItem(finKey(t)+':before-source-import'))localStorage.setItem(finKey(t)+':before-source-import',prior);
+    if(d.members.length===1&&d.members[0]==='我'&&!d.expenses.length)d.members=[];
+    d.members=Array.from(new Set([...d.members,...seed.nativeExpenses.flatMap(e=>[e.payer,...Object.keys(e.shares)])]));
+    for(const e of seed.nativeExpenses)if(!d.expenses.some(existing=>existing.id===e.id))d.expenses.push(JSON.parse(JSON.stringify(e)));
+    d.sourceImports={...(d.sourceImports||{}),[seed.importVersion]:true};
+    localStorage.setItem(finKey(t),JSON.stringify(d));
+  }
   const history=t.financeSource?.historicalRates;
   if(d.notionImported&&history&&!d.notionImported.historicalVersion){
     const snapshot=localStorage.getItem(finKey(t));
@@ -67,6 +76,11 @@ async function finRate(cur){ if(!cur||cur==='TWD')return {rate:1,est:false};
   return {rate:null,est:true}; }
 // 單筆分攤 → 每人應付 TWD(先扣各人加點、剩餘按份數均分、再加回加點)
 function splitExpense(e){ const res={}, total=e.twd||0, shares=e.shares||{}, extras=e.extras||{};
+  if(e.splitMode==='amount'&&e.allocations){
+    const entries=Object.entries(e.allocations).filter(([,v])=>+v>0), sum=entries.reduce((a,[,v])=>a+(+v),0);
+    let used=0; entries.forEach(([n,v],i)=>{const value=i===entries.length-1?total-used:Math.round(total*(+v)/sum*100)/100;res[n]=value;used+=value;});
+    return res;
+  }
   const names=Object.keys(shares).filter(n=>+shares[n]>0);
   let extrasSum=0; for(const n in extras) extrasSum+=(+extras[n]||0);
   const base=total-extrasSum, tot=names.reduce((s,n)=>s+(+shares[n]||0),0)||1;
@@ -119,11 +133,11 @@ function renderFinance(t){ finTrip=t; const root=detailBody.querySelector('#finR
     const groups={}; exps.forEach(e=>{ (groups[e.date]=groups[e.date]||[]).push(e); });
     const dates=Object.keys(groups).sort((a,b)=>b.localeCompare(a));
     detailHTML=dates.map(dt=>{ const items=groups[dt]; const sub=items.reduce((s,e)=>s+(e.twd||0),0);
-      const dayN=tripDayOf(t,dt); const label=(dayN?`Day ${dayN}`:'')+(dayN?'　':'')+dt;
+      const dayN=tripDayOf(t,dt); const label=(dayN?`Day ${dayN}`:'')+(dayN?'　':'')+(dt||'日期未填');
       const rows=items.map(e=>{ const c=catOf(e.category); const sp=splitExpense(e); const who=Object.keys(sp);
         const splitTxt=who.length>=d.members.length?'全員':(who.length<=1?(who[0]||''):who.join('、'));
         return `<div class="fin-item" data-id="${e.id}"><div class="fi-ic">${c.i}</div>
-          <div class="fi-mid"><div class="fi-t">${e.title||c.n}</div>
+          <div class="fi-mid"><div class="fi-t">${e.title||c.n}${e.followUp?'<span class="fin-followup-badge">待回家處理</span>':''}</div>
           <div class="fi-sub">${e.payer} 付・分 ${splitTxt}${e.note?'・'+e.note:''}</div></div>
           ${e.receipt?`<img class="fi-rcpt" data-rk="${e.receipt}" alt="收據" hidden>`:''}
           <div class="fi-amt"><div class="fi-twd">${twdFmt(e.twd)}</div>${e.currency!=='TWD'?`<div class="fi-ori">${e.currency} ${nfInt.format(Math.round(e.amount))}${e.est?' <span class="est">暫估</span>':''}</div>`:''}</div></div>`;}).join('');
@@ -147,9 +161,13 @@ function renderFinance(t){ finTrip=t; const root=detailBody.querySelector('#finR
   const sourceAmount=(value,currency)=>value===null||value===undefined?'—':`${currency} ${nfInt.format(value)}`;
   const imported=sourceRows.length?`<details class="fin-source"><summary class="fin-sec-h">Notion 原始記帳 · ${sourceRows.length} 筆（含2筆待確認）</summary><p class="fin-source-note">原始資料備查；此處的欄位合計不重複計入統計。待確認：機票未填金額；乙萱代買THB1,720僅記在備註、付款與分攤待補。</p><div class="fin-source-totals"><strong>${sourceAmount(sourceRows.reduce((sum,row)=>sum+(row.twd||0),0),'NT$')}</strong><strong>${sourceAmount(sourceRows.reduce((sum,row)=>sum+(row.thb||0),0),'THB')}</strong></div><div class="fin-source-scroll" role="region" aria-label="Notion 原始記帳明細" tabindex="0"><table><thead><tr><th>日期</th><th>項目／備註</th><th>類別</th><th>台幣</th><th>泰銖</th><th>付款人（原欄位）</th><th>消費對象（原欄位）</th></tr></thead><tbody>${sourceRows.map(row=>`<tr data-source-id="${sourceText(row.id)}"><td>${sourceText(row.date)}</td><td><b>${sourceText(row.title)}</b>${row.note?`<small>${sourceText(row.note)}</small>`:''}${row.twd===null&&row.thb===null?'<small>金額欄未填</small>':''}</td><td>${sourceText(row.category)}</td><td>${sourceAmount(row.twd,'NT$')}</td><td>${sourceAmount(row.thb,'THB')}</td><td>${sourceText(row.payer)||'未填'}</td><td>${sourceText(row.consumer)||'未填'}</td></tr>`).join('')}</tbody></table></div></details>`:'';
   const importNotice=sourceRows.length?`<p class="fin-source-note">匯入規則：平分金額按每人份×2還原，負數轉為屁屁付款；JOHAN對應若涵。泰銖依支出日期的歷史參考匯率換算；11/1–11/2沿用10/31。統計與結算仍為估算，不含銀行價差與手續費。${d.notionImported?'已轉入63筆，可點明細修改；原表65筆保留於下方。':'正在套用歷史匯率；完成後會轉入明細。'}</p>`:'';
-  root.innerHTML=heading+importNotice+((sourceRows.length&&!exps.length)?'<p class="fin-source-note">目前沒有另外新增的記帳；可使用「新增一筆」補記。</p>':summary+chartHTML+detailSection+settleHTML)+imported+tools;
+  const nativeNotice=t.financeSource?.nativeExpenses?`<section class="fin-source"><h3 class="fin-sec-h">Notion 記帳已匯入 · ${t.financeSource.nativeExpenses.length} 筆</h3><p class="fin-source-note">依原表付款與分攤對象計算，沒有再次還原或折半；韓元沿用原表匯率0.023。原表沒有日期，明細標示「日期未填」。</p>${(t.financeSource.pending||[]).length?`<details><summary>待確認 ${(t.financeSource.pending||[]).length} 筆（尚未計入統計）</summary>${t.financeSource.pending.map(e=>`<p class="fin-source-note">${sourceText(e.title)}：${sourceText(e.currency||'幣別未填')} ${nfInt.format(e.amount)}；付款人${sourceText(e.payer)}，分攤者未填。</p>`).join('')}</details>`:''}</section>`:'';
+  const followUps=exps.filter(e=>e.followUp);
+  const followUpHTML=followUps.length?`<section class="fin-followups"><h3 class="fin-sec-h">待回家處理 · ${followUps.length} 筆</h3><p class="fin-source-note">點選紀錄補齊內容，完成後取消勾選。已填金額仍計入統計；未填金額暫不計入。</p>${followUps.map(e=>`<button type="button" class="fin-followup-open" data-followup-id="${sourceText(e.id)}"><span>${sourceText(e.title||'未命名紀錄')}</span><span>${e.amount?sourceText(e.currency)+' '+nfInt.format(e.amount):'金額待補'} →</span></button>`).join('')}</section>`:'';
+  root.innerHTML=heading+followUpHTML+nativeNotice+importNotice+((sourceRows.length&&!exps.length)?'<p class="fin-source-note">目前沒有另外新增的記帳；可使用「新增一筆」補記。</p>':summary+chartHTML+detailSection+settleHTML)+imported+tools;
   // wire
   root.querySelector('#finAdd').onclick=()=>openExpenseSheet(t,null);
+  root.querySelectorAll('[data-followup-id]').forEach(button=>button.onclick=()=>{const e=d.expenses.find(e=>e.id===button.dataset.followupId);if(e)openExpenseSheet(t,e);});
   root.querySelectorAll('.fin-item').forEach(el=>el.onclick=()=>{const e=d.expenses.find(x=>x.id===el.dataset.id); if(e)openExpenseSheet(t,e);});
   root.querySelectorAll('.fi-rcpt[data-rk]').forEach(img=>{ idbGet(img.dataset.rk).then(u=>{if(u){img.src=u;img.hidden=false;}}); img.onclick=(ev)=>{ev.stopPropagation(); if(img.src)openLightbox([img.src],0);}; });
   root.querySelectorAll('.tr-done').forEach(b=>b.onclick=()=>{const k=b.closest('.set-transfer').dataset.k; d.settled[k]=!d.settled[k]; finSave(t,d); renderFinance(t);});
@@ -191,22 +209,25 @@ function ensureSheet(){ let s=document.getElementById('finSheet'); if(s)return s
   s.innerHTML=`<div class="fin-sheet-card"><div class="fin-sheet-head"><span class="fsh-title"></span><button class="fsh-x">✕</button></div><div class="fin-sheet-body"></div><div class="fin-sheet-foot"><button class="fsh-save"></button></div></div>`;
   document.body.appendChild(s); s.onclick=e=>{if(e.target===s)closeSheet();}; s.querySelector('.fsh-x').onclick=closeSheet; return s; }
 function openSheet(title,bodyHTML,onSave,saveLabel='儲存'){ const s=ensureSheet(); s.querySelector('.fsh-title').textContent=title;
-  s.querySelector('.fin-sheet-body').innerHTML=bodyHTML; const sv=s.querySelector('.fsh-save'); sv.textContent=saveLabel; sv.style.display=onSave?'':'none'; sv.onclick=onSave||null;
+  s.querySelector('.fin-sheet-body').innerHTML=bodyHTML; const sv=s.querySelector('.fsh-save'); sv.textContent=saveLabel; sv.disabled=false; sv.style.display=onSave?'':'none'; sv.onclick=onSave||null;
   s.classList.add('on'); return s; }
 function closeSheet(){ const s=document.getElementById('finSheet'); if(s)s.classList.remove('on'); }
 addEventListener('keydown',e=>{if(e.key==='Escape'){const s=document.getElementById('finSheet'); if(s&&s.classList.contains('on')){closeSheet();}}});
 
 /* ---------- 記一筆 / 編輯 ---------- */
-function openExpenseSheet(t,exp){ const d=finLoad(t), me=d.members[0]||'我', editing=!!exp, e=exp||{};
+function openExpenseSheet(t,exp){ const d=finLoad(t), me=t.financeSource?.owner||d.members[0]||'我', editing=!!exp, e=exp||{};
   let cur=e.currency||t.currency||'JPY', rate=(e.rate||null), est=e.est||false, receiptKey=e.receipt||null;
   const cats=FIN_CATS.map(c=>`<button class="cat-chip ${(e.category||'food')===c.k?'on':''}" data-k="${c.k}">${c.i}<span>${c.n}</span></button>`).join('');
   const curOpts=FIN_CURRENCIES.map(c=>`<option ${c===cur?'selected':''}>${c}</option>`).join('');
   const payerOpts=d.members.map(m=>`<option ${(e.payer||me)===m?'selected':''}>${m}</option>`).join('');
-  const shares=e.shares||{}, extras=e.extras||{};
-  const splitRows=d.members.map(m=>{ const on=(m in shares)?(+shares[m]>0):true, sh=shares[m]||1, ex=extras[m]||'';
-    return `<div class="sp-row"><label class="sp-ck"><input type="checkbox" class="sp-on" data-m="${m}" ${on?'checked':''}><span>${m}</span></label>
-      <span class="sp-share"><button class="sp-dec" data-m="${m}">−</button><b class="sp-n" data-m="${m}">${sh}</b><button class="sp-inc" data-m="${m}">＋</button></span>
-      <input class="sp-extra" data-m="${m}" inputmode="decimal" placeholder="加點$" value="${ex}"></div>`;}).join('');
+  const shares=e.shares||{}, extras=e.extras||{}, previous=splitExpense(e);
+  let splitting=editing&&(e.splitEnabled??(Object.keys(previous).some(n=>n!==me))), splitMode=e.splitMode||((Object.keys(extras).length||Object.values(shares).some(v=>v!==1))?'amount':'equal');
+  const memberOn=m=>editing?((m in shares&&+shares[m]>0)||(m in previous&&previous[m]>0)):true;
+  const memberChips=d.members.map(m=>`<label class="sp-person"><input type="checkbox" class="sp-on" data-m="${m}" ${memberOn(m)?'checked':''}><span>${m===me?'我':m}</span></label>`).join('');
+  const splitRows=d.members.map(m=>{
+    const amount=e.allocations?.[m]??(e.twd?Math.round((previous[m]||0)/e.twd*(e.amount||0)*100)/100:'');
+    return `<div class="sp-row" data-m="${m}"><span class="sp-name">${m===me?'我':m}<small class="sp-auto-label" data-m="${m}">餘額</small></span>
+      <div class="sp-value"><output class="sp-equal" data-m="${m}"></output><input aria-label="${m}分攤金額" class="sp-amount fin-in" data-m="${m}" inputmode="decimal" placeholder="0" value="${amount}"></div></div>`;}).join('');
   // 快速帶入:這趟最近用過的(類別+名稱)+ 幾個常見預設
   let quickHTML='';
   if(!editing){
@@ -221,12 +242,14 @@ function openExpenseSheet(t,exp){ const d=finLoad(t), me=d.members[0]||'我', ed
     <div id="fTwd" class="twd-preview"></div>
     <div class="cat-row">${cats}</div>
     <input id="fTitle" class="fin-in" placeholder="名稱(選填,例:島田水產)" value="${(e.title||'').replace(/"/g,'&quot;')}">
-    <div class="row2"><div><label class="fin-lbl">日期</label><input id="fDate" type="date" class="fin-in" value="${e.date||TODAY}"></div>
+    <div class="row2"><div><label class="fin-lbl">日期</label><input id="fDate" type="date" class="fin-in" value="${editing?(e.date||''):TODAY}"></div>
       <div><label class="fin-lbl">誰付的</label><select id="fPayer" class="fin-in">${payerOpts}</select></div></div>
     <div id="fDayHint" class="day-hint"></div>
-    <div class="split-head">分給誰<span class="sp-quick"><button type="button" data-q="me">只有我</button><button type="button" data-q="all">全員</button></span></div>
-    <div id="fSplit">${splitRows}</div>
+    <section class="fin-split-section"><div class="split-head">分帳<span class="fin-segment" id="fSplitToggle"><button type="button" data-value="no">不分</button><button type="button" data-value="yes">分</button></span></div>
+    <div id="fSplit"><div class="sp-people">${memberChips}</div><div class="split-head sp-method"><span>分攤方式</span><span class="fin-segment" id="fSplitMode"><button type="button" data-value="equal">平均</button><button type="button" data-value="amount">指定金額</button></span></div>
+    <div class="sp-table-head"><span class="fin-split-currency"></span><label id="fAutoWrap">餘額歸 <select id="fAutoMember" aria-label="自動計算餘額的對象"></select></label></div><div class="sp-amounts">${splitRows}</div><div id="fSplitTotal" class="fin-split-total" aria-live="polite"></div><div id="fSplitError" role="alert"></div></div></section>
     <input id="fNote" class="fin-in" placeholder="備註(選填)" value="${(e.note||'').replace(/"/g,'&quot;')}">
+    <label class="fin-followup-field"><input id="fFollowUp" type="checkbox" ${e.followUp?'checked':''}><span><b>待回家處理</b><small>先記下來，之後再核對金額、收據或分攤；可先不填金額。</small></span></label>
     <div class="receipt-row"><button type="button" id="fScan" class="fin-scan">📷 掃描 / 附收據</button><div id="fReceiptPrev" class="rcpt-prev"></div></div>
     ${editing?`<button type="button" id="fDelete" class="fin-del">刪除這筆</button>`:''}
     <input type="file" id="fFile" accept="image/*" capture="environment" hidden>`;
@@ -245,9 +268,55 @@ function openExpenseSheet(t,exp){ const d=finLoad(t), me=d.members[0]||'我', ed
     amtEl.focus(); });
   const dateEl=sh.querySelector('#fDate'), dayHint=sh.querySelector('#fDayHint');
   const updDay=()=>{const n=tripDayOf(t,dateEl.value);dayHint.textContent=n?`→ Day ${n}`:'';}; dateEl.onchange=updDay; updDay();
-  sh.querySelectorAll('.sp-quick button').forEach(b=>b.onclick=()=>{const all=b.dataset.q==='all'; sh.querySelectorAll('.sp-on').forEach(ck=>ck.checked=all?true:(ck.dataset.m===me));});
-  sh.querySelectorAll('.sp-inc').forEach(b=>b.onclick=()=>{const s=sh.querySelector('.sp-n[data-m="'+esc(b.dataset.m)+'"]');s.textContent=(+s.textContent)+1;});
-  sh.querySelectorAll('.sp-dec').forEach(b=>b.onclick=()=>{const s=sh.querySelector('.sp-n[data-m="'+esc(b.dataset.m)+'"]');s.textContent=Math.max(1,(+s.textContent)-1);});
+  const splitEl=sh.querySelector('#fSplit'), splitError=sh.querySelector('#fSplitError');
+  function selected(){return [...sh.querySelectorAll('.sp-on')].filter(ck=>ck.checked).map(ck=>ck.dataset.m);}
+  function amountInput(m){return [...sh.querySelectorAll('.sp-amount')].find(input=>input.dataset.m===m);}
+  let autoMember=e.autoMember||null;
+  function updateRemainder(){
+    const names=selected(); if(splitMode!=='amount'||!names.length)return;
+    if(!names.includes(autoMember))autoMember=names.includes(me)?me:names[names.length-1];
+    const sum=names.filter(n=>n!==autoMember).reduce((a,n)=>a+(parseFloat(amountInput(n).value)||0),0);
+    amountInput(autoMember).value=Math.round(((parseFloat(amtEl.value)||0)-sum)*100)/100;
+  }
+  function updateSplit(){
+    splitEl.hidden=!splitting;
+    sh.querySelectorAll('#fSplitToggle button').forEach(b=>{b.classList.toggle('on',(b.dataset.value==='yes')===splitting);b.setAttribute('aria-pressed',String((b.dataset.value==='yes')===splitting));});
+    sh.querySelectorAll('#fSplitMode button').forEach(b=>{b.classList.toggle('on',b.dataset.value===splitMode);b.setAttribute('aria-pressed',String(b.dataset.value===splitMode));});
+    const names=selected(), total=parseFloat(amtEl.value)||0;
+    const fmt=v=>new Intl.NumberFormat('zh-TW',{maximumFractionDigits:2}).format(v);
+    sh.querySelector('.fin-split-currency').textContent=cur;
+    sh.querySelectorAll('.sp-amount').forEach(input=>{
+      const on=names.includes(input.dataset.m), automatic=input.dataset.m===autoMember;
+      input.hidden=splitMode!=='amount';input.disabled=!on;input.readOnly=automatic;
+      input.closest('.sp-row').classList.toggle('is-off',!on);
+      input.classList.toggle('is-auto',automatic);
+    });
+    sh.querySelectorAll('.sp-row').forEach(row=>row.hidden=!names.includes(row.dataset.m));
+    sh.querySelectorAll('.sp-auto-label').forEach(label=>label.hidden=splitMode!=='amount'||label.dataset.m!==autoMember);
+    const autoSelect=sh.querySelector('#fAutoMember');
+    if([...autoSelect.options].map(o=>o.value).join('|')!==names.join('|'))autoSelect.innerHTML=names.map(n=>`<option value="${n}">${n===me?'我':n}</option>`).join('');
+    autoSelect.value=autoMember||'';
+    sh.querySelector('#fAutoWrap').hidden=splitMode!=='amount'||!names.length;
+    sh.querySelectorAll('.sp-equal').forEach(out=>{out.hidden=splitMode!=='equal';out.textContent=names.includes(out.dataset.m)?fmt(total/names.length):'—';});
+    const sum=names.reduce((a,n)=>a+(parseFloat(amountInput(n).value)||0),0);
+    const invalid=splitMode==='amount'&&names.some(n=>(parseFloat(amountInput(n).value)||0)<0);
+    sh.querySelector('#fSplitTotal').textContent=names.length?`${names.length} 人 · 合計 ${fmt(splitMode==='equal'?total:sum)} ${cur}`:'尚未選擇對象';
+    splitError.textContent=invalid?'分攤金額超過總額，請調整':'';
+    sh.querySelector('.fsh-save').disabled=!!splitting&&(!names.length||invalid);
+  }
+  sh.querySelectorAll('#fSplitToggle button').forEach(b=>b.onclick=()=>{
+    const was=splitting;splitting=b.dataset.value==='yes';
+    if(splitting&&!was&&selected().length===1&&selected()[0]===me)sh.querySelectorAll('.sp-on').forEach(ck=>ck.checked=true);
+    updateRemainder();updateSplit();
+  });
+  sh.querySelectorAll('#fSplitMode button').forEach(b=>b.onclick=()=>{splitMode=b.dataset.value;updateRemainder();updateSplit();});
+  sh.querySelectorAll('.sp-on').forEach(ck=>ck.onchange=()=>{updateRemainder();updateSplit();});
+  sh.querySelector('#fAutoMember').onchange=event=>{autoMember=event.target.value;updateRemainder();updateSplit();};
+  sh.querySelectorAll('.sp-amount').forEach(input=>input.oninput=()=>{updateRemainder();updateSplit();});
+  amtEl.oninput=()=>{updTwd();updateRemainder();updateSplit();};
+  curEl.onchange=()=>{cur=curEl.value;loadRate();updateSplit();};
+  if(splitMode==='amount')updateRemainder();
+  updateSplit();
   const fileEl=sh.querySelector('#fFile'), prev=sh.querySelector('#fReceiptPrev');
   sh.querySelector('#fScan').onclick=()=>fileEl.click();
   fileEl.onchange=async()=>{ const f=fileEl.files[0]; if(!f)return;
@@ -266,20 +335,26 @@ function openExpenseSheet(t,exp){ const d=finLoad(t), me=d.members[0]||'我', ed
       if(res.date&&/^\d{4}-\d{2}-\d{2}$/.test(res.date)){dateEl.value=res.date;updDay();}
       if(res.merchant)sh.querySelector('#fTitle').value=res.merchant;
       if(res.category){const cc=sh.querySelector('.cat-chip[data-k="'+res.category+'"]');if(cc){sh.querySelectorAll('.cat-chip').forEach(x=>x.classList.remove('on'));cc.classList.add('on');}}
-      updTwd(); ing.textContent='✓ 已帶入,請確認'; setTimeout(()=>ing.remove(),2000); }
+      updTwd(); updateRemainder();updateSplit(); ing.textContent='✓ 已帶入,請確認'; setTimeout(()=>ing.remove(),2000); }
     catch(err){ ing.textContent='辨識失敗:'+(err.message||err); ing.classList.add('err'); }
     fileEl.value=''; };
   if(receiptKey) idbGet(receiptKey).then(u=>{if(u)prev.innerHTML=`<img src="${u}">`;});
   const del=sh.querySelector('#fDelete'); if(del)del.onclick=()=>{ if(!confirm('刪除這筆花費?'))return; const i=d.expenses.findIndex(x=>x.id===e.id); if(i>=0){d.expenses[i].deleted=true;d.expenses[i].updatedAt=Date.now();finSave(t,d);} closeSheet(); renderFinance(t); };
-  function save(){ const amount=parseFloat(amtEl.value)||0; if(amount<=0){amtEl.focus();return;}
+  function save(){ const amount=parseFloat(amtEl.value)||0, followUp=sh.querySelector('#fFollowUp').checked; if(amount<0||(!followUp&&amount<=0)){amtEl.focus();return;} if(!amount&&!sh.querySelector('#fTitle').value.trim()){sh.querySelector('#fTitle').focus();return;}
     const cat=(sh.querySelector('.cat-chip.on')&&sh.querySelector('.cat-chip.on').dataset.k)||'other';
-    const sHares={},exTras={};
-    sh.querySelectorAll('.sp-on').forEach(ck=>{ const m=ck.dataset.m; if(ck.checked)sHares[m]=+sh.querySelector('.sp-n[data-m="'+esc(m)+'"]').textContent;
-      const ex=parseFloat(sh.querySelector('.sp-extra[data-m="'+esc(m)+'"]').value); if(ex>0)exTras[m]=ex; });
-    if(!Object.keys(sHares).length)sHares[me]=1;
-    const rt=rate||1, obj={ id:e.id||finUid(), date:dateEl.value||TODAY, title:sh.querySelector('#fTitle').value.trim(),
+    const sHares={},exTras={},allocations={};
+    if(!splitting)sHares[me]=1;
+    else {
+      const names=selected();
+      if(!names.length){splitError.textContent='請選擇分攤對象';return;}
+      names.forEach(n=>{sHares[n]=1;allocations[n]=parseFloat(amountInput(n).value)||0;});
+      if(splitMode==='amount'&&(Object.values(allocations).some(v=>v<0)||Math.abs(Object.values(allocations).reduce((a,v)=>a+v,0)-amount)>0.005)){
+        splitError.textContent='分攤金額合計需等於這筆花費';return;
+      }
+    }
+    const rt=rate||1, obj={ id:e.id||finUid(), date:dateEl.value||(editing?e.date:TODAY), title:sh.querySelector('#fTitle').value.trim(),
       amount, currency:cur, rate:rt, est, twd:Math.round(amount*rt), category:cat, payer:sh.querySelector('#fPayer').value,
-      shares:sHares, extras:exTras, note:sh.querySelector('#fNote').value.trim(), receipt:receiptKey,
+      followUp, autoMember:splitting&&splitMode==='amount'?autoMember:null, splitEnabled:splitting, splitMode:splitting?splitMode:'equal', allocations:splitting&&splitMode==='amount'?allocations:null, shares:sHares, extras:exTras, note:sh.querySelector('#fNote').value.trim(), receipt:receiptKey,
       createdAt:e.createdAt||Date.now(), updatedAt:Date.now(), deleted:false };
     const i=e.id?d.expenses.findIndex(x=>x.id===e.id):-1; if(i>=0)d.expenses[i]=obj; else d.expenses.push(obj);
     finSave(t,d); closeSheet(); renderFinance(t); }
