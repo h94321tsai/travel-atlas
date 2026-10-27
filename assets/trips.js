@@ -1768,6 +1768,15 @@ window.__TRIPS__ = [
       ]
      },
      {
+      "name": "Teeth Master 密着ジェルシート 美白牙貼",
+      "desc": "一週一次・約2個月份・銷售冠軍",
+      "price": "",
+      "imgs": [
+       "25b_TeethMaster_美白牙貼.jpg",
+       "25_TeethMaster_美白牙貼_貨架.jpg"
+      ]
+     },
+     {
       "name": "メディクイックPRO 濕疹・癢軟膏",
       "desc": "Rohto・赤み/濕疹 治",
       "price": "",
@@ -1873,6 +1882,29 @@ window.__TRIPS__ = [
       "price": "",
       "imgs": [
        "11_無印_導入化妝棉.jpg"
+      ]
+     }
+    ]
+   },
+   {
+    "group": "🧴 開架美妝",
+    "note": "藥妝店／Loft／唐吉訶德",
+    "items": [
+     {
+      "name": "tfit 粉撲(有指套款)",
+      "desc": "補妝好用・韓國牌・Loft/PLAZA/唐吉訶德找",
+      "price": "",
+      "imgs": [
+       "19_tfit_粉撲.jpg"
+      ]
+     },
+     {
+      "name": "CANMAKE 睫毛膏 03 Clear 透明款",
+      "desc": "メタルコーム 美まつげ・打底用(另有01黑/02棕/濃密款)",
+      "price": "",
+      "imgs": [
+       "21_CANMAKE_睫毛膏_透明.jpg",
+       "21b_CANMAKE_睫毛膏_色號.jpg"
       ]
      }
     ]
@@ -1999,6 +2031,22 @@ window.__TRIPS__ = [
       "price": "",
       "imgs": [
        "12_捲髮棒.jpg"
+      ]
+     },
+     {
+      "name": "蜜粉餅 02 SKIN BEIGE",
+      "desc": "膚色款補妝・牌子未確認(可能tfit)・回翻影片",
+      "price": "",
+      "imgs": [
+       "20_蜜粉餅_02SKINBEIGE.jpg"
+      ]
+     },
+     {
+      "name": "CANMAKE 貨架(不確定買哪個)",
+      "desc": "目幅拡張眼線／淚袋盤／唇蜜",
+      "price": "",
+      "imgs": [
+       "22_CANMAKE_貨架_待確認.jpg"
       ]
      }
     ]
