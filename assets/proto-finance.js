@@ -24,7 +24,7 @@ function finLoad(t){ let d=null; try{d=JSON.parse(localStorage.getItem(finKey(t)
   if(seed?.nativeExpenses?.length&&!d.sourceImports?.[seed.importVersion]){
     const prior=localStorage.getItem(finKey(t));if(prior&&!localStorage.getItem(finKey(t)+':before-source-import'))localStorage.setItem(finKey(t)+':before-source-import',prior);
     if(d.members.length===1&&d.members[0]==='我'&&!d.expenses.length)d.members=[];
-    d.members=Array.from(new Set([...d.members,...seed.nativeExpenses.flatMap(e=>[e.payer,...Object.keys(e.shares)])]));
+    d.members=Array.from(new Set([...d.members,...(seed.members||[]),...seed.nativeExpenses.flatMap(e=>[e.payer,...Object.keys(e.shares)])]));
     for(const e of seed.nativeExpenses)if(!d.expenses.some(existing=>existing.id===e.id))d.expenses.push(JSON.parse(JSON.stringify(e)));
     d.sourceImports={...(d.sourceImports||{}),[seed.importVersion]:true};
     localStorage.setItem(finKey(t),JSON.stringify(d));
