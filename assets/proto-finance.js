@@ -29,6 +29,20 @@ function finLoad(t){ let d=null; try{d=JSON.parse(localStorage.getItem(finKey(t)
     d.sourceImports={...(d.sourceImports||{}),[seed.importVersion]:true};
     localStorage.setItem(finKey(t),JSON.stringify(d));
   }
+  // 預設成員「我」就是 owner 本人:匯入後兩者並存時合併成 owner,帳目一起轉過去
+  const owner=seed?.owner;
+  if(owner&&owner!=='我'&&d.members.includes('我')&&d.members.includes(owner)){
+    const prior=localStorage.getItem(finKey(t));if(prior&&!localStorage.getItem(finKey(t)+':before-merge-me'))localStorage.setItem(finKey(t)+':before-merge-me',prior);
+    const mergeKey=o=>{if(o&&typeof o==='object'&&'我' in o){o[owner]=(+o[owner]||0)+(+o['我']||0);delete o['我'];}};
+    for(const e of d.expenses){
+      if(e.payer==='我')e.payer=owner;
+      if(e.autoMember==='我')e.autoMember=owner;
+      if(Array.isArray(e.consumers))e.consumers=Array.from(new Set(e.consumers.map(m=>m==='我'?owner:m)));
+      mergeKey(e.shares);mergeKey(e.extras);mergeKey(e.allocations);
+    }
+    d.members=d.members.filter(m=>m!=='我');for(const k of Object.keys(d.settled))if(k.split('>').includes('我'))delete d.settled[k];
+    localStorage.setItem(finKey(t),JSON.stringify(d));
+  }
   const history=t.financeSource?.historicalRates;
   if(d.notionImported&&history&&!d.notionImported.historicalVersion){
     const snapshot=localStorage.getItem(finKey(t));
