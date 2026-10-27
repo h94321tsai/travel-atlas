@@ -138,7 +138,7 @@ function renderFinance(t){ finTrip=t; const root=detailBody.querySelector('#finR
         const splitTxt=who.length>=d.members.length?'全員':(who.length<=1?(who[0]||''):who.join('、'));
         return `<div class="fin-item" data-id="${e.id}"><div class="fi-ic">${c.i}</div>
           <div class="fi-mid"><div class="fi-t">${e.title||c.n}${e.followUp?'<span class="fin-followup-badge">待回家處理</span>':''}</div>
-          <div class="fi-sub">${e.payer} 付・分 ${splitTxt}${e.note?'・'+e.note:''}</div></div>
+          <div class="fi-sub">${e.payer} 付・分 ${splitTxt}${e.note?'・'+e.note:''}</div>${e.items?`<div class="fi-items">${String(e.items).replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])).replace(/\n/g,'<br>')}</div>`:''}</div>
           ${e.receipt?`<img class="fi-rcpt" data-rk="${e.receipt}" alt="收據" hidden>`:''}
           <div class="fi-amt"><div class="fi-twd">${twdFmt(e.twd)}</div>${e.currency!=='TWD'?`<div class="fi-ori">${e.currency} ${nfInt.format(Math.round(e.amount))}${e.est?' <span class="est">暫估</span>':''}</div>`:''}</div></div>`;}).join('');
       return `<div class="fin-daygrp"><div class="fin-dayhead"><span>${label}</span><span class="fin-daysub">${twdFmt(sub)}</span></div>${rows}</div>`;}).join('');
@@ -242,6 +242,7 @@ function openExpenseSheet(t,exp){ const d=finLoad(t), me=t.financeSource?.owner|
     <div id="fTwd" class="twd-preview"></div>
     <div class="cat-row">${cats}</div>
     <input id="fTitle" class="fin-in" placeholder="名稱(選填,例:島田水產)" value="${(e.title||'').replace(/"/g,'&quot;')}">
+    <textarea id="fItems" class="fin-in fin-items-in" rows="3" placeholder="細項(選填)—每行一項,例:生啤 ×2 ¥1200&#10;唐揚雞 ¥680。掃描收據會自動帶入">${(e.items||'').replace(/&/g,'&amp;').replace(/</g,'&lt;')}</textarea>
     <div class="row2"><div><label class="fin-lbl">日期</label><input id="fDate" type="date" class="fin-in" value="${editing?(e.date||''):TODAY}"></div>
       <div><label class="fin-lbl">誰付的</label><select id="fPayer" class="fin-in">${payerOpts}</select></div></div>
     <div id="fDayHint" class="day-hint"></div>
@@ -334,6 +335,7 @@ function openExpenseSheet(t,exp){ const d=finLoad(t), me=t.financeSource?.owner|
       if(res.currency&&FIN_CURRENCIES.includes(res.currency)){cur=res.currency;curEl.value=cur;await loadRate();}
       if(res.date&&/^\d{4}-\d{2}-\d{2}$/.test(res.date)){dateEl.value=res.date;updDay();}
       if(res.merchant)sh.querySelector('#fTitle').value=res.merchant;
+      if(res.items&&(Array.isArray(res.items)?res.items.length:String(res.items).trim())){ const txt=(Array.isArray(res.items)?res.items.join('\n'):String(res.items)).trim(); const it=sh.querySelector('#fItems'); it.value=it.value.trim()?it.value.trim()+'\n'+txt:txt; }
       if(res.category){const cc=sh.querySelector('.cat-chip[data-k="'+res.category+'"]');if(cc){sh.querySelectorAll('.cat-chip').forEach(x=>x.classList.remove('on'));cc.classList.add('on');}}
       updTwd(); updateRemainder();updateSplit(); ing.textContent='✓ 已帶入,請確認'; setTimeout(()=>ing.remove(),2000); }
     catch(err){ ing.textContent='辨識失敗:'+(err.message||err); ing.classList.add('err'); }
@@ -354,7 +356,7 @@ function openExpenseSheet(t,exp){ const d=finLoad(t), me=t.financeSource?.owner|
     }
     const rt=rate||1, obj={ id:e.id||finUid(), date:dateEl.value||(editing?e.date:TODAY), title:sh.querySelector('#fTitle').value.trim(),
       amount, currency:cur, rate:rt, est, twd:Math.round(amount*rt), category:cat, payer:sh.querySelector('#fPayer').value,
-      followUp, autoMember:splitting&&splitMode==='amount'?autoMember:null, splitEnabled:splitting, splitMode:splitting?splitMode:'equal', allocations:splitting&&splitMode==='amount'?allocations:null, shares:sHares, extras:exTras, note:sh.querySelector('#fNote').value.trim(), receipt:receiptKey,
+      followUp, autoMember:splitting&&splitMode==='amount'?autoMember:null, splitEnabled:splitting, splitMode:splitting?splitMode:'equal', allocations:splitting&&splitMode==='amount'?allocations:null, shares:sHares, extras:exTras, note:sh.querySelector('#fNote').value.trim(), items:sh.querySelector('#fItems').value.trim(), receipt:receiptKey,
       createdAt:e.createdAt||Date.now(), updatedAt:Date.now(), deleted:false };
     const i=e.id?d.expenses.findIndex(x=>x.id===e.id):-1; if(i>=0)d.expenses[i]=obj; else d.expenses.push(obj);
     finSave(t,d); closeSheet(); renderFinance(t); }
@@ -396,7 +398,7 @@ function financeMd(t,d){ const exps=d.expenses.filter(e=>!e.deleted).slice().sor
   const total=exps.reduce((s,e)=>s+(e.twd||0),0); const {per,transfers}=computeSettle(t,d);
   let md=`# ${t.title||t.name}・花費\n\n總花費 **${twdFmt(total)}**・每人平均 ${twdFmt(d.members.length?total/d.members.length:0)}\n\n`;
   md+=`| 日期 | 類別 | 名稱 | 原幣 | 台幣 | 付款 | 分給 |\n|---|---|---|---|---|---|---|\n`;
-  exps.forEach(e=>{const c=catOf(e.category),who=Object.keys(splitExpense(e)); md+=`| ${e.date} | ${c.i}${c.n} | ${e.title||''} | ${e.currency} ${Math.round(e.amount)} | ${twdFmt(e.twd)} | ${e.payer} | ${who.join('、')} |\n`;});
+  exps.forEach(e=>{const c=catOf(e.category),who=Object.keys(splitExpense(e)); const nm=(e.title||'')+(e.items?' ／ '+e.items.replace(/\n/g,'；').replace(/\|/g,'／'):''); md+=`| ${e.date} | ${c.i}${c.n} | ${nm} | ${e.currency} ${Math.round(e.amount)} | ${twdFmt(e.twd)} | ${e.payer} | ${who.join('、')} |\n`;});
   md+=`\n## 分帳\n`; d.members.forEach(m=>{const p=per[m]||{paid:0,owed:0};md+=`- **${m}**:付 ${twdFmt(p.paid)}、分 ${twdFmt(p.owed)}、淨 ${(p.paid-p.owed>=0?'+':'−')+twdFmt(Math.abs(p.paid-p.owed))}\n`;});
   if(transfers.length){md+=`\n### 建議轉帳\n`; transfers.forEach(x=>md+=`- ${x.from} → ${x.to} ${twdFmt(x.amt)}${d.settled[x.from+'>'+x.to]?' ✓已還':''}\n`);}
   return md; }
