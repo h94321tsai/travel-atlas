@@ -3001,7 +3001,375 @@ window.__TRIPS__ = [
    "我"
   ],
   "currency": "JPY",
-  "financeSource": null
+  "financeSource": {
+   "source": "收據照片 trips/2026-10_廣島倉敷高松/receipts/（Claude 辨識）",
+   "importedAt": "2026-10-28",
+   "owner": "若涵",
+   "importVersion": "hiroshima-receipts-v1",
+   "nativeExpenses": [
+    {
+     "id": "rcpt-hiroshima-IMG_7288",
+     "date": "2026-10-04",
+     "title": "コブンノ（廣島燒）大手町",
+     "category": "food",
+     "payer": "若涵",
+     "consumers": [
+      "若涵"
+     ],
+     "amount": 5640,
+     "currency": "JPY",
+     "rate": 0.2016,
+     "est": true,
+     "twd": 1137,
+     "shares": {
+      "若涵": 1
+     },
+     "extras": {},
+     "note": "現金；13:59\n收據 IMG_7288；參考匯率 1 JPY = 0.2016 TWD（2026-10-04），非實際刷卡匯率。",
+     "items": "蔥鹽海鮮廣島燒 ¥1,980\n廣島牡蠣廣島燒 ¥1,980\n黑豚餃子 ¥980\nThe Premium Malt's 生啤 ¥700",
+     "createdAt": 0,
+     "updatedAt": 0,
+     "deleted": false
+    },
+    {
+     "id": "rcpt-hiroshima-IMG_7262",
+     "date": "2026-10-04",
+     "title": "大和博物館 常設展門票",
+     "category": "ticket",
+     "payer": "若涵",
+     "consumers": [
+      "若涵"
+     ],
+     "amount": 1000,
+     "currency": "JPY",
+     "rate": 0.2016,
+     "est": true,
+     "twd": 202,
+     "shares": {
+      "若涵": 1
+     },
+     "extras": {},
+     "note": "一般個人券 ×1；16:01\n收據 IMG_7262；參考匯率 1 JPY = 0.2016 TWD（2026-10-04），非實際刷卡匯率。",
+     "items": "",
+     "createdAt": 0,
+     "updatedAt": 0,
+     "deleted": false
+    },
+    {
+     "id": "rcpt-hiroshima-IMG_7264",
+     "date": "2026-10-04",
+     "title": "唐吉訶德 廣島八丁堀店（免稅）",
+     "category": "shop",
+     "payer": "若涵",
+     "consumers": [
+      "若涵"
+     ],
+     "amount": 39847,
+     "currency": "JPY",
+     "rate": 0.2016,
+     "est": true,
+     "twd": 8033,
+     "shares": {
+      "若涵": 1
+     },
+     "extras": {},
+     "note": "信用卡；免稅；22:38；13 點\n收據 IMG_7264；參考匯率 1 JPY = 0.2016 TWD（2026-10-04），非實際刷卡匯率。",
+     "items": "MCブースタープロX2W（美容儀）¥30,000\n歯磨き堂 ホワイトシー ¥1,780\nCANMAKE プランプカラーデアイズ ×3 ¥2,160\nS+ 美歯ペーストEX ¥1,200\nby365 PUVC T（防曬）¥990\nデュオ クレンジングバーム BKEX ミニ ¥900\nダリア カンマツゲ クリア ¥900\nUHA グミサプリ 鐵&葉酸 ¥620\nマルマン 頭皮按摩梳 ¥599\n立つしゃもじ・W（站立飯匙）¥499\nチーザ 切達起司 ¥199",
+     "createdAt": 0,
+     "updatedAt": 0,
+     "deleted": false
+    },
+    {
+     "id": "rcpt-hiroshima-IMG_7263",
+     "date": "2026-10-04",
+     "title": "唐吉訶德 廣島八丁堀店",
+     "category": "shop",
+     "payer": "若涵",
+     "consumers": [
+      "若涵"
+     ],
+     "amount": 2448,
+     "currency": "JPY",
+     "rate": 0.2016,
+     "est": true,
+     "twd": 494,
+     "shares": {
+      "若涵": 1
+     },
+     "extras": {},
+     "note": "信用卡；22:42（含稅）\n收據 IMG_7263；參考匯率 1 JPY = 0.2016 TWD（2026-10-04），非實際刷卡匯率。",
+     "items": "S+ 美歯シートEX ¥1,400\nピュオーラ 超C 牙刷 ¥228\n面膜 小八貓 ¥299\n面膜 兔兔 ¥299\n消費稅 ¥222",
+     "createdAt": 0,
+     "updatedAt": 0,
+     "deleted": false
+    },
+    {
+     "id": "rcpt-hiroshima-IMG_7259",
+     "date": "2026-10-05",
+     "title": "錦帶橋 入橋券",
+     "category": "ticket",
+     "payer": "若涵",
+     "consumers": [
+      "若涵"
+     ],
+     "amount": 1000,
+     "currency": "JPY",
+     "rate": 0.2012,
+     "est": true,
+     "twd": 201,
+     "shares": {
+      "若涵": 1
+     },
+     "extras": {},
+     "note": "大人 ¥500 ×2（來回）\n收據 IMG_7259；參考匯率 1 JPY = 0.2012 TWD（2026-10-05），非實際刷卡匯率。",
+     "items": "",
+     "createdAt": 0,
+     "updatedAt": 0,
+     "deleted": false
+    },
+    {
+     "id": "rcpt-hiroshima-IMG_7260",
+     "date": "2026-10-05",
+     "title": "嚴島神社 參拜券",
+     "category": "ticket",
+     "payer": "若涵",
+     "consumers": [
+      "若涵"
+     ],
+     "amount": 600,
+     "currency": "JPY",
+     "rate": 0.2012,
+     "est": true,
+     "twd": 121,
+     "shares": {
+      "若涵": 1
+     },
+     "extras": {},
+     "note": "大人 ×2；票上沒印金額，依官網大人 ¥300 推估，請確認\n收據 IMG_7260；參考匯率 1 JPY = 0.2012 TWD（2026-10-05），非實際刷卡匯率。",
+     "items": "",
+     "createdAt": 0,
+     "updatedAt": 0,
+     "deleted": false
+    },
+    {
+     "id": "rcpt-hiroshima-IMG_7275",
+     "date": "2026-10-05",
+     "title": "丸源拉麵 廣島五日市店",
+     "category": "food",
+     "payer": "若涵",
+     "consumers": [
+      "若涵"
+     ],
+     "amount": 5643,
+     "currency": "JPY",
+     "rate": 0.2012,
+     "est": true,
+     "twd": 1135,
+     "shares": {
+      "若涵": 1
+     },
+     "extras": {},
+     "note": "現金；19:41；6 名（整桌帳單）\n收據 IMG_7275；參考匯率 1 JPY = 0.2012 TWD（2026-10-05），非實際刷卡匯率。",
+     "items": "肉そば沾麵 ×2 ¥2,134\n沾麵 大盛 ¥143\n肉そば ¥792\n醬油叉燒麵 ¥1,023\n黑醬油豚骨 ¥869\n大盛 ¥143\n炒飯（中）¥539",
+     "createdAt": 0,
+     "updatedAt": 0,
+     "deleted": false
+    },
+    {
+     "id": "rcpt-hiroshima-IMG_7265",
+     "date": "2026-10-06",
+     "title": "7-ELEVEN 廣島鐵砲町店",
+     "category": "shop",
+     "payer": "若涵",
+     "consumers": [
+      "若涵"
+     ],
+     "amount": 2879,
+     "currency": "JPY",
+     "rate": 0.201,
+     "est": true,
+     "twd": 579,
+     "shares": {
+      "若涵": 1
+     },
+     "extras": {},
+     "note": "信用卡；22:43；含零食飲料 ¥690\n收據 IMG_7265；參考匯率 1 JPY = 0.201 TWD（2026-10-06），非實際刷卡匯率。",
+     "items": "23YEARSOLD 遮瑕 0.2N ¥990\nfrom2aN 眼影盤 12H ¥1,000\n明治保加利亞優格甜點 ¥180\n明治おいしい牛乳 200ml ¥133\n莓果優格冰沙 ¥326\n消費稅 ¥250",
+     "createdAt": 0,
+     "updatedAt": 0,
+     "deleted": false
+    },
+    {
+     "id": "rcpt-hiroshima-IMG_7279",
+     "date": "2026-10-08",
+     "title": "骨付鳥 蘭丸（高松）",
+     "category": "food",
+     "payer": "若涵",
+     "consumers": [
+      "若涵"
+     ],
+     "amount": 7480,
+     "currency": "JPY",
+     "rate": 0.2018,
+     "est": true,
+     "twd": 1509,
+     "shares": {
+      "若涵": 1
+     },
+     "extras": {},
+     "note": "現金；20:52；4 名（整桌帳單）\n收據 IMG_7279；參考匯率 1 JPY = 0.2018 TWD（2026-10-08），非實際刷卡匯率。",
+     "items": "付出し ×4 ¥1,400\n讚岐牛切塊牛排 ×2 ¥2,440\n海苔茶泡飯 ¥400\n鮭魚茶泡飯 ¥620\n骨付鳥 雛雞 ×2 ¥2,200\n白飯 ×2 ¥420",
+     "createdAt": 0,
+     "updatedAt": 0,
+     "deleted": false
+    },
+    {
+     "id": "rcpt-hiroshima-IMG_7269",
+     "date": "2026-10-09",
+     "title": "香川物產館 栗林庵（免稅）",
+     "category": "shop",
+     "payer": "若涵",
+     "consumers": [
+      "若涵"
+     ],
+     "amount": 6119,
+     "currency": "JPY",
+     "rate": 0.2019,
+     "est": true,
+     "twd": 1235,
+     "shares": {
+      "若涵": 1
+     },
+     "extras": {},
+     "note": "信用卡；免稅；13:33\n收據 IMG_7269；參考匯率 1 JPY = 0.2019 TWD（2026-10-09），非實際刷卡匯率。",
+     "items": "生焦糖巧克力 ×3 ¥1,140\n宮內 紅すずめ ¥1,300\n八栗 海鮮一口珍 ×2 ¥1,000\n八栗 海鮮一口珍味 ×2 ¥1,000\nミトヨフーズ 檸檬果醬 ¥690\n大平 下酒菜 ¥586\n安田 香鬆 ¥190\n張子明信片 ¥120\n服務費 ¥93",
+     "createdAt": 0,
+     "updatedAt": 0,
+     "deleted": false
+    },
+    {
+     "id": "rcpt-hiroshima-IMG_7290",
+     "date": "2026-10-09",
+     "title": "壽司郎 ゆめタウン高松店",
+     "category": "food",
+     "payer": "若涵",
+     "consumers": [
+      "若涵"
+     ],
+     "amount": 5660,
+     "currency": "JPY",
+     "rate": 0.2019,
+     "est": true,
+     "twd": 1143,
+     "shares": {
+      "若涵": 1
+     },
+     "extras": {},
+     "note": "14:57；4 名（整桌帳單）；24 點\n收據 IMG_7290；參考匯率 1 JPY = 0.2019 TWD（2026-10-09），非實際刷卡匯率。",
+     "items": "握壽司各價位盤 ¥3,190\n單點 390 ×1、720 ×2 ¥1,830\n茶碗蒸 ×2 ¥540\n麵類 ¥490",
+     "createdAt": 0,
+     "updatedAt": 0,
+     "deleted": false
+    },
+    {
+     "id": "rcpt-hiroshima-IMG_7268",
+     "date": "2026-10-09",
+     "title": "無印良品 ゆめタウン高松",
+     "category": "shop",
+     "payer": "若涵",
+     "consumers": [
+      "若涵"
+     ],
+     "amount": 13128,
+     "currency": "JPY",
+     "rate": 0.2019,
+     "est": true,
+     "twd": 2651,
+     "shares": {
+      "若涵": 1
+     },
+     "extras": {},
+     "note": "現金；15:28；18 點\n收據 IMG_7268；參考匯率 1 JPY = 0.2019 TWD（2026-10-09），非實際刷卡匯率。",
+     "items": "植物發酵液 藥用抗老精華 ×2 ¥3,180\n發酵導入美容液 ¥1,990\n發酵導入精華化妝棉 ¥1,490\n植物發酵液 藥用頭皮化妝水 ¥1,390\n襪子 ×6（3 雙 ¥990 優惠 -¥360）¥2,340\n保暖棉襪 ¥990\n房間噴霧 隨身 ¥690\n尼龍網 收納包 ¥590\n水槽清潔布 ¥299\n廚房紙巾 ¥149\n攜帶型刮鬍刀 ¥190\n細髮圈 茶色 ¥190",
+     "createdAt": 0,
+     "updatedAt": 0,
+     "deleted": false
+    },
+    {
+     "id": "rcpt-hiroshima-IMG_7266",
+     "date": "2026-10-09",
+     "title": "3COINS+plus 高松ゆめタウン店",
+     "category": "shop",
+     "payer": "若涵",
+     "consumers": [
+      "若涵"
+     ],
+     "amount": 4510,
+     "currency": "JPY",
+     "rate": 0.2019,
+     "est": true,
+     "twd": 911,
+     "shares": {
+      "若涵": 1
+     },
+     "extras": {},
+     "note": "現金；15:56（含稅）\n收據 IMG_7266；參考匯率 1 JPY = 0.2019 TWD（2026-10-09），非實際刷卡匯率。",
+     "items": "澳洲絲質枕套 ×2 ¥3,000\n絎縫雙色拖鞋 ¥500\n滑蓋藥盒 ¥300\n絲質髮圈 ¥300\n消費稅 ¥410",
+     "createdAt": 0,
+     "updatedAt": 0,
+     "deleted": false
+    },
+    {
+     "id": "rcpt-hiroshima-IMG_7267",
+     "date": "2026-10-09",
+     "title": "Super Sports XEBIO ゆめタウン高松（免稅）",
+     "category": "shop",
+     "payer": "若涵",
+     "consumers": [
+      "若涵"
+     ],
+     "amount": 10703,
+     "currency": "JPY",
+     "rate": 0.2019,
+     "est": true,
+     "twd": 2161,
+     "shares": {
+      "若涵": 1
+     },
+     "extras": {},
+     "note": "信用卡；免稅；16:38；網球用品\n收據 IMG_7267；參考匯率 1 JPY = 0.2019 TWD（2026-10-09），非實際刷卡匯率。",
+     "items": "Polytour Rev 120 網球線 ×2 ¥6,200\n踝襪 ¥1,500\n護腕 ×2 ¥1,400\n避震器 ¥900\nWS ストロング ¥540\n免稅手續費 ¥163",
+     "createdAt": 0,
+     "updatedAt": 0,
+     "deleted": false
+    },
+    {
+     "id": "rcpt-hiroshima-IMG_7285",
+     "date": "2026-10-10",
+     "title": "骨付鳥 一鶴 高松店",
+     "category": "food",
+     "payer": "若涵",
+     "consumers": [
+      "若涵"
+     ],
+     "amount": 5370,
+     "currency": "JPY",
+     "rate": 0.2017,
+     "est": true,
+     "twd": 1083,
+     "shares": {
+      "若涵": 1
+     },
+     "extras": {},
+     "note": "現金；11:59；2 名\n收據 IMG_7285；參考匯率 1 JPY = 0.2017 TWD（2026-10-10），非實際刷卡匯率。",
+     "items": "親雞 ×3 ¥3,690\n雞飯 ¥587\n生啤 中 ¥644\n生啤 小 ¥449",
+     "createdAt": 0,
+     "updatedAt": 0,
+     "deleted": false
+    }
+   ],
+   "sourceNote": "16 張收據／票券照片辨識匯入；付款人先全記若涵，之後可在網頁上逐筆改。日圓依當日參考匯率（fawazahmed0 currency-api）換算。"
+  }
  },
  {
   "name": "2027-01 日本 藏王 Snow Season 4",
