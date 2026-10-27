@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Travel Atlas · 旅行檔案室</title>
+<title>原型 · 口袋資料夾首頁</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;600;700&display=swap" rel="stylesheet">
@@ -31,11 +31,6 @@
   header h1{font-family:"Noto Sans TC","Space Grotesk",sans-serif;font-size:clamp(2.5rem,8.6vw,3.4rem);line-height:1.05;margin-top:10px;font-weight:700;letter-spacing:-.015em;}
   header h1 em{font-style:normal;font-weight:400;color:var(--coral);}
   .sub{margin-top:12px;font-size:.9rem;color:var(--muted);max-width:360px;line-height:1.6;}
-  .hdr-stamp{position:absolute;top:56px;right:6px;width:84px;height:84px;border:2px solid rgba(201,145,63,.5);border-radius:50%;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(-12deg);color:#a9742a;opacity:.72;
-    font-family:"Space Mono",monospace;text-align:center;mix-blend-mode:multiply;}
-  .hdr-stamp b{font-size:.72rem;letter-spacing:.1em;} .hdr-stamp span{font-size:.5rem;letter-spacing:.18em;margin-top:2px;}
-  @media(max-width:520px){ .hdr-stamp{width:64px;height:64px;top:52px;} .hdr-stamp b{font-size:.58rem;} }
   .filters{display:inline-flex;gap:2px;margin-top:20px;max-width:100%;padding:4px;background:#f3ecdc;
     border:1px solid var(--line);border-radius:30px;box-shadow:inset 0 1px 3px rgba(60,48,30,.12);overflow-x:auto;}
   .fil{flex:0 0 auto;font-family:"Space Mono",monospace;font-size:.68rem;letter-spacing:.04em;color:var(--muted);
@@ -46,7 +41,7 @@
   .rule::before,.rule::after{content:"";height:1px;background:var(--line);flex:1;}
 
   /* 口袋格線 */
-  #cards{display:grid;grid-template-columns:repeat(2,1fr);grid-auto-rows:1fr;gap:58px 16px;margin-top:18px;padding-top:46px;}
+  #cards{display:grid;grid-template-columns:repeat(2,1fr);grid-auto-rows:1fr;gap:64px 16px;margin-top:18px;padding-top:58px;}
   @media(min-width:680px){ #cards{grid-template-columns:repeat(3,1fr);gap:64px 22px;} }
   @media(min-width:1000px){ #cards{grid-template-columns:repeat(4,1fr);} }
 
@@ -79,11 +74,11 @@
   .pk-item{position:absolute;transform-origin:bottom center;
     transition:top .42s cubic-bezier(.2,.85,.3,1.12),left .42s cubic-bezier(.2,.85,.3,1.12),transform .42s cubic-bezier(.2,.85,.3,1.12),box-shadow .25s ease;}
   .pk-item .thumb{height:100%;background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;}
-  .pk-item.i0{left:23%;top:-36px;width:72px;height:78px;transform:rotate(-14deg);z-index:1;}
+  .pk-item.i0{left:23%;top:-50px;width:78px;height:84px;transform:rotate(var(--i0rot,-14deg));z-index:1;}
   .pk-item.photo{padding:5px 5px 15px;background:#fff;border:0;border-radius:0;
     box-shadow:0 5px 10px -6px rgba(60,48,30,.4);}
   .pk-item.photo .thumb{border-radius:0;background-color:#dededb;font-size:1.8rem;}
-  .pk-item.i1{left:calc(23% + 44px);top:-26px;width:52px;height:52px;transform:rotate(12deg);z-index:2;
+  .pk-item.i1{left:calc(23% + 46px);top:-40px;width:56px;height:56px;transform:rotate(var(--i1rot,12deg));z-index:2;
     background:transparent;border:0;overflow:visible;box-shadow:none;}
   .pk-item.i1 .thumb{font-size:2.35rem;line-height:1;}
   /* 透明圖案先描出白色外沿，再加一層細陰影。 */
@@ -91,14 +86,25 @@
   :root{--sticker-edge:drop-shadow(2px 0 0 #fff) drop-shadow(-2px 0 0 #fff) drop-shadow(0 2px 0 #fff) drop-shadow(0 -2px 0 #fff);}
   .sticker-art{display:block;filter:var(--sticker-edge);}
   .sticker-image{filter:var(--sticker-edge);}
-  .folder:hover .pk-item.i0{left:23%;top:-64px;transform:rotate(-14deg) scale(1.3);
+  .folder:hover .pk-item.i0{left:23%;top:-76px;transform:rotate(var(--i0rot,-14deg)) scale(1.3);
     box-shadow:0 16px 26px -9px rgba(60,48,30,.5);}
-  .folder:hover .pk-item.i1{left:48%;top:-41px;transform:rotate(12deg) scale(1.23);}
+  .folder:hover .pk-item.i1{left:48%;top:-58px;transform:rotate(var(--i1rot,12deg)) scale(1.23);}
   @media(prefers-reduced-motion:reduce){.pk-item{transition:none;}}
 
   .pk-item.icon-sticker{background:transparent;border:0;padding:0;box-shadow:none;}
   .pk-item.icon-sticker .thumb{font-size:3rem;line-height:1;}
   .folder:hover .pk-item.icon-sticker{box-shadow:none;}
+
+  /* 小動態：規劃中 / 旅行中 的 icon 貼紙輕輕晃動＋放大呼吸（兩顆錯開更自然） */
+  @keyframes stickerWobble{0%,100%{transform:rotate(-3deg) scale(1);}50%{transform:rotate(3deg) scale(1.08);}}
+  .folder[data-status="規劃中"] .pk-item .thumb,
+  .folder[data-status="旅行中"] .pk-item .thumb{
+    transform-origin:50% 88%;animation:stickerWobble 2.4s ease-in-out infinite;}
+  .folder[data-status="規劃中"] .pk-item.i1 .thumb,
+  .folder[data-status="旅行中"] .pk-item.i1 .thumb{animation-duration:2.9s;animation-delay:-.7s;}
+  @media(prefers-reduced-motion:reduce){
+    .folder[data-status="規劃中"] .pk-item .thumb,
+    .folder[data-status="旅行中"] .pk-item .thumb{animation:none;}}
 
   /* 透明玻璃前片：只模糊玻璃後方物件，文字保持清晰。 */
   .f-front{position:relative;z-index:3;flex:1;min-height:192px;border-radius:20px;padding:17px 16px 16px;overflow:hidden;
@@ -145,32 +151,110 @@
   footer{text-align:center;padding:50px 0 10px;font-family:"Space Mono",monospace;font-size:.6rem;letter-spacing:.2em;color:var(--faint);text-transform:uppercase;}
   .note-banner{position:fixed;top:0;left:0;right:0;z-index:20;background:#2c2a26;color:#f1ebdd;text-align:center;font-family:"Space Mono",monospace;font-size:.6rem;letter-spacing:.14em;padding:6px;text-transform:uppercase;}
   .empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:40px;font-family:"Huninn","Noto Sans TC",sans-serif;}
+
+  /* Hero：左標題 / 右地球 */
+  /* 桌面：左欄＝標題＋tab，右欄＝地球（跨兩列、垂直置中） */
+  .hero{display:grid;grid-template-columns:1.04fr .96fr;column-gap:34px;row-gap:18px;align-items:center;
+    grid-template-areas:"text globe" "filt globe";}
+  .hero-text{grid-area:text;align-self:end;min-width:0;}
+  .filters{grid-area:filt;align-self:start;justify-self:start;}
+  .hero-globe{grid-area:globe;align-self:center;min-width:0;}
+  /* 平板/手機 RWD：標題 → 地球 → tab（tab 落在地球下方），置中、留白舒適 */
+  @media(max-width:780px){
+    header{padding-top:52px;}
+    .hero{grid-template-columns:1fr;grid-template-areas:"text" "globe" "filt";
+      row-gap:34px;justify-items:center;text-align:center;}
+    .hero-text{align-self:auto;}
+    .hero-text .sub{margin:16px auto 0;}
+    .filters{align-self:auto;justify-self:center;}
+    .hero-globe{width:100%;padding:6px 0;}
+    .globe-hero{max-width:400px;}
+    .rule{margin:38px 0 6px;}
+  }
+  /* 手機：放寬留白、建立節奏（標題→地球→tab→卡片都有呼吸空間） */
+  @media(max-width:520px){
+    header{padding:72px 2px 22px;}
+    .eyebrow{font-size:.62rem;}
+    header h1{font-size:clamp(2.2rem,10.5vw,2.95rem);}
+    .hero{row-gap:30px;}
+    .hero-text .sub{margin-top:18px;max-width:290px;}
+    .globe-hero{max-width:min(82vw,320px);}
+    .globe-cap{font-size:.5rem;letter-spacing:.16em;bottom:-16px;}
+    .filters{margin-top:8px;}
+    .pill{font-size:.54rem;padding:2px 7px;gap:4px;}
+    .pill .pdot{width:4px;height:4px;}
+    .rule{margin:40px 0 6px;}
+    #cards{margin-top:16px;padding-top:56px;gap:66px 14px;}
+  }
+
+  /* 正交投影 SVG 灰色地球（瓷感暖灰 + 浮動地名膠囊 + 黃色出發→抵達航線） */
+  .globe-hero{position:relative;width:100%;max-width:440px;aspect-ratio:1/1;margin:0 auto;}
+  .globe-svg{width:100%;height:100%;display:block;overflow:visible;touch-action:none;cursor:grab;
+    filter:drop-shadow(0 14px 24px rgba(74,58,33,.14));}
+  .globe-svg:active{cursor:grabbing;}
+  .globe-svg .g-land{fill:rgba(132,121,100,.22);stroke:rgba(108,97,78,.42);stroke-width:.14;stroke-linejoin:round;}
+  .globe-svg .g-visited{fill:rgba(247,190,199,.6);stroke:rgba(231,158,172,.6);stroke-width:.18;stroke-linejoin:round;
+    filter:drop-shadow(0 0 1px rgba(250,185,198,.75));}
+  .globe-svg .g-wish{fill:rgba(160,200,243,.58);stroke:rgba(126,174,228,.7);stroke-width:.3;stroke-linejoin:round;
+    filter:drop-shadow(0 0 1.4px rgba(150,192,240,.85));}
+  /* 閃亮光點：去過＝亮粉、願望＝亮藍 */
+  .globe-svg .g-shine{fill:#fff4f3;filter:drop-shadow(0 0 1.7px rgba(246,150,170,.95));animation:twinkle 2.6s ease-in-out infinite;}
+  .globe-svg .g-wmark{fill:#e4f1ff;filter:drop-shadow(0 0 1.9px rgba(96,160,232,.98));animation:twinkle 2.9s ease-in-out infinite;}
+  @keyframes twinkle{0%,100%{opacity:.45;}50%{opacity:1;}}
+  @media(prefers-reduced-motion:reduce){.globe-svg .g-shine,.globe-svg .g-wmark{animation:none;opacity:.9;}}
+  .globe-svg .g-sphere-ring{fill:none;stroke:rgba(108,97,78,.26);stroke-width:.3;}
+  .globe-svg .g-route{fill:none;stroke:#e0bd34;stroke-width:.5;stroke-dasharray:1.2 1.2;stroke-linecap:round;
+    filter:drop-shadow(0 0 1px rgba(224,189,52,.7));animation:dash 1.6s linear infinite;}
+  @keyframes dash{to{stroke-dashoffset:-4.8;}}
+  .globe-svg .g-end{fill:#e8c531;stroke:#fffdf4;stroke-width:.3;filter:drop-shadow(0 0 1.6px rgba(224,189,52,.9));}
+  .globe-svg .g-dot{opacity:.9;}
+  .pills{position:absolute;inset:0;pointer-events:none;}
+  .pill{position:absolute;display:inline-flex;align-items:center;gap:5px;transform:translate(-50%,-50%);
+    background:#fbfaf6;border:1px solid rgba(60,48,30,.12);border-radius:20px;padding:3px 9px;
+    font-family:"Space Mono","Noto Sans TC",monospace;font-size:.6rem;letter-spacing:.02em;color:#4a4335;
+    box-shadow:0 2px 7px -2px rgba(60,48,30,.3);white-space:nowrap;transition:opacity .25s;}
+  .pill .pdot{width:5px;height:5px;border-radius:50%;background:var(--pc,#c9913f);flex:0 0 auto;}
+  .pill.wish{border-style:dashed;color:#6b6250;}
+  .pill.hi{background:#2c2a26;color:#f6efdf;border-color:#2c2a26;box-shadow:0 3px 10px -3px rgba(44,42,38,.5);}
+  .globe-cap{position:absolute;left:50%;bottom:-10px;transform:translateX(-50%);z-index:2;pointer-events:none;
+    font-family:"Space Mono",monospace;font-size:.56rem;letter-spacing:.22em;color:var(--faint);
+    text-transform:uppercase;white-space:nowrap;}
 </style>
 <link rel="stylesheet" href="assets/proto-detail.css?v=split-20261022-85">
 <link rel="stylesheet" href="assets/proto-finance.css?v=split85">
 </head>
 <body>
-
+<div class="note-banner">原型預覽 · 首頁=一個個口袋（闔上）· 點進去才是頁籤內頁</div>
 <div class="wrap">
   <header>
-    <div class="eyebrow">Travel Atlas · 我的旅行收藏</div>
-    <h1>旅行的<em> 檔案室</em></h1>
-    <div class="sub">每一趟旅程都是一個口袋,露出代表那趟的照片與小票。</div>
-    <div class="hdr-stamp"><b>FILED</b><span>足跡</span></div>
-    <div class="filters" id="filters">
-      <button class="fil on" data-f="all">全部</button>
-      <button class="fil" data-f="規劃中">規劃</button>
-      <button class="fil" data-f="旅行中">旅行</button>
-      <button class="fil" data-f="行程回顧">回顧</button>
-      <button class="fil" data-f="許願池">許願</button>
+    <div class="hero">
+      <div class="hero-text">
+        <div class="eyebrow">Travel Atlas · 手帳改版原型</div>
+        <h1>旅行的<em> 檔案室</em></h1>
+        <div class="sub">每一趟旅程都是一個口袋,露出代表那趟的照片與小票。</div>
+      </div>
+      <div class="filters" id="filters">
+        <button class="fil on" data-f="all">全部</button>
+        <button class="fil" data-f="規劃中">規劃</button>
+        <button class="fil" data-f="旅行中">旅行</button>
+        <button class="fil" data-f="行程回顧">回顧</button>
+        <button class="fil" data-f="許願池">許願</button>
+      </div>
+      <div class="hero-globe">
+        <div class="globe-hero">
+          <svg class="globe-svg" id="globeSvg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg>
+          <div class="pills" id="pills"></div>
+          <div class="globe-cap" id="globeCap"></div>
+        </div>
+      </div>
     </div>
     <div class="rule">Journeys / 足跡</div>
   </header>
   <div id="cards"></div>
-  <footer>Travel Atlas · 每一趟旅程，都值得收藏</footer>
+  <footer>Archive · 點廣島口袋，翻開旅程</footer>
 </div>
 
-<script src="assets/trips.js?v=split-20261022-85"></script>
+<script src="assets/trips.js?v=1793104612"></script>
 <script>
   const RAW = window.__TRIPS__ || [];
   const TODAY = new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Taipei'});
@@ -181,7 +265,7 @@
   // 每個狀態:[亮色, 深色(同色相的暗部,不是灰)]
   const PKC={'規劃中':['#f7d2d8','#dd8ea0'],'旅行中':['#f3b89b','#d6713f'],'行程回顧':['#f6f1e6','#d2c6ac'],'許願池':['#c8daea','#86a7cb']};
   function daysUntil(d){ if(!d)return null; try{return Math.round((new Date(d+'T00:00:00')-new Date(TODAY+'T00:00:00'))/864e5);}catch(e){return null;} }
-  const REP=[[/滑雪|雪季|snow|season|ski|ss\s*\d/i,'⛷️'],[/溫泉|温泉/i,'♨️'],[/樹冰/i,'❄️'],[/購物|shop/i,'🛍️'],
+  const REP=[[/滑雪|雪季|snow|season|ski|ss\s*\d/i,'🏂'],[/溫泉|温泉/i,'♨️'],[/樹冰/i,'❄️'],[/購物|shop/i,'🛍️'],
     [/牡蠣|廣島|oyster|蚵/,'🦪'],
     [/美食|燒肉|拉麵|烏龍|food/i,'🍜'],[/醫美/i,'💄'],[/櫻|賞花/i,'🌸'],[/濟州|jeju/i,'🍊'],
     [/芭達雅|pattaya|峴港|海|沙灘/i,'🏖️'],[/瀨戶內|宮島|嚴島|神社|島/i,'⛩️'],[/寺|廟|曼谷/i,'🛕'],
@@ -194,6 +278,7 @@
   const trips = RAW.map(t=>({...t, _status:computeStatus(t),
     _title:(t.name||'').replace(/^\d{4}-\d{2}\s+\S+\s+/,'').trim().replace(/\s*Snow\s+Season\s*(\d+)\b/gi,' SS$1')||t.name }))
     .sort((a,b)=> (b.start||'').localeCompare(a.start||''));
+  window.__ATLAS_TRIPS__ = trips;   // 供地球 hero 使用
 
   function stickerMarkup(icon){
     const images={
@@ -205,8 +290,10 @@
       : `<span class="sticker-art">${icon}</span>`;
   }
 
+  const TILTS=[[-14,12],[-8,18],[-20,7],[-2,14],[-16,4]];  // 5 種 icon 傾斜角度 [主,副]，輪流套用
   document.getElementById('cards').innerHTML = (trips.map((t,i)=>{
     const rot=((i*53)%7-3)/3.6;
+    const [i0rot,i1rot]=TILTS[i%5];
     const [pk,pkSh]=PKC[t._status]||['#e7d8b6','#c0ad84'];
     const [sc,sl]=STAMP[t._status]||['planning','PLANNING'];
     const cd=(t._status==='規劃中'&&t.start)?daysUntil(t.start):null;
@@ -234,7 +321,7 @@
     const i1=`<div class="thumb">${stickerMarkup(hasPhoto?(reps[0]||'✦'):(reps[1]||reps[0]||'✦'))}</div>`;
     const dateTxt = t.start&&t.end ? `${t.start.slice(5).replace('-','.')} — ${t.end.slice(5).replace('-','.')}${t.start.slice(0,4)!==t.end.slice(0,4)?' · '+t.end.slice(0,4):''}`
                    : (t.year||'') + (t.country?' · '+t.country:'');
-    return `<article class="folder" data-status="${t._status}" style="--rot:${rot}deg;--pk:${pk};--pk-sh:${pkSh}">
+    return `<article class="folder" data-status="${t._status}" style="--rot:${rot}deg;--pk:${pk};--pk-sh:${pkSh};--i0rot:${i0rot}deg;--i1rot:${i1rot}deg">
       <div class="f-back"></div>
       <div class="f-papers" aria-hidden="true"><div class="folder-paper paper-back"></div><div class="folder-paper paper-front"></div></div>
       <div class="f-content" aria-hidden="true"><div class="pk-item i0 ${hasPhoto?'photo':'icon-sticker'}">${i0}</div><div class="pk-item i1">${i1}</div></div>
@@ -259,5 +346,119 @@
 <script src="assets/proto-detail.js?v=split-20261022-85"></script>
 <script src="assets/proto-finance.js?v=split85"></script>
 
+<!-- 正交投影灰色地球（d3-geo）：真實地名膠囊 + 出發→抵達黃線 -->
+<script src="assets/countries.js"></script>
+<script src="assets/d3-array.min.js"></script>
+<script src="assets/d3-geo.min.js"></script>
+<script>
+(function(){
+  const svg=document.getElementById('globeSvg'), pillsEl=document.getElementById('pills');
+  if(!svg||typeof d3==='undefined'||!d3.geoOrthographic)return;
+  const TODAY=new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Taipei'});
+  const HOME={lat:25.03,lng:121.57};                 // 台灣（出發地）
+
+  function shortPlace(t){ if(t.glabel)return t.glabel;
+    let p=(t.place||'').split(/[,，、\/\s]/)[0].trim().replace(/溫泉$/,'');
+    return p || t.country || t.flag || '?'; }
+
+  // 國名 → ISO_A2（對應世界地圖的國家區塊）
+  const C2ISO={'日本':'JP','韓國':'KR','泰國':'TH','越南':'VN','冰島':'IS','瑞士':'CH','美國':'US','台灣':'TW','臺灣':'TW'};
+  const allTrips=(window.__ATLAS_TRIPS__||[]);
+  const visitedISO=new Set(), wishISO=new Set();     // 去過=粉紅、願望=藍色
+  allTrips.forEach(t=>{ const iso=C2ISO[t.country]; if(!iso)return;
+    (t._status==='許願池'?wishISO:visitedISO).add(iso); });
+  wishISO.forEach(i=>{ if(visitedISO.has(i)) wishISO.delete(i); });  // 去過優先於願望
+
+  // 下一趟：最近的未來行程 → 否則旅行中 → 否則最近一趟（需有座標）
+  const withGeo=allTrips.filter(t=>t.lat&&t.lng);
+  const future=withGeo.filter(t=>t.start&&t.start>=TODAY).sort((a,b)=>(a.start).localeCompare(b.start));
+  const tTrip=future[0] || withGeo.find(t=>t._status==='旅行中') || withGeo[0] || null;
+  const target=tTrip?{lat:+tTrip.lat,lng:+tTrip.lng,label:shortPlace(tTrip)}:null;
+
+  const proj=d3.geoOrthographic().translate([50,50]).scale(49).clipAngle(90);
+  const path=d3.geoPath(proj);
+  const feats=((window.__COUNTRIES__&&window.__COUNTRIES__.features)||[]).filter(f=>f.properties.ISO_A2!=='AQ');
+  const land={type:'FeatureCollection',features:feats};
+  const visitedFeats=feats.filter(f=>visitedISO.has(f.properties.ISO_A2));
+  const wishFeats=feats.filter(f=>wishISO.has(f.properties.ISO_A2));
+  const visitedLand={type:'FeatureCollection',features:visitedFeats};
+  const wishLand={type:'FeatureCollection',features:wishFeats};
+  const visitedMarks=visitedFeats.map(f=>d3.geoCentroid(f));   // 去過國家中心（閃亮光點）
+  const wishMarks=wishFeats.map(f=>d3.geoCentroid(f));          // 願望國家中心（藍色光點）
+
+  svg.innerHTML=`
+    <defs>
+      <radialGradient id="oceanG" cx="38%" cy="32%" r="72%">
+        <stop offset="0%" stop-color="#f5f1e7"/><stop offset="55%" stop-color="#e7dfce"/><stop offset="100%" stop-color="#d3cbb8"/>
+      </radialGradient>
+      <radialGradient id="shadeG" cx="38%" cy="30%" r="76%">
+        <stop offset="58%" stop-color="rgba(0,0,0,0)"/><stop offset="100%" stop-color="rgba(74,58,33,.18)"/>
+      </radialGradient>
+    </defs>
+    <circle cx="50" cy="50" r="49" fill="url(#oceanG)"/>
+    <path class="g-land"></path>
+    <path class="g-visited"></path>
+    <path class="g-wish"></path>
+    <circle cx="50" cy="50" r="49" fill="url(#shadeG)" style="pointer-events:none"/>
+    <circle class="g-sphere-ring" cx="50" cy="50" r="49"></circle>
+    <path class="g-route"></path>
+    <g class="g-marks"></g>
+    <g class="g-ends"></g>`;
+  const landEl=svg.querySelector('.g-land'), visEl=svg.querySelector('.g-visited'),
+        wishEl=svg.querySelector('.g-wish'), routeEl=svg.querySelector('.g-route'),
+        endsEl=svg.querySelector('.g-ends'), marksEl=svg.querySelector('.g-marks');
+
+  let rot=wishISO.size ? [-80,-22] : [-122,-20];   // 有願望→偏中亞兼顧歐洲；只有足跡→對準東亞置中
+  const visible=(lng,lat)=> d3.geoDistance([lng,lat],[-rot[0],-rot[1]]) < 1.5533; // ~89°
+
+  function render(){
+    proj.rotate(rot);
+    landEl.setAttribute('d', path(land)||'');
+    visEl.setAttribute('d', path(visitedLand)||'');     // 去過＝粉紅區塊
+    wishEl.setAttribute('d', path(wishLand)||'');        // 願望＝藍色區塊
+    if(target){
+      routeEl.setAttribute('d', path({type:'LineString',coordinates:[[HOME.lng,HOME.lat],[target.lng,target.lat]]})||'');
+      routeEl.style.opacity=(visible(HOME.lng,HOME.lat)||visible(target.lng,target.lat))?1:0;
+    }
+    let mk='';
+    visitedMarks.forEach((c,i)=>{ if(!visible(c[0],c[1]))return; const p=proj(c);
+      mk+=`<circle class="g-shine" cx="${p[0].toFixed(2)}" cy="${p[1].toFixed(2)}" r="1.25" style="animation-delay:${(i*0.5).toFixed(1)}s"/>`; });
+    wishMarks.forEach((c,i)=>{ if(!visible(c[0],c[1]))return; const p=proj(c);
+      mk+=`<circle class="g-wmark" cx="${p[0].toFixed(2)}" cy="${p[1].toFixed(2)}" r="1.2" style="animation-delay:${(i*0.5+0.25).toFixed(1)}s"/>`; });
+    marksEl.innerHTML=mk;
+    let eh=''; [HOME,target].forEach(e=>{ if(e&&visible(e.lng,e.lat)){ const p=proj([e.lng,e.lat]);
+      eh+=`<circle class="g-end" cx="${p[0].toFixed(2)}" cy="${p[1].toFixed(2)}" r="1.5"/>`; } });
+    endsEl.innerHTML=eh;
+    placePills();
+  }
+
+  // 標籤只顯示「下一趟」：台灣（出發）＋ 下一趟（抵達）
+  function placePills(){
+    const items=[{lng:HOME.lng,lat:HOME.lat,label:'台灣 · 出發'}];
+    if(target) items.push({lng:target.lng,lat:target.lat,label:target.label+' · 抵達'});
+    let html='';
+    items.forEach(it=>{ if(!visible(it.lng,it.lat))return; const p=proj([it.lng,it.lat]); if(!p)return;
+      let dx=p[0]-50, dy=p[1]-50, d=Math.hypot(dx,dy)||1;
+      let x=(p[0]+dx/d*3).toFixed(2), y=(p[1]+dy/d*3).toFixed(2);
+      html+=`<span class="pill hi" style="left:${x}%;top:${y}%"><span class="pdot"></span>${it.label}</span>`;
+    });
+    pillsEl.innerHTML=html;
+  }
+
+  render();
+
+  // 拖曳旋轉（靜態不自轉，保持標籤可讀；拖曳可轉到歐洲看許願）
+  let drag=null;
+  svg.addEventListener('pointerdown',e=>{ drag={x:e.clientX,y:e.clientY,r:rot.slice()}; try{svg.setPointerCapture(e.pointerId);}catch(_){} });
+  svg.addEventListener('pointermove',e=>{ if(!drag)return; const k=0.34;
+    rot=[drag.r[0]+(e.clientX-drag.x)*k, Math.max(-82,Math.min(82,drag.r[1]-(e.clientY-drag.y)*k))]; render(); });
+  const endDrag=e=>{ if(drag){ drag=null; try{svg.releasePointerCapture(e.pointerId);}catch(_){} } };
+  svg.addEventListener('pointerup',endDrag); svg.addEventListener('pointercancel',endDrag);
+  addEventListener('resize',()=>{ clearTimeout(window.__gw); window.__gw=setTimeout(render,120); });
+
+  const cap=document.getElementById('globeCap');
+  if(cap) cap.textContent='去過 '+visitedISO.size+' 國'+(wishISO.size?' · 願望 '+wishISO.size+' 國':'')+' · 可拖曳轉動';
+})();
+</script>
 </body>
 </html>
