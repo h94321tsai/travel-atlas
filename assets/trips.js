@@ -3001,14 +3001,15 @@ window.__TRIPS__ = [
    "若涵",
    "小榮",
    "黑人",
-   "佑勳"
+   "佑勳",
+   "小奕"
   ],
   "currency": "JPY",
   "financeSource": {
    "source": "收據照片 trips/2026-10_廣島倉敷高松/receipts/（Claude 辨識）",
    "importedAt": "2026-10-28",
    "owner": "若涵",
-   "importVersion": "hiroshima-receipts-v3",
+   "importVersion": "hiroshima-receipts-v4",
    "nativeExpenses": [
     {
      "id": "rcpt-hiroshima-IMG_7288",
@@ -3376,7 +3377,8 @@ window.__TRIPS__ = [
     "若涵",
     "小榮",
     "黑人",
-    "佑勳"
+    "佑勳",
+    "小奕"
    ]
   }
  },
