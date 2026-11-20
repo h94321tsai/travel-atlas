@@ -3404,9 +3404,446 @@ window.__TRIPS__ = [
   ],
   "lat": 37.5665,
   "lng": 126.978,
-  "shopping": [],
-  "imageBase": null,
-  "buyTiming": null,
+  "shopping": [
+   {
+    "group": "🫒 Olive Young｜底妝・定妝",
+    "note": "明洞一帶有 Olive Young 旗艦店，離飯店不遠；標 ONLY 的是 OY 獨家",
+    "items": [
+     {
+      "name": "GIVERNY 密着粉底液",
+      "desc": "持妝 72 小時、YSL 平替；盒裝送粉撲＋隨身瓶",
+      "price": "",
+      "imgs": [
+       "19_GIVERNY_粉底液.jpg"
+      ]
+     },
+     {
+      "name": "GIVERNY 密着妝前乳 Tone-up Base",
+      "desc": "01 Milky Prep 白＝大量保濕／03 Matcha Calm 綠＝修紅／藍色＝降溫控油",
+      "price": "",
+      "imgs": [
+       "28_GIVERNY_妝前乳_白.jpg",
+       "29_GIVERNY_妝前乳_藍.jpg",
+       "30_GIVERNY_妝前乳_綠.jpg"
+      ]
+     },
+     {
+      "name": "JUNG SAEM MOOL 定妝噴霧特惠組",
+      "desc": "Essential Mool Micro Fitting Mist（送面霜＋面膜）・朋友說他家氣墊粉餅也超好用",
+      "price": "",
+      "imgs": [
+       "06_JUNGSAEMMOOL_定妝噴霧.jpg"
+      ]
+     },
+     {
+      "name": "so natural 定妝膠水 Magic Sealer",
+      "desc": "10ml・Olive Young 旗艦店推薦",
+      "price": "",
+      "imgs": [
+       "10_sonatural_定妝膠水.jpg"
+      ]
+     },
+     {
+      "name": "peripera 毛孔橡皮擦",
+      "desc": "02 綠＝泛紅敏感肌／03 藍＝油肌・選適合自己的",
+      "price": "",
+      "imgs": [
+       "23_peripera_毛孔橡皮擦.jpg",
+       "24_peripera_毛孔橡皮擦_綠.jpg",
+       "25_peripera_毛孔橡皮擦_藍.jpg"
+      ]
+     }
+    ]
+   },
+   {
+    "group": "🫒 Olive Young｜眼妝・眉毛",
+    "note": "",
+    "items": [
+     {
+      "name": "BANILA CO 免膠睫毛 Curly Studio No Glue",
+      "desc": "很輕很貼、不會黏掉真睫毛・有寶可夢聯名款",
+      "price": "",
+      "imgs": [
+       "07_BANILACO_免膠睫毛.jpg"
+      ]
+     },
+     {
+      "name": "rom&nd 染眉膏 Han All Brow Cara",
+      "desc": "#04",
+      "price": "",
+      "imgs": [
+       "21_romand_染眉膏.jpg"
+      ]
+     },
+     {
+      "name": "peripera 細刷染眉膏 Speedy Skinny Brow Mascara",
+      "desc": "#04 Ash Brown",
+      "price": "",
+      "imgs": [
+       "43_peripera_染眉膏.jpg"
+      ]
+     },
+     {
+      "name": "AOU 睫毛膏 All Day Mascara",
+      "desc": "#01 Volume Black（볼륨 블랙）",
+      "price": "",
+      "imgs": [
+       "46_AOU_睫毛膏.jpg"
+      ]
+     },
+     {
+      "name": "RISKY 眼影盤 Pigment Eyeshadow Palette",
+      "desc": "#Mischief Lavender",
+      "price": "約 NT$961",
+      "imgs": [
+       "53_RISKY_眼影盤.jpg"
+      ]
+     },
+     {
+      "name": "HWAHONG M 263 方頭眼線刷",
+      "desc": "Square Eyeliner Brush",
+      "price": "",
+      "imgs": [
+       "48_HWAHONG_263眼線刷.jpg"
+      ]
+     },
+     {
+      "name": "fillimilli 充電式燙睫毛器",
+      "desc": "Dual Heated Eyelash Curler・約台幣七百多",
+      "price": "",
+      "imgs": [
+       "49_fillimilli_燙睫毛器.jpg"
+      ]
+     },
+     {
+      "name": "Innete 日夜雙效睫毛滋養液",
+      "desc": "新色可可棕",
+      "price": "",
+      "imgs": [
+       "14_Innete_睫毛滋養液.jpg"
+      ]
+     }
+    ]
+   },
+   {
+    "group": "🫒 Olive Young｜唇・頰",
+    "note": "",
+    "items": [
+     {
+      "name": "lilybyred 甜蜜謊言牛奶唇釉 Sweet Liar Milky Tint",
+      "desc": "#09 무화과 토스트인 척（無花果吐司）",
+      "price": "",
+      "imgs": [
+       "39_lilybyred_09色號.jpg",
+       "40_lilybyred_唇釉.jpg"
+      ]
+     },
+     {
+      "name": "A.chi 霧感唇釉 Blur Tint",
+      "desc": "#02 Lively・撫平唇紋、遮唇色",
+      "price": "",
+      "imgs": [
+       "37_Achi_唇釉.jpg"
+      ]
+     },
+     {
+      "name": "Heart Percent 唇蜜 Dote On Mood Over Melting Gloss",
+      "desc": "#04 Nudy Cocoa（＋迷你唇線筆）",
+      "price": "約 NT$344",
+      "imgs": [
+       "56_HeartPercent_唇蜜.jpg"
+      ]
+     },
+     {
+      "name": "Heart Percent 唇線筆 Dote On Mood Lip Pencil",
+      "desc": "#06 Rose Beige（＋迷你霧面唇釉 Antique Brown）・OY 獨家組",
+      "price": "約 NT$253",
+      "imgs": [
+       "57_HeartPercent_唇線筆.jpg"
+      ]
+     },
+     {
+      "name": "peripera 豐唇筆 Puffy Plumping Dew Lip Pencil",
+      "desc": "#01 Soft Beige／#02 Creamy Peach",
+      "price": "約 NT$225",
+      "imgs": [
+       "54_peripera_豐唇筆.jpg"
+      ]
+     },
+     {
+      "name": "AOU 霧感唇線筆",
+      "desc": "#03 Cool",
+      "price": "",
+      "imgs": [
+       "44_AOU_唇線筆.jpg"
+      ]
+     },
+     {
+      "name": "AOU 光澤潤唇膏",
+      "desc": "#04",
+      "price": "",
+      "imgs": [
+       "45_AOU_潤唇膏.jpg"
+      ]
+     },
+     {
+      "name": "fwee 修容棒 Easy Shaping Stick",
+      "desc": "#Earl Grey",
+      "price": "約 NT$251",
+      "imgs": [
+       "55_fwee_修容棒.jpg"
+      ]
+     },
+     {
+      "name": "ABOUT_TONE 腮紅 Skin Layer Fit Cheek",
+      "desc": "W07",
+      "price": "",
+      "imgs": [
+       "22_ABOUTTONE_腮紅.jpg"
+      ]
+     },
+     {
+      "name": "水霜腮紅 Water Cream Color Blusher 修容版",
+      "desc": "OY 獨家・品牌待確認（截圖看不到品牌）",
+      "price": "",
+      "imgs": [
+       "32_水霜腮紅_修容版.jpg"
+      ]
+     },
+     {
+      "name": "NAMING 腮紅",
+      "desc": "影片說 Olive Young 找不到，可能要去品牌店",
+      "price": "",
+      "imgs": [
+       "26_NAMING_腮紅.jpg"
+      ]
+     }
+    ]
+   },
+   {
+    "group": "🫒 Olive Young｜保養・貼片",
+    "note": "",
+    "items": [
+     {
+      "name": "VT PDRN 系列",
+      "desc": "韓男 Olive Young 好物推薦",
+      "price": "",
+      "imgs": [
+       "12_VT_PDRN.jpg"
+      ]
+     },
+     {
+      "name": "Dr.Reju-All PDRN 修護霜 Cream Max",
+      "desc": "PD3・60ml",
+      "price": "",
+      "imgs": [
+       "41_DrRejuAll_PDRN霜.jpg"
+      ]
+     },
+     {
+      "name": "Dr.Reju-All PDRN 舒緩防曬精華",
+      "desc": "SPF50+ PA++++",
+      "price": "",
+      "imgs": [
+       "50_DrRejuAll_防曬.jpg"
+      ]
+     },
+     {
+      "name": "Dr.Althea 345 舒緩面霜",
+      "desc": "任何膚質都能用",
+      "price": "",
+      "imgs": [
+       "35_DrAlthea_345面霜.jpg"
+      ]
+     },
+     {
+      "name": "Dr.Althea 345 保濕舒緩噴霧 Relief Cream Mist",
+      "desc": "",
+      "price": "",
+      "imgs": [
+       "51_DrAlthea_噴霧.jpg"
+      ]
+     },
+     {
+      "name": "MEDIHEAL 化妝棉片",
+      "desc": "積雪草（粉藍盒）／茶樹（綠盒）・妝前用",
+      "price": "",
+      "imgs": [
+       "20_MEDIHEAL_化妝棉.jpg"
+      ]
+     },
+     {
+      "name": "MEDIPEEL 膠原蛋白撕拉面膜",
+      "desc": "Lacto Collagen Wrapping Mask",
+      "price": "",
+      "imgs": [
+       "09_MEDIPEEL_撕拉面膜.jpg"
+      ]
+     },
+     {
+      "name": "植物園 綠茶擠壓式卸妝膏",
+      "desc": "식물나라 어린녹차 짜서쓰는 클렌징밤 100ml・粉刺 OUT",
+      "price": "",
+      "imgs": [
+       "08_植物園_卸妝膏.jpg"
+      ]
+     },
+     {
+      "name": "Visual 美白素顏霜 White Shining Face & Body Tone-up Cream",
+      "desc": "臉和身體都能用・100ml",
+      "price": "",
+      "imgs": [
+       "27_Visual_素顏霜.jpg"
+      ]
+     },
+     {
+      "name": "FRANZ 隱形痘痘貼 Naked Spot Patch Duo",
+      "desc": "72 片・OY 獨家・台灣網購約 NT$291 可比價",
+      "price": "",
+      "imgs": [
+       "04_FRANZ_痘痘貼.jpg",
+       "31_FRANZ_痘痘貼_網購價.jpg"
+      ]
+     },
+     {
+      "name": "DERMAFIRM 集中皺紋貼",
+      "desc": "眼周／嘴角／法令紋・OY 獨家 4+2",
+      "price": "",
+      "imgs": [
+       "13_DERMAFIRM_皺紋貼.jpg"
+      ]
+     }
+    ]
+   },
+   {
+    "group": "🫒 Olive Young｜身體・頭髮・生活",
+    "note": "",
+    "items": [
+     {
+      "name": "TYPE No. 香氛身體磨砂膏",
+      "desc": "No.60 Muguet Musk Vanilla・300g",
+      "price": "",
+      "imgs": [
+       "42_TYPENo_磨砂膏.jpg"
+      ]
+     },
+     {
+      "name": "Dr.deep 礦物 EGF 美體噴霧",
+      "desc": "Mineral Body Mist",
+      "price": "",
+      "imgs": [
+       "52_Drdeep_美體噴霧.jpg"
+      ]
+     },
+     {
+      "name": "MOEV 髮膜",
+      "desc": "用了一整年的頭髮品牌",
+      "price": "",
+      "imgs": [
+       "34_MOEV_髮膜.jpg"
+      ]
+     },
+     {
+      "name": "K18 洗髮＋免沖髮膜組",
+      "desc": "",
+      "price": "",
+      "imgs": [
+       "47_K18_組合.jpg"
+      ]
+     },
+     {
+      "name": "Verish 發熱透膚絲襪",
+      "desc": "200D 黑色・Warm See-through Stocking",
+      "price": "",
+      "imgs": [
+       "33_Verish_發熱襪.jpg"
+      ]
+     },
+     {
+      "name": "DOSSY 短袖居家睡衣",
+      "desc": "海源代言同款・baby blue",
+      "price": "",
+      "imgs": [
+       "11_DOSSY_睡衣.jpg"
+      ]
+     }
+    ]
+   },
+   {
+    "group": "✈️ 免稅店",
+    "note": "",
+    "items": [
+     {
+      "name": "MAC 唇膏 Alone Time",
+      "desc": "灰調裸玫瑰色・免稅店買",
+      "price": "",
+      "imgs": [
+       "36_MAC_AloneTime.jpg"
+      ]
+     }
+    ]
+   },
+   {
+    "group": "🍘 超市・便利商店（食品）",
+    "note": "海苔罐、泡麵這類放託運比較安心",
+    "items": [
+     {
+      "name": "大天海苔 곱창김 罐裝",
+      "desc": "대천김 곱창김",
+      "price": "",
+      "imgs": [
+       "18_大天海苔.jpg"
+      ]
+     },
+     {
+      "name": "三養 玫瑰辣雞寬冬粉",
+      "desc": "삼양 로제 불닭납작당면（碗裝）",
+      "price": "",
+      "imgs": [
+       "38_三養_玫瑰辣雞冬粉.jpg"
+      ]
+     },
+     {
+      "name": "優格糯米麻糬",
+      "desc": "요거트 찹쌀떡・IG honeybadger_seoul 推薦",
+      "price": "",
+      "imgs": [
+       "03_優格麻糬.jpg"
+      ]
+     }
+    ]
+   },
+   {
+    "group": "👜 品牌店・市場",
+    "note": "",
+    "items": [
+     {
+      "name": "BRANDEN 防盜後背包",
+      "desc": "branden.seoul・容量大、口袋多；有咖啡色／灰綠色",
+      "price": "",
+      "imgs": [
+       "01_BRANDEN_後背包_咖啡.jpg",
+       "02_BRANDEN_後背包_灰綠.jpg"
+      ]
+     },
+     {
+      "name": "廣藏市場 一次逛",
+      "desc": "1. 買棉被 2. 潮牌一條街（Seoul Edition，09:00–19:00）3. 藥局一條街",
+      "price": "",
+      "imgs": [
+       "15_廣藏市場.jpg",
+       "16_廣藏市場_潮牌街.jpg",
+       "17_廣藏市場_營業時間.jpg"
+      ]
+     }
+    ]
+   }
+  ],
+  "imageBase": "assets/images/首爾2026",
+  "buyTiming": [
+   "Olive Young：明洞一帶旗艦店品項最齊，離光化門飯店不遠，可以排一個晚上集中買",
+   "回程 11/28 早上 07:00 就出發，最後一天沒時間買，前一晚要先打包好"
+  ],
   "itinerary": [
    [
     "D1",
