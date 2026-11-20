@@ -3609,10 +3609,11 @@ window.__TRIPS__ = [
       ]
      },
      {
-      "name": "水霜腮紅 Water Cream Color Blusher 修容版",
-      "desc": "OY 獨家・品牌待確認（截圖看不到品牌）",
-      "price": "",
+      "name": "Tooq 水霜腮紅 Water Cream Color Blusher（修容版）",
+      "desc": "OY 獨家・盒子上寫 Contour ver；一般色有 W01 Page／W02 Bebe Salmon／W04 Giggly／W06 Mocha Pop／W07 Freckle 等，修容色現場看盒子",
+      "price": "NT$469（國際站 11/28 前特價 NT$380）",
       "imgs": [
+       "OY官方_Tooq_水霜腮紅.jpg",
        "32_水霜腮紅_修容版.jpg"
       ]
      },
@@ -3630,15 +3631,6 @@ window.__TRIPS__ = [
     "group": "🫒 Olive Young｜保養・貼片",
     "note": "",
     "items": [
-     {
-      "name": "VT PDRN 系列",
-      "desc": "韓男 Olive Young 好物推薦",
-      "price": "",
-      "imgs": [
-       "OY官方_vt_pdrn.jpg",
-       "12_VT_PDRN.jpg"
-      ]
-     },
      {
       "name": "Dr.Reju-All PDRN 修護霜 Cream Max",
       "desc": "PD3・60ml",
