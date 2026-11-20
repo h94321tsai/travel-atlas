@@ -775,3 +775,12 @@ body.trip-detail-open{background-color:#e7dfd0;background-image:radial-gradient(
 .stay-addr{font-size:.86rem;color:#554a3d;margin-top:8px!important;}
 .stay-when{font-size:.8rem;line-height:1.7;color:#8c7d68;margin-top:6px!important;}
 @media(max-width:420px){.flight-cards{padding:2px 14px;}.flight-body{gap:8px;}.flight-line{min-width:44px;}.flight-mid{font-size:.68rem;}}
+
+/* 購物兩層:商店 → 分類 → 品牌小標 */
+.shop-store{display:flex;align-items:center;gap:10px;font:700 1.12rem/1.4 "Noto Sans TC",sans-serif;color:#4f7a5a;margin:6px 0 16px;}
+.shop-store:before{content:"";width:10px;height:10px;border-radius:50%;background:#8fb36b;flex-shrink:0;}
+.shop-store:after{content:"";flex:1;border-top:2px solid #cfdcbf;}
+.trip-shop-group.in-store{margin-left:14px;padding-left:14px!important;border-left:2px solid #e3ead8!important;}
+.shop-brand{font:700 .7rem/1 "Space Mono",monospace;letter-spacing:.08em;color:#8c7d68;margin:20px 0 2px;padding:5px 10px;background:#efe7d6;border-radius:4px;display:inline-block;}
+.trip-shop-list>.shop-brand:first-child{margin-top:4px;}
+@media(max-width:420px){.trip-shop-group.in-store{margin-left:4px;padding-left:10px!important;}}

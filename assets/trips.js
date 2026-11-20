@@ -3406,8 +3406,9 @@ window.__TRIPS__ = [
   "lng": 126.978,
   "shopping": [
    {
-    "group": "💄 彩妝｜A.chi",
-    "note": "品牌照英文字母排，到專櫃直接找牌子；標 ONLY 的是 OY 獨家",
+    "store": "🫒 Olive Young",
+    "group": "💄 彩妝",
+    "note": "依品牌英文字母排；標 ONLY 的是 OY 獨家",
     "items": [
      {
       "name": "A.chi 霧感唇釉 Blur Tint",
@@ -3415,28 +3416,18 @@ window.__TRIPS__ = [
       "price": "",
       "imgs": [
        "37_Achi_唇釉.jpg"
-      ]
-     }
-    ]
-   },
-   {
-    "group": "💄 彩妝｜ABOUT_TONE",
-    "note": "",
-    "items": [
+      ],
+      "brand": "A.chi"
+     },
      {
       "name": "ABOUT_TONE 腮紅 Skin Layer Fit Cheek",
       "desc": "W07",
       "price": "",
       "imgs": [
        "22_ABOUTTONE_腮紅.jpg"
-      ]
-     }
-    ]
-   },
-   {
-    "group": "💄 彩妝｜AOU",
-    "note": "",
-    "items": [
+      ],
+      "brand": "ABOUT_TONE"
+     },
      {
       "name": "AOU 睫毛膏 All Day Mascara",
       "desc": "#01 Volume Black（볼륨 블랙）",
@@ -3444,7 +3435,8 @@ window.__TRIPS__ = [
       "imgs": [
        "OY官方_aou_mascara.jpg",
        "46_AOU_睫毛膏.jpg"
-      ]
+      ],
+      "brand": "AOU"
      },
      {
       "name": "AOU 霧感唇線筆",
@@ -3453,7 +3445,8 @@ window.__TRIPS__ = [
       "imgs": [
        "OY官方_aou_lippencil.jpg",
        "44_AOU_唇線筆.jpg"
-      ]
+      ],
+      "brand": "AOU"
      },
      {
       "name": "AOU 光澤潤唇膏",
@@ -3462,42 +3455,27 @@ window.__TRIPS__ = [
       "imgs": [
        "OY官方_aou_balm.jpg",
        "45_AOU_潤唇膏.jpg"
-      ]
-     }
-    ]
-   },
-   {
-    "group": "💄 彩妝｜BANILA CO",
-    "note": "",
-    "items": [
+      ],
+      "brand": "AOU"
+     },
      {
       "name": "BANILA CO 免膠睫毛 Curly Studio No Glue",
       "desc": "很輕很貼、不會黏掉真睫毛・有寶可夢聯名款",
       "price": "",
       "imgs": [
        "07_BANILACO_免膠睫毛.jpg"
-      ]
-     }
-    ]
-   },
-   {
-    "group": "💄 彩妝｜fillimilli",
-    "note": "",
-    "items": [
+      ],
+      "brand": "BANILA CO"
+     },
      {
       "name": "fillimilli 充電式燙睫毛器",
       "desc": "Dual Heated Eyelash Curler・約台幣七百多",
       "price": "",
       "imgs": [
        "49_fillimilli_燙睫毛器.jpg"
-      ]
-     }
-    ]
-   },
-   {
-    "group": "💄 彩妝｜fwee",
-    "note": "",
-    "items": [
+      ],
+      "brand": "fillimilli"
+     },
      {
       "name": "fwee 修容棒 Easy Shaping Stick",
       "desc": "#Earl Grey",
@@ -3505,21 +3483,17 @@ window.__TRIPS__ = [
       "imgs": [
        "OY官方_fwee.jpg",
        "55_fwee_修容棒.jpg"
-      ]
-     }
-    ]
-   },
-   {
-    "group": "💄 彩妝｜GIVERNY",
-    "note": "",
-    "items": [
+      ],
+      "brand": "fwee"
+     },
      {
       "name": "GIVERNY 密着粉底液",
       "desc": "持妝 72 小時、YSL 平替；盒裝送粉撲＋隨身瓶",
       "price": "",
       "imgs": [
        "19_GIVERNY_粉底液.jpg"
-      ]
+      ],
+      "brand": "GIVERNY"
      },
      {
       "name": "GIVERNY 密着妝前乳 Tone-up Base",
@@ -3529,14 +3503,9 @@ window.__TRIPS__ = [
        "28_GIVERNY_妝前乳_白.jpg",
        "29_GIVERNY_妝前乳_藍.jpg",
        "30_GIVERNY_妝前乳_綠.jpg"
-      ]
-     }
-    ]
-   },
-   {
-    "group": "💄 彩妝｜Heart Percent",
-    "note": "",
-    "items": [
+      ],
+      "brand": "GIVERNY"
+     },
      {
       "name": "Heart Percent 唇蜜 Dote On Mood Over Melting Gloss",
       "desc": "#04 Nudy Cocoa（＋迷你唇線筆）",
@@ -3544,7 +3513,8 @@ window.__TRIPS__ = [
       "imgs": [
        "OY官方_hp_gloss.jpg",
        "56_HeartPercent_唇蜜.jpg"
-      ]
+      ],
+      "brand": "Heart Percent"
      },
      {
       "name": "Heart Percent 唇線筆 Dote On Mood Lip Pencil",
@@ -3552,56 +3522,36 @@ window.__TRIPS__ = [
       "price": "約 NT$253",
       "imgs": [
        "57_HeartPercent_唇線筆.jpg"
-      ]
-     }
-    ]
-   },
-   {
-    "group": "💄 彩妝｜HWAHONG M",
-    "note": "",
-    "items": [
+      ],
+      "brand": "Heart Percent"
+     },
      {
       "name": "HWAHONG M 263 方頭眼線刷",
       "desc": "Square Eyeliner Brush",
       "price": "",
       "imgs": [
        "48_HWAHONG_263眼線刷.jpg"
-      ]
-     }
-    ]
-   },
-   {
-    "group": "💄 彩妝｜Innete",
-    "note": "",
-    "items": [
+      ],
+      "brand": "HWAHONG M"
+     },
      {
       "name": "Innete 日夜雙效睫毛滋養液",
       "desc": "新色可可棕",
       "price": "",
       "imgs": [
        "14_Innete_睫毛滋養液.jpg"
-      ]
-     }
-    ]
-   },
-   {
-    "group": "💄 彩妝｜JUNG SAEM MOOL",
-    "note": "",
-    "items": [
+      ],
+      "brand": "Innete"
+     },
      {
       "name": "JUNG SAEM MOOL 定妝噴霧特惠組",
       "desc": "Essential Mool Micro Fitting Mist（送面霜＋面膜）・朋友說他家氣墊粉餅也超好用",
       "price": "",
       "imgs": [
        "06_JUNGSAEMMOOL_定妝噴霧.jpg"
-      ]
-     }
-    ]
-   },
-   {
-    "group": "💄 彩妝｜lilybyred",
-    "note": "",
-    "items": [
+      ],
+      "brand": "JUNG SAEM MOOL"
+     },
      {
       "name": "lilybyred 甜蜜謊言牛奶唇釉 Sweet Liar Milky Tint",
       "desc": "#09 무화과 토스트인 척（無花果吐司）",
@@ -3609,28 +3559,18 @@ window.__TRIPS__ = [
       "imgs": [
        "39_lilybyred_09色號.jpg",
        "40_lilybyred_唇釉.jpg"
-      ]
-     }
-    ]
-   },
-   {
-    "group": "💄 彩妝｜NAMING",
-    "note": "",
-    "items": [
+      ],
+      "brand": "lilybyred"
+     },
      {
       "name": "NAMING 腮紅",
       "desc": "影片說 Olive Young 找不到，可能要去品牌店",
       "price": "",
       "imgs": [
        "26_NAMING_腮紅.jpg"
-      ]
-     }
-    ]
-   },
-   {
-    "group": "💄 彩妝｜peripera",
-    "note": "",
-    "items": [
+      ],
+      "brand": "NAMING"
+     },
      {
       "name": "peripera 毛孔橡皮擦",
       "desc": "02 綠＝泛紅敏感肌／03 藍＝油肌・選適合自己的",
@@ -3639,7 +3579,8 @@ window.__TRIPS__ = [
        "23_peripera_毛孔橡皮擦.jpg",
        "24_peripera_毛孔橡皮擦_綠.jpg",
        "25_peripera_毛孔橡皮擦_藍.jpg"
-      ]
+      ],
+      "brand": "peripera"
      },
      {
       "name": "peripera 細刷染眉膏 Speedy Skinny Brow Mascara",
@@ -3647,7 +3588,8 @@ window.__TRIPS__ = [
       "price": "",
       "imgs": [
        "43_peripera_染眉膏.jpg"
-      ]
+      ],
+      "brand": "peripera"
      },
      {
       "name": "peripera 豐唇筆 Puffy Plumping Dew Lip Pencil",
@@ -3655,14 +3597,9 @@ window.__TRIPS__ = [
       "price": "約 NT$225",
       "imgs": [
        "54_peripera_豐唇筆.jpg"
-      ]
-     }
-    ]
-   },
-   {
-    "group": "💄 彩妝｜RISKY",
-    "note": "",
-    "items": [
+      ],
+      "brand": "peripera"
+     },
      {
       "name": "RISKY 眼影盤 Pigment Eyeshadow Palette",
       "desc": "#Mischief Lavender",
@@ -3670,42 +3607,27 @@ window.__TRIPS__ = [
       "imgs": [
        "OY官方_risky.jpg",
        "53_RISKY_眼影盤.jpg"
-      ]
-     }
-    ]
-   },
-   {
-    "group": "💄 彩妝｜rom&nd",
-    "note": "",
-    "items": [
+      ],
+      "brand": "RISKY"
+     },
      {
       "name": "rom&nd 染眉膏 Han All Brow Cara",
       "desc": "#04",
       "price": "",
       "imgs": [
        "21_romand_染眉膏.jpg"
-      ]
-     }
-    ]
-   },
-   {
-    "group": "💄 彩妝｜so natural",
-    "note": "",
-    "items": [
+      ],
+      "brand": "rom&nd"
+     },
      {
       "name": "so natural 定妝膠水 Magic Sealer",
       "desc": "10ml・Olive Young 旗艦店推薦",
       "price": "",
       "imgs": [
        "10_sonatural_定妝膠水.jpg"
-      ]
-     }
-    ]
-   },
-   {
-    "group": "💄 彩妝｜Tooq",
-    "note": "",
-    "items": [
+      ],
+      "brand": "so natural"
+     },
      {
       "name": "Tooq 水霜腮紅 Water Cream Color Blusher（修容版）",
       "desc": "OY 獨家・盒子上寫 Contour ver；一般色有 W01 Page／W02 Bebe Salmon／W04 Giggly／W06 Mocha Pop／W07 Freckle 等，修容色現場看盒子",
@@ -3713,12 +3635,13 @@ window.__TRIPS__ = [
       "imgs": [
        "OY官方_Tooq_水霜腮紅.jpg",
        "32_水霜腮紅_修容版.jpg"
-      ]
+      ],
+      "brand": "Tooq"
      }
     ]
    },
    {
-    "group": "🫒 Olive Young｜保養・貼片",
+    "group": "🧴 保養・貼片",
     "note": "",
     "items": [
      {
@@ -3804,10 +3727,11 @@ window.__TRIPS__ = [
        "13_DERMAFIRM_皺紋貼.jpg"
       ]
      }
-    ]
+    ],
+    "store": "🫒 Olive Young"
    },
    {
-    "group": "🫒 Olive Young｜身體・頭髮・生活",
+    "group": "🛁 身體・頭髮・生活",
     "note": "",
     "items": [
      {
@@ -3858,7 +3782,8 @@ window.__TRIPS__ = [
        "11_DOSSY_睡衣.jpg"
       ]
      }
-    ]
+    ],
+    "store": "🫒 Olive Young"
    },
    {
     "group": "✈️ 免稅店",
