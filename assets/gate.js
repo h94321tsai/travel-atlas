@@ -48,6 +48,7 @@
     document.body.appendChild(gate);
     var form = gate.querySelector('form'), input = gate.querySelector('input'), err = gate.querySelector('.err');
     input.focus();
+    input.addEventListener('keydown', function(ev){ if(ev.key === 'Enter'){ ev.preventDefault(); form.requestSubmit ? form.requestSubmit() : form.dispatchEvent(new Event('submit', {cancelable:true})); } });
     form.addEventListener('submit', function(ev){
       ev.preventDefault();
       sha256(input.value.trim()).then(function(h){

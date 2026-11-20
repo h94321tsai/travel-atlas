@@ -31,9 +31,33 @@
 
   function overview(){return `<div class="trip-overview editorial-overview">
     <div class="overview-hero"><div class="overview-intro"><h2 class="overview-eyebrow">OVERVIEW / 旅程總覽</h2><dl class="trip-facts"><div><dt>旅行天數</dt><dd>${duration}</dd></div><div><dt>旅伴</dt><dd>${trip.people?people:esc(companions)||people}${trip.people&&companions?`<span class="trip-fact-detail">${esc(companions)}</span>`:''}</dd></div><div><dt>交通</dt><dd>${esc(transport)}</dd></div></dl><div class="trip-tags" aria-label="旅程標籤">${(trip.tags||[]).map(t=>`<span>${esc(t)}</span>`).join('')}</div></div>${visual}</div>
-    <section class="overview-section"><h3>航班</h3><div class="overview-rows">${(meta.flights||[]).map((f,i)=>`<div class="overview-row"><span class="overview-row-label">${i===0?'去程':i===1?'回程':'航班 '+(i+1)}</span><p>${esc(f.replace(/^[去回]\s+/,''))}</p></div>`).join('')||'<p class="trip-small">尚未記錄</p>'}</div></section>
-    <section class="overview-section"><h3>住宿</h3><div class="overview-rows">${(meta.stays||[]).map(stay).map(s=>`<div class="overview-row"><p class="overview-row-label">${s.url&&url(s.url)?`<a href="${url(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.n)} ↗</a>`:esc(s.n)}</p><p>${esc(s.when||'日期尚未記錄')}</p></div>`).join('')||'<p class="trip-small">尚未記錄</p>'}</div></section>
+    <section class="overview-section"><h3>航班</h3>${flightsBlock()}</section>
+    <section class="overview-section"><h3>住宿</h3><div class="overview-rows">${(meta.stays||[]).map(stay).map(s=>s.local||s.addr?stayCard(s):`<div class="overview-row"><p class="overview-row-label">${s.url&&url(s.url)?`<a href="${url(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.n)} ↗</a>`:esc(s.n)}</p><p>${esc(s.when||'日期尚未記錄')}</p></div>`).join('')||'<p class="trip-small">尚未記錄</p>'}</div></section>
+    ${(meta.restaurants||[]).length?`<section class="overview-section"><h3>收藏餐廳</h3><div class="stay-cards">${meta.restaurants.map(stayCard).join('')}</div></section>`:''}
   </div>`;}
+  // 航班:物件 {dir,date,airline,no,from:{code,name,time},to:{…},dur,status};舊字串「去 10/4(日) CI112 桃園T2 07:15 → 廣島 10:35」也轉成卡片
+  const planeSvg='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z" transform="rotate(90 12 12)"/></svg>';
+  function flightOf(f,i){
+    if(f&&typeof f==='object')return f;
+    const m=String(f).match(/^([去回])\s+(\S+)\s+([A-Z0-9]{2}\d{2,4})\s+(.+?)\s+(\d{1,2}:\d{2})\s*→\s*(.+?)\s+(\d{1,2}:\d{2})$/);
+    return m?{dir:m[1]+'程',date:m[2],no:m[3],from:{name:m[4],time:m[5]},to:{name:m[6],time:m[7]}}:null;
+  }
+  function flightsBlock(){
+    const list=meta.flights||[];
+    if(!list.length)return '<p class="trip-small">尚未記錄</p>';
+    return `<div class="flight-cards">${list.map((f,i)=>{
+      const x=flightOf(f,i);
+      if(!x)return `<div class="overview-row"><span class="overview-row-label">${i===0?'去程':i===1?'回程':'航班 '+(i+1)}</span><p>${esc(String(f).replace(/^[去回]\s+/,''))}</p></div>`;
+      const end=(p,side)=>`<div class="flight-end ${side}"><b class="flight-time">${esc(p.time||'--:--')}</b>${p.code?`<span class="flight-code">${esc(p.code)}</span>`:''}<span class="flight-place">${esc(p.name||'')}</span></div>`;
+      return `<article class="flight-card"><div class="flight-head"><span class="flight-dir">${esc(x.dir||(i===0?'去程':'回程'))}<i>|</i>${esc(x.date||'')}</span>${x.status?`<span class="flight-status">${esc(x.status)}</span>`:''}</div>
+        <div class="flight-body">${end(x.from||{},'from')}<div class="flight-mid"><span>${esc([x.airline,x.no].filter(Boolean).join(' '))}</span><span class="flight-line">${planeSvg}</span>${x.dur?`<span>${esc(x.dur)}</span>`:''}</div>${end(x.to||{},'to')}</div></article>`;
+    }).join('')}${meta.flightNote?`<p class="flight-note">${esc(meta.flightNote)}</p>`:''}</div>`;
+  }
+  // 住宿/餐廳卡:{n,local,addr,when,note,url,icon}
+  function stayCard(s){
+    const name=`${s.icon?`<span aria-hidden="true">${esc(s.icon)} </span>`:''}${esc(s.n)}`;
+    return `<div class="stay-card"><p class="stay-name">${s.url&&url(s.url)?`<a href="${url(s.url)}" target="_blank" rel="noopener noreferrer">${name} ↗</a>`:name}</p>${s.local?`<p class="stay-local">${esc(s.local)}</p>`:''}${s.addr?`<p class="stay-addr">${esc(s.addr)}</p>`:''}${s.when?`<p class="stay-when">${esc(s.when)}</p>`:''}${s.note?`<p class="stay-when">${esc(s.note)}</p>`:''}</div>`;
+  }
   function itinerary(){
     const days=trip.itineraryRich?.length?trip.itineraryRich:(trip.itinerary||[])
       .filter(row=>row.slice(1).some(value=>String(value||'').trim()))

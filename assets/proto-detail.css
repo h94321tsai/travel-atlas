@@ -746,3 +746,32 @@ body.trip-detail-open{background-color:#e7dfd0;background-image:radial-gradient(
 .trip-memory-mosaic:has(>.trip-photo-button:nth-child(4):last-child)>.trip-photo-button:nth-child(3){grid-column:4;grid-row:1}
 .trip-memory-mosaic:has(>.trip-photo-button:nth-child(4):last-child)>.trip-photo-button:nth-child(4){grid-column:3/5;grid-row:2}
 @container trip-content (max-width:400px){.trip-memory-mosaic:has(>.trip-photo-button:nth-child(4):last-child){gap:5px}.trip-memory-mosaic:has(>.trip-photo-button:nth-child(4):last-child) small{font-size:.55rem;padding:15px 5px 4px}}
+
+/* 航班登機證卡 + 住宿/餐廳卡 */
+.flight-cards{border:1px solid #ddd2bf;border-radius:14px;background:#fbf7ee;padding:4px 20px;box-shadow:0 6px 14px -12px #6d5b3a59;}
+.flight-card{padding:18px 0 20px;}
+.flight-card+.flight-card{border-top:1px dashed #d9cfbc;}
+.flight-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px;}
+.flight-dir{font:700 .92rem "Noto Sans TC",sans-serif;color:#554a3d;}
+.flight-dir i{font-style:normal;color:#c4b8a3;margin:0 8px;}
+.flight-status{font:500 .72rem "Noto Sans TC",sans-serif;color:#3f7d6e;background:#4f9e8c1f;border-radius:20px;padding:4px 11px;white-space:nowrap;}
+.flight-body{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;}
+.flight-end{display:flex;flex-direction:column;min-width:0;}
+.flight-end.to{text-align:right;align-items:flex-end;}
+.flight-time{font:600 clamp(1.9rem,7vw,2.7rem)/1.05 "Space Grotesk",sans-serif;letter-spacing:-.01em;color:#2c2a26;}
+.flight-code{font:700 .95rem "Space Mono",monospace;color:#554a3d;margin-top:8px;}
+.flight-place{font:400 .78rem/1.5 "Huninn","Noto Sans TC",sans-serif;color:#8c7d68;margin-top:3px;}
+.flight-mid{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;font:400 .74rem "Noto Sans TC",sans-serif;color:#8c7d68;}
+.flight-line{display:flex;align-items:center;gap:6px;width:100%;min-width:68px;color:#617faa;}
+.flight-line:before,.flight-line:after{content:"";flex:1;border-top:1px dashed #c4b8a3;}
+.flight-line svg{width:18px;height:18px;fill:currentColor;flex-shrink:0;}
+.flight-note{font-size:.74rem;color:#978871;margin:0;padding:12px 0 16px;border-top:1px solid #e6ddcb;}
+.stay-cards{display:grid;gap:14px;}
+.stay-card{min-width:0;}
+.stay-card p{margin:0;overflow-wrap:anywhere;}
+.stay-name{font:400 1rem/1.6 "Huninn","Noto Sans TC",sans-serif;color:#554a3e;}
+.stay-name a{color:inherit;text-decoration:underline dotted #b3a893;text-underline-offset:5px;}
+.stay-local{font-size:.82rem;color:#978871;margin-top:4px!important;}
+.stay-addr{font-size:.86rem;color:#554a3d;margin-top:8px!important;}
+.stay-when{font-size:.8rem;line-height:1.7;color:#8c7d68;margin-top:6px!important;}
+@media(max-width:420px){.flight-cards{padding:2px 14px;}.flight-body{gap:8px;}.flight-line{min-width:44px;}.flight-mid{font-size:.68rem;}}
