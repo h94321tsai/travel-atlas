@@ -3488,6 +3488,7 @@ window.__TRIPS__ = [
       "desc": "#01 Volume Black（볼륨 블랙）",
       "price": "",
       "imgs": [
+       "OY官方_aou_mascara.jpg",
        "46_AOU_睫毛膏.jpg"
       ]
      },
@@ -3496,6 +3497,7 @@ window.__TRIPS__ = [
       "desc": "#Mischief Lavender",
       "price": "約 NT$961",
       "imgs": [
+       "OY官方_risky.jpg",
        "53_RISKY_眼影盤.jpg"
       ]
      },
@@ -3551,6 +3553,7 @@ window.__TRIPS__ = [
       "desc": "#04 Nudy Cocoa（＋迷你唇線筆）",
       "price": "約 NT$344",
       "imgs": [
+       "OY官方_hp_gloss.jpg",
        "56_HeartPercent_唇蜜.jpg"
       ]
      },
@@ -3575,6 +3578,7 @@ window.__TRIPS__ = [
       "desc": "#03 Cool",
       "price": "",
       "imgs": [
+       "OY官方_aou_lippencil.jpg",
        "44_AOU_唇線筆.jpg"
       ]
      },
@@ -3583,6 +3587,7 @@ window.__TRIPS__ = [
       "desc": "#04",
       "price": "",
       "imgs": [
+       "OY官方_aou_balm.jpg",
        "45_AOU_潤唇膏.jpg"
       ]
      },
@@ -3591,6 +3596,7 @@ window.__TRIPS__ = [
       "desc": "#Earl Grey",
       "price": "約 NT$251",
       "imgs": [
+       "OY官方_fwee.jpg",
        "55_fwee_修容棒.jpg"
       ]
      },
@@ -3629,6 +3635,7 @@ window.__TRIPS__ = [
       "desc": "韓男 Olive Young 好物推薦",
       "price": "",
       "imgs": [
+       "OY官方_vt_pdrn.jpg",
        "12_VT_PDRN.jpg"
       ]
      },
@@ -3653,6 +3660,7 @@ window.__TRIPS__ = [
       "desc": "任何膚質都能用",
       "price": "",
       "imgs": [
+       "OY官方_althea_cream.jpg",
        "35_DrAlthea_345面霜.jpg"
       ]
      },
@@ -3661,6 +3669,7 @@ window.__TRIPS__ = [
       "desc": "",
       "price": "",
       "imgs": [
+       "OY官方_althea_mist.jpg",
        "51_DrAlthea_噴霧.jpg"
       ]
      },
