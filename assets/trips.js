@@ -3383,6 +3383,88 @@ window.__TRIPS__ = [
   }
  },
  {
+  "name": "2026-11 韓國 首爾（爸媽）",
+  "country": "韓國",
+  "flag": "🇰🇷",
+  "place": "首爾",
+  "region": "韓國",
+  "status": "旅行中",
+  "start": "2026-11-21",
+  "end": "2026-11-28",
+  "year": "2026.11",
+  "people": "3",
+  "days": 8,
+  "companions": [
+   "爸",
+   "媽"
+  ],
+  "tags": [
+   "家族",
+   "美食"
+  ],
+  "lat": 37.5665,
+  "lng": 126.978,
+  "shopping": [],
+  "imageBase": null,
+  "buyTiming": null,
+  "itinerary": [
+   [
+    "D1",
+    "11/21(六)",
+    "BR160 15:15 起飛→18:45 抵仁川→包車到飯店",
+    "Koreana Hotel"
+   ],
+   [
+    "D2",
+    "11/22(日)",
+    "",
+    "Koreana Hotel"
+   ],
+   [
+    "D3",
+    "11/23(一)",
+    "",
+    "Koreana Hotel"
+   ],
+   [
+    "D4",
+    "11/24(二)",
+    "",
+    "Koreana Hotel"
+   ],
+   [
+    "D5",
+    "11/25(三)",
+    "",
+    "Koreana Hotel"
+   ],
+   [
+    "D6",
+    "11/26(四)",
+    "",
+    "Koreana Hotel"
+   ],
+   [
+    "D7",
+    "11/27(五)",
+    "",
+    "Koreana Hotel"
+   ],
+   [
+    "D8",
+    "11/28(六)",
+    "07:00 包車→仁川 T1→BR169 11:40 起飛",
+    "返台"
+   ]
+  ],
+  "itineraryRich": null,
+  "tripMeta": null,
+  "recap": null,
+  "members": [],
+  "currency": "KRW",
+  "financeSource": null
+ },
+ {
   "name": "2027-01 日本 藏王 Snow Season 4",
   "country": "日本",
   "flag": "🇯🇵",
