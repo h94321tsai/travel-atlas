@@ -4176,7 +4176,179 @@ window.__TRIPS__ = [
   "recap": null,
   "members": [],
   "currency": "KRW",
-  "financeSource": null
+  "financeSource": {
+   "importVersion": "seoul-2026-receipts-1122-v2",
+   "sourceLabel": "收據記帳已匯入",
+   "sourceNote": "依 11/22 收據登錄。付款及消費對象先暫列「我」，韓元以 0.023 估算台幣。",
+   "nativeExpenses": [
+    {
+     "id": "receipt-2026-11-22-daiso",
+     "title": "DAISO 首爾市廳廣場店",
+     "category": "shop",
+     "payer": "我",
+     "consumers": [
+      "我"
+     ],
+     "amount": 13000,
+     "currency": "KRW",
+     "date": "2026-11-22",
+     "rate": 0.023,
+     "est": true,
+     "twd": 299,
+     "shares": {
+      "我": 1
+     },
+     "extras": {},
+     "note": "12:47｜髮梳 ₩2,000、女用手套 ₩5,000、衛生棉 ₩2,000、凝膠筆 2 支各 ₩2,000。",
+     "createdAt": 0,
+     "updatedAt": 0,
+     "deleted": false
+    },
+    {
+     "id": "receipt-2026-11-22-olive-young",
+     "title": "Olive Young 彩妝與保養",
+     "category": "shop",
+     "payer": "我",
+     "consumers": [
+      "我"
+     ],
+     "amount": 226350,
+     "currency": "KRW",
+     "date": "2026-11-22",
+     "rate": 0.023,
+     "est": true,
+     "twd": 5206,
+     "shares": {
+      "我": 1
+     },
+     "extras": {},
+     "note": "13:01｜面膜、睫毛加熱器、妝前乳、粉底、頭皮刷、精華、粉撲、定妝噴霧、修護保養、暖暖包 2 個、唇筆 2 支、染眉膏、甘皮剪、痘痘貼及其他彩妝。商品 ₩241,300，折扣 ₩1,950，即時退稅 ₩13,000。退稅後以禮券 ₩50,000、刷卡 ₩176,350 支付。",
+     "createdAt": 0,
+     "updatedAt": 0,
+     "deleted": false
+    },
+    {
+     "id": "receipt-2026-11-22-uniqlo-gwanghwamun",
+     "title": "UNIQLO 光化門 D-Tower 店",
+     "category": "shop",
+     "payer": "我",
+     "consumers": [
+      "我"
+     ],
+     "amount": 52600,
+     "currency": "KRW",
+     "date": "2026-11-22",
+     "rate": 0.023,
+     "est": true,
+     "twd": 1210,
+     "shares": {
+      "我": 1
+     },
+     "extras": {},
+     "note": "15:53｜衣物 4 件，原額 ₩55,600，即時退稅 ₩3,000。",
+     "createdAt": 0,
+     "updatedAt": 0,
+     "deleted": false
+    },
+    {
+     "id": "receipt-2026-11-22-topten",
+     "title": "TOPTEN10 明洞二店",
+     "category": "shop",
+     "payer": "我",
+     "consumers": [
+      "我"
+     ],
+     "amount": 122000,
+     "currency": "KRW",
+     "date": "2026-11-22",
+     "rate": 0.023,
+     "est": true,
+     "twd": 2806,
+     "shares": {
+      "我": 1
+     },
+     "extras": {},
+     "note": "19:09｜女用羽絨外套 ₩149,900、紙袋 ₩100，折扣 ₩20,000，即時退稅 ₩8,000。",
+     "createdAt": 0,
+     "updatedAt": 0,
+     "deleted": false
+    },
+    {
+     "id": "receipt-2026-11-22-uniqlo-myeongdong",
+     "title": "UNIQLO 明洞店",
+     "category": "shop",
+     "payer": "我",
+     "consumers": [
+      "我"
+     ],
+     "amount": 32900,
+     "currency": "KRW",
+     "date": "2026-11-22",
+     "rate": 0.023,
+     "est": true,
+     "twd": 757,
+     "shares": {
+      "我": 1
+     },
+     "extras": {},
+     "note": "19:45｜衣物 1 件，原額 ₩34,900，即時退稅 ₩2,000。",
+     "createdAt": 0,
+     "updatedAt": 0,
+     "deleted": false
+    },
+    {
+     "id": "receipt-2026-11-22-lady-pharmacy",
+     "title": "明洞 Lady 藥局",
+     "category": "shop",
+     "payer": "我",
+     "consumers": [
+      "我"
+     ],
+     "amount": 114000,
+     "currency": "KRW",
+     "date": "2026-11-22",
+     "rate": 0.023,
+     "est": true,
+     "twd": 2622,
+     "shares": {
+      "我": 1
+     },
+     "extras": {},
+     "note": "19:59｜Rejewel PDRN 面霜 ₩80,000、唇部精華 ₩16,000、Dr. Rejewel PDRN 舒緩防曬精華 ₩25,000。原額 ₩121,000，即時退稅 ₩7,000。",
+     "createdAt": 0,
+     "updatedAt": 0,
+     "deleted": false
+    },
+    {
+     "id": "receipt-2026-11-22-sindonggung",
+     "title": "新東宮馬鈴薯排骨湯 明洞店",
+     "category": "food",
+     "payer": "我",
+     "consumers": [
+      "我"
+     ],
+     "amount": 55000,
+     "currency": "KRW",
+     "date": "2026-11-22",
+     "rate": 0.023,
+     "est": true,
+     "twd": 1265,
+     "shares": {
+      "我": 1
+     },
+     "extras": {},
+     "note": "21:27｜晚餐，刷卡 ₩55,000。",
+     "createdAt": 0,
+     "updatedAt": 0,
+     "deleted": false
+    }
+   ],
+   "members": [
+    "我",
+    "爸",
+    "媽"
+   ]
+  }
  },
  {
   "name": "2027-01 日本 藏王 Snow Season 4",
