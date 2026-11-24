@@ -810,3 +810,5 @@ body.trip-detail-open{background-color:#e7dfd0;background-image:radial-gradient(
 .shop-swipe-row.is-open .shop-swipe-actions{clip-path:inset(0 0 0 calc(var(--shop-action-width) + var(--shop-drag-offset, -132px)));}
 .shop-swipe-row.is-dragging .trip-shop-item{transition:none;transform:translateX(var(--shop-drag-offset, 0px));}
 .shop-swipe-row:focus-visible{outline:2px solid #237bb0;outline-offset:-2px;}
+.shopping-heading,.shop-head-tools{flex-wrap:wrap;}
+.shop-head-tools{gap:6px 10px;}

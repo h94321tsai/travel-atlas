@@ -73,7 +73,7 @@
         </div>
       </details>`).join('')}${(meta.collections||[]).map(c=>`${c.collapsible?`<details class="itinerary-collection trip-note"><summary><h3>${esc(c.title)}</h3></summary><div class="trip-note-body">`:`<section class="itinerary-collection"><h3>${esc(c.title)}</h3>`}${c.note?`<p class="trip-small">${esc(c.note)}</p>`:''}<ul>${(c.items||[]).map(item=>`<li>${item.url&&url(item.url)?`<a href="${url(item.url)}" target="_blank" rel="noopener noreferrer">${esc(item.n)} ↗</a>`:esc(item.n)}</li>`).join('')}</ul>${(c.sections||[]).map(section=>`<div class="transport-note-section"><h4>${esc(section.title)}</h4><dl>${(section.items||[]).map(item=>`<div><dt>${esc(item.label)}</dt><dd>${esc(item.text)}</dd></div>`).join('')}</dl></div>`).join('')}${c.collapsible?'</div></details>':'</section>'}`).join('')}`;
   }
-  function shopping(){return `<div class="trip-section-head shopping-heading"><h2>SHOPPING / 購物清單</h2><span class="shop-head-tools"><span id="trip-shop-progress" class="trip-small" aria-live="polite"></span><button type="button" class="shop-hide-toggle" aria-pressed="false">隱藏已買</button></span></div>${(trip.buyTiming||[]).length?`<details class="shop-timing"><summary>採買時間提醒</summary><div>${trip.buyTiming.map(x=>`<p>${esc(x)}</p>`).join('')}</div></details>`:''}${(trip.shopping||[]).map((g,gi)=>`${g.store&&g.store!==trip.shopping[gi-1]?.store?`<h3 class="shop-store">${esc(g.store)}</h3>`:''}<details class="trip-shop-group${g.store?' in-store':''}" open><summary><h3>${esc((g.group||'購物').replace(/^[^\p{L}\p{N}]+/u,''))}</h3><span class="shop-group-count">${(g.items||[]).length} 項</span></summary>${g.note?`<p class="shop-group-note">${esc(g.note)}</p>`:''}<div class="trip-shop-list">${(g.items||[]).map((item,ii)=>`${item.brand&&item.brand!==g.items[ii-1]?.brand?`<p class="shop-brand">${esc(item.brand)}</p>`:''}<div class="shop-swipe-row" tabindex="0" role="group" aria-label="${esc(item.name)}，按向左鍵開啟購買選項"><div class="shop-swipe-actions" hidden><button type="button" data-shop-status="later" aria-pressed="false">下次買</button><button type="button" data-shop-status="skip" aria-pressed="false">不買了</button></div><label class="trip-shop-item"><input type="checkbox" data-shop="${gi}:${ii}" data-name="${esc(item.name)}" aria-label="已購買 ${esc(item.name)}">${item.imgs?.[0]?`<span class="shop-photo-trigger" role="button" tabindex="0" data-shop-photo="${gi}:${ii}" aria-label="放大 ${esc(item.name)}，共 ${item.imgs.length} 張照片"><img loading="lazy" src="${url((trip.imageBase||'')+'/'+item.imgs[0])}" alt="${esc(item.name)}">${item.imgs.length>1?`<span class="shop-photo-count">${item.imgs.length} 張</span>`:''}</span>`:'<span class="shop-no-image" aria-hidden="true"></span>'}<span class="shop-copy"><strong>${esc(item.name)}</strong>${item.desc?`<p>${esc(item.desc)}</p>`:''}${item.price?`<em>${esc(item.price)}</em>`:''}<span class="shop-status" hidden></span></span></label></div>`).join('')}</div></details>`).join('')||empty('這趟還沒有購物清單。')}`;}
+  function shopping(){return `<div class="trip-section-head shopping-heading"><h2>SHOPPING / 購物清單</h2><span class="shop-head-tools"><span id="trip-shop-progress" class="trip-small" aria-live="polite"></span><button type="button" class="shop-hide-toggle" aria-pressed="false">隱藏已買</button><button type="button" class="shop-hide-toggle shop-show-processed" aria-pressed="false">顯示已處理</button></span></div>${(trip.buyTiming||[]).length?`<details class="shop-timing"><summary>採買時間提醒</summary><div>${trip.buyTiming.map(x=>`<p>${esc(x)}</p>`).join('')}</div></details>`:''}${(trip.shopping||[]).map((g,gi)=>`${g.store&&g.store!==trip.shopping[gi-1]?.store?`<h3 class="shop-store">${esc(g.store)}</h3>`:''}<details class="trip-shop-group${g.store?' in-store':''}" open><summary><h3>${esc((g.group||'購物').replace(/^[^\p{L}\p{N}]+/u,''))}</h3><span class="shop-group-count">${(g.items||[]).length} 項</span></summary>${g.note?`<p class="shop-group-note">${esc(g.note)}</p>`:''}<div class="trip-shop-list">${(g.items||[]).map((item,ii)=>`${item.brand&&item.brand!==g.items[ii-1]?.brand?`<p class="shop-brand">${esc(item.brand)}</p>`:''}<div class="shop-swipe-row" tabindex="0" role="group" aria-label="${esc(item.name)}，按向左鍵開啟購買選項"><div class="shop-swipe-actions" hidden><button type="button" data-shop-status="later" aria-pressed="false">下次買</button><button type="button" data-shop-status="skip" aria-pressed="false">不買了</button></div><label class="trip-shop-item"><input type="checkbox" data-shop="${gi}:${ii}" data-name="${esc(item.name)}" aria-label="已購買 ${esc(item.name)}">${item.imgs?.[0]?`<span class="shop-photo-trigger" role="button" tabindex="0" data-shop-photo="${gi}:${ii}" aria-label="放大 ${esc(item.name)}，共 ${item.imgs.length} 張照片"><img loading="lazy" src="${url((trip.imageBase||'')+'/'+item.imgs[0])}" alt="${esc(item.name)}">${item.imgs.length>1?`<span class="shop-photo-count">${item.imgs.length} 張</span>`:''}</span>`:'<span class="shop-no-image" aria-hidden="true"></span>'}<span class="shop-copy"><strong>${esc(item.name)}</strong>${item.desc?`<p>${esc(item.desc)}</p>`:''}${item.price?`<em>${esc(item.price)}</em>`:''}<span class="shop-status" hidden></span></span></label></div>`).join('')}</div></details>`).join('')||empty('這趟還沒有購物清單。')}`;}
   const allPhotos=[];
   function gallery(){return `<div class="trip-section-head gallery-heading"><h2>MEMORIES / 旅程回顧</h2><span class="trip-small">${count} 張照片</span></div>${photoGroups.map(g=>`<section class="trip-photos-day"><div class="gallery-day-heading"><h3>${esc(g.title)}</h3>${g.date?`<span>${esc(g.date)}</span>`:''}<small>${g.photos.length} 張</small></div><div class="trip-photo-grid trip-memory-mosaic">${g.photos.map((p,pi)=>{const i=allPhotos.push(p)-1;const caption=p.caption||p.spot||p.time||'';return `<button class="trip-photo-button ${g.photos.length>2&&pi%10===0?'memory-feature':g.photos.length>5&&pi%10===5?'memory-wide':''}" data-photo="${i}" aria-label="放大 ${esc(p.caption||p.spot||p.src||'旅行照片')}"><img loading="lazy" src="${url(p.thumb||p.full)}" alt="${esc(p.caption||p.spot||p.src||'旅行照片')}">${caption?`<small>${esc(caption)}</small>`:''}</button>`;}).join('')}</div></section>`).join('')||empty('這趟還沒有回顧照片。')}`;}
   const tabs=[['overview','總覽',overview],['itinerary','行程',itinerary],['shopping','購物',shopping],['photos','回顧',gallery],['finance','記帳',()=>'<div id="finRoot"></div>']];
@@ -111,7 +111,39 @@
   page.querySelectorAll('[data-shop]').forEach(input=>{const nk='n:'+input.dataset.name;input.checked=has(nk)?Boolean(checked[nk]):has(input.dataset.shop)?Boolean(checked[input.dataset.shop]):localStorage.getItem(`atlas:${trip.name}:${input.dataset.shop}`)==='1';input.addEventListener('change',()=>{checked[nk]=input.checked;checked[input.dataset.shop]=input.checked;setTimeout(applyHide,450);try{localStorage.setItem(shopKey,JSON.stringify(checked));localStorage.setItem(`atlas:${trip.name}:${input.dataset.shop}`,input.checked?'1':'0');}catch{}progress();});});progress();
   // 隱藏已買:整台裝置記住開關;品牌小標/分組全買完也一起收起來
   const hideKey='atlas:shop:hideBought',hideBtn=page.querySelector('.shop-hide-toggle');
-  function applyHide(){const on=hideBtn.getAttribute('aria-pressed')==='true';page.querySelectorAll('.shop-swipe-row').forEach(l=>{l.hidden=on&&l.querySelector('[data-shop]').checked;});page.querySelectorAll('.shop-brand').forEach(b=>{let el=b.nextElementSibling,left=false;while(el&&!el.classList.contains('shop-brand')){if(el.matches('.shop-swipe-row')&&!el.hidden)left=true;el=el.nextElementSibling;}b.hidden=!left;});page.querySelectorAll('.trip-shop-group').forEach(g=>{g.hidden=on&&!g.querySelector('.shop-swipe-row:not([hidden])');});page.querySelectorAll('.shop-store').forEach(h=>{let el=h.nextElementSibling,left=false;while(el&&el.classList.contains('in-store')){if(!el.hidden)left=true;el=el.nextElementSibling;}h.hidden=!left;});}
+  const showProcessed=page.querySelector('.shop-show-processed');
+  function applyHide(){
+    const hideBought=hideBtn.getAttribute('aria-pressed')==='true';
+    const showStatuses=showProcessed.getAttribute('aria-pressed')==='true';
+    page.querySelectorAll('.shop-swipe-row').forEach(row=>{
+      row.hidden=(hideBought&&row.querySelector('[data-shop]').checked)||(!showStatuses&&Boolean(row.dataset.status));
+    });
+    page.querySelectorAll('.shop-brand').forEach(brand=>{
+      let row=brand.nextElementSibling,visible=false;
+      while(row?.matches('.shop-swipe-row')){
+        if(!row.hidden)visible=true;
+        row=row.nextElementSibling;
+      }
+      brand.hidden=!visible;
+    });
+    page.querySelectorAll('.trip-shop-group').forEach(group=>{
+      group.hidden=Boolean(group.querySelector('.shop-swipe-row'))&&!group.querySelector('.shop-swipe-row:not([hidden])');
+    });
+    page.querySelectorAll('.shop-store').forEach(store=>{
+      let group=store.nextElementSibling,visible=false;
+      while(group?.classList.contains('in-store')){
+        if(!group.hidden)visible=true;
+        group=group.nextElementSibling;
+      }
+      store.hidden=!visible;
+    });
+  }
+  showProcessed.addEventListener('click',()=>{
+    const show=showProcessed.getAttribute('aria-pressed')!=='true';
+    showProcessed.setAttribute('aria-pressed',String(show));
+    showProcessed.textContent=show?'收起已處理':'顯示已處理';
+    applyHide();
+  });
   function setHide(on){hideBtn.setAttribute('aria-pressed',String(on));hideBtn.textContent=on?'顯示全部':'隱藏已買';try{localStorage.setItem(hideKey,on?'1':'0');}catch{}applyHide();}
   hideBtn.addEventListener('click',()=>setHide(hideBtn.getAttribute('aria-pressed')!=='true'));
   let hideOn=false;try{hideOn=localStorage.getItem(hideKey)==='1';}catch{}setHide(hideOn);
@@ -161,6 +193,8 @@
     });
   });
 
+  applyHide();
+
   page.addEventListener('click',event=>{
     if(event.detail&&Date.now()<suppressClickUntil){
       event.preventDefault();
@@ -180,7 +214,12 @@
       }
       saveStatus(row,status);
       setOpenRow(null);
-      if(!event.detail)row.focus();
+      if(status){
+        showProcessed.setAttribute('aria-pressed','false');
+        showProcessed.textContent='顯示已處理';
+      }
+      applyHide();
+      if(!event.detail)(row.hidden?showProcessed:row).focus();
     }else if(openRow){
       setOpenRow(null);
     }
