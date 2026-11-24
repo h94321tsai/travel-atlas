@@ -197,42 +197,67 @@
       toggle.focus();
     }
   });
-  shopPanel.addEventListener('pointerdown',event=>{
+  function startDrag(row,id,x,y){
     suppressClickUntil=0;
-    const row=event.target.closest('.shop-swipe-row');
-    if(!row||!event.isPrimary||event.button!==0||event.target.closest('button'))return;
-    drag={row,id:event.pointerId,x:event.clientX,y:event.clientY,active:false};
-  });
-  shopPanel.addEventListener('pointermove',event=>{
-    if(!drag||drag.id!==event.pointerId)return;
-    const dx=event.clientX-drag.x,dy=event.clientY-drag.y;
+    drag=row?{row,id,x,y,active:false}:null;
+  }
+  function moveDrag(id,x,y,capture){
+    if(!drag||drag.id!==id)return false;
+    const dx=x-drag.x,dy=y-drag.y;
     if(!drag.active){
-      if(Math.abs(dy)>10&&Math.abs(dy)>=Math.abs(dx)){drag=null;return;}
-      if(Math.abs(dx)<9||Math.abs(dx)<=Math.abs(dy))return;
+      if(Math.abs(dy)>10&&Math.abs(dy)>=Math.abs(dx)){drag=null;return false;}
+      if(Math.abs(dx)<9||Math.abs(dx)<=Math.abs(dy))return false;
       drag.active=true;
       drag.wasOpen=openRow===drag.row;
-      drag.row.setPointerCapture(event.pointerId);
+      if(capture)drag.row.setPointerCapture(id);
       setOpenRow(drag.row);
       drag.row.classList.add('is-dragging');
     }
     const offset=Math.min(0,Math.max(-132,(drag.wasOpen?-132:0)+dx));
     drag.row.style.setProperty('--shop-drag-offset',offset+'px');
-  });
-  function finishDrag(event){
-    if(!drag||drag.id!==event.pointerId)return;
+    return true;
+  }
+  function finishDrag(id,x,completed){
+    if(!drag||drag.id!==id)return false;
     const start=drag;
     drag=null;
-    if(!start.active)return;
-    const dx=event.clientX-start.x;
+    if(!start.active)return false;
+    const dx=x-start.x;
     start.row.classList.remove('is-dragging');
     start.row.style.removeProperty('--shop-drag-offset');
-    const open=event.type==='pointerup'?(start.wasOpen?dx<36:dx<=-36):start.wasOpen;
+    const open=completed?(start.wasOpen?dx<36:dx<=-36):start.wasOpen;
     setOpenRow(open?start.row:null);
-    if(event.type==='pointerup')suppressClickUntil=Date.now()+350;
+    if(completed)suppressClickUntil=Date.now()+350;
+    return true;
   }
-  shopPanel.addEventListener('pointerup',finishDrag);
-  shopPanel.addEventListener('pointercancel',finishDrag);
-  shopPanel.addEventListener('lostpointercapture',finishDrag);
+  shopPanel.addEventListener('touchstart',event=>{
+    if(event.touches.length!==1){
+      if(drag)finishDrag(drag.id,drag.x,false);
+      return;
+    }
+    const point=event.touches[0];
+    startDrag(event.target.closest('.shop-swipe-row'),'touch:'+point.identifier,point.clientX,point.clientY);
+  },{passive:true});
+  shopPanel.addEventListener('touchmove',event=>{
+    const point=event.changedTouches[0];
+    if(point&&moveDrag('touch:'+point.identifier,point.clientX,point.clientY,false)&&event.cancelable)event.preventDefault();
+  },{passive:false});
+  shopPanel.addEventListener('touchend',event=>{
+    const point=event.changedTouches[0];
+    if(point&&finishDrag('touch:'+point.identifier,point.clientX,true)&&event.cancelable)event.preventDefault();
+  },{passive:false});
+  shopPanel.addEventListener('touchcancel',event=>{
+    const point=event.changedTouches[0];
+    if(point)finishDrag('touch:'+point.identifier,point.clientX,false);
+  },{passive:true});
+  shopPanel.addEventListener('pointerdown',event=>{
+    if(event.pointerType==='touch'||!event.isPrimary||event.button!==0)return;
+    startDrag(event.target.closest('.shop-swipe-row'),event.pointerId,event.clientX,event.clientY);
+  });
+  shopPanel.addEventListener('pointermove',event=>moveDrag(event.pointerId,event.clientX,event.clientY,true));
+  for(const type of ['pointerup','pointercancel','lostpointercapture']){
+    shopPanel.addEventListener(type,event=>finishDrag(event.pointerId,event.clientX,type==='pointerup'));
+  }
   shopPanel.addEventListener('dragstart',event=>{
     if(event.target.closest('.shop-swipe-row'))event.preventDefault();
   });
