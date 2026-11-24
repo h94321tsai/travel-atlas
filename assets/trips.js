@@ -3429,6 +3429,15 @@ window.__TRIPS__ = [
       "brand": "ABOUT_TONE"
      },
      {
+      "name": "AMUSE 水光精華液態腮紅 Dew Serum Liquid Blush",
+      "desc": "截圖勾選 S05 Ubera（우베라）／P01 Vanilla Shell（바닐라 쉘）",
+      "price": "",
+      "imgs": [
+       "20261125_AMUSE_液態腮紅.jpg"
+      ],
+      "brand": "AMUSE"
+     },
+     {
       "name": "AOU 睫毛膏 All Day Mascara",
       "desc": "#01 Volume Black（볼륨 블랙）",
       "price": "",
@@ -3466,6 +3475,15 @@ window.__TRIPS__ = [
        "07_BANILACO_免膠睫毛.jpg"
       ],
       "brand": "BANILA CO"
+     },
+     {
+      "name": "CLIO 眼影盤 Pro Eye Palette Air",
+      "desc": "#03 Mute Library",
+      "price": "",
+      "imgs": [
+       "20261125_CLIO_眼影盤_03.jpg"
+      ],
+      "brand": "CLIO"
      },
      {
       "name": "fillimilli 充電式燙睫毛器",
@@ -3875,6 +3893,30 @@ window.__TRIPS__ = [
       "imgs": [
        "s2_DrYou_蛋白質脆片.jpg"
       ]
+     },
+     {
+      "name": "HAITAI 海太 Oh Yes 冷萃咖啡巧克力蛋糕",
+      "desc": "해태 오예스 콜드브루・12 入・樂天超市找",
+      "price": "",
+      "imgs": [
+       "20261125_HAITAI_冷萃咖啡蛋糕.jpg"
+      ]
+     },
+     {
+      "name": "農心 麵包部長巧克力可頌造型餅乾",
+      "desc": "농심 빵부장 초코빵 스낵・樂天超市找",
+      "price": "",
+      "imgs": [
+       "20261125_Nongshim_巧克力可頌餅乾.jpg"
+      ]
+     },
+     {
+      "name": "Orion 好麗友 SUN 香辣波浪玉米脆片",
+      "desc": "오리온 돌아온 썬 핫스파이시・樂天超市找",
+      "price": "",
+      "imgs": [
+       "20261125_Orion_SUN_香辣玉米脆片.jpg"
+      ]
      }
     ]
    },
@@ -3899,6 +3941,24 @@ window.__TRIPS__ = [
        "15_廣藏市場.jpg",
        "16_廣藏市場_潮牌街.jpg",
        "17_廣藏市場_營業時間.jpg"
+      ]
+     },
+     {
+      "name": "MONOROW NOA (M) 黑色編織肩背包",
+      "desc": "中尺寸・現場試背",
+      "price": "",
+      "imgs": [
+       "20261125_MONOROW_NOA_M.jpg",
+       "20261125_MONOROW_品牌.jpg"
+      ]
+     },
+     {
+      "name": "MONOROW NOA (L) 黑色編織肩背包",
+      "desc": "大尺寸・現場試背",
+      "price": "",
+      "imgs": [
+       "20261125_MONOROW_NOA_L.jpg",
+       "20261125_MONOROW_品牌.jpg"
       ]
      }
     ]
