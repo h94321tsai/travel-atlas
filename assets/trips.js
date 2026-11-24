@@ -3731,7 +3731,7 @@ window.__TRIPS__ = [
     "store": "🫒 Olive Young"
    },
    {
-    "group": "🛁 身體・頭髮・生活",
+    "group": "🛁 身體・頭髮・保健・生活",
     "note": "",
     "items": [
      {
@@ -3781,6 +3781,14 @@ window.__TRIPS__ = [
       "imgs": [
        "11_DOSSY_睡衣.jpg"
       ]
+     },
+     {
+      "name": "RE4DAY 女性綜合內服美容液 All-in-One Women Plus",
+      "desc": "올인원 우먼플러스・液態膠原＋46 種成分，皮膚／體態／代謝・保健區找，可能在 Olive Young",
+      "price": "",
+      "imgs": [
+       "s2_RE4DAY_女性綜合.jpg"
+      ]
      }
     ],
     "store": "🫒 Olive Young"
@@ -3824,7 +3832,48 @@ window.__TRIPS__ = [
       "desc": "요거트 찹쌀떡・IG honeybadger_seoul 推薦",
       "price": "",
       "imgs": [
+       "03_優格麻糬_包裝.png",
        "03_優格麻糬.jpg"
+      ]
+     },
+     {
+      "name": "樂天 Anytime 薄荷糖",
+      "desc": "롯데 애니타임 민트맛・無蔗糖、木糖醇",
+      "price": "",
+      "imgs": [
+       "s2_樂天_Anytime薄荷糖.jpg"
+      ]
+     },
+     {
+      "name": "HBAF 蜂蜜奶油爆米花",
+      "desc": "허니버터 팝콘 Honey Butter Popcorn",
+      "price": "",
+      "imgs": [
+       "s2_HBAF_蜂蜜奶油爆米花.jpg"
+      ]
+     },
+     {
+      "name": "18 層千層吐司",
+      "desc": "18겹 밀푀유 식빵 320g・可以一層層撕、香甜牛奶味・保存期限短，最後幾天再買",
+      "price": "",
+      "imgs": [
+       "s2_18層千層吐司.jpg"
+      ]
+     },
+     {
+      "name": "不倒翁 韓式雜菜粉絲（乾拌）",
+      "desc": "오뚜기 옛날 잡채 300g（4 包）・5 分鐘煮好",
+      "price": "",
+      "imgs": [
+       "s2_不倒翁_雜菜粉絲.jpg"
+      ]
+     },
+     {
+      "name": "Dr.You 高蛋白脆片 莎莎醬口味",
+      "desc": "닥터유 단백질칩 칠리살사맛 60g・12g 蛋白質、脂肪少 40%",
+      "price": "₩1,380",
+      "imgs": [
+       "s2_DrYou_蛋白質脆片.jpg"
       ]
      }
     ]

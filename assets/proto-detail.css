@@ -784,3 +784,9 @@ body.trip-detail-open{background-color:#e7dfd0;background-image:radial-gradient(
 .shop-brand{font:700 .7rem/1 "Space Mono",monospace;letter-spacing:.08em;color:#8c7d68;margin:20px 0 2px;padding:5px 10px;background:#efe7d6;border-radius:4px;display:inline-block;}
 .trip-shop-list>.shop-brand:first-child{margin-top:4px;}
 @media(max-width:420px){.trip-shop-group.in-store{margin-left:4px;padding-left:10px!important;}}
+
+/* 隱藏已買開關 */
+.shop-head-tools{display:flex;align-items:center;gap:10px;margin-left:auto;}
+.shop-hide-toggle{font:500 .72rem "Noto Sans TC",sans-serif;color:#617faa;background:#fbf7ee;border:1px solid #d9cfbc;border-radius:20px;padding:5px 12px;cursor:pointer;white-space:nowrap;}
+.shop-hide-toggle[aria-pressed="true"]{background:#617faa;color:#fbf7ee;border-color:#617faa;}
+.trip-shop-item[hidden],.shop-brand[hidden],.trip-shop-group[hidden],.shop-store[hidden]{display:none!important;}
