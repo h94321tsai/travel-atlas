@@ -790,3 +790,19 @@ body.trip-detail-open{background-color:#e7dfd0;background-image:radial-gradient(
 .shop-hide-toggle{font:500 .72rem "Noto Sans TC",sans-serif;color:#617faa;background:#fbf7ee;border:1px solid #d9cfbc;border-radius:20px;padding:5px 12px;cursor:pointer;white-space:nowrap;}
 .shop-hide-toggle[aria-pressed="true"]{background:#617faa;color:#fbf7ee;border-color:#617faa;}
 .trip-shop-item[hidden],.shop-brand[hidden],.trip-shop-group[hidden],.shop-store[hidden]{display:none!important;}
+
+.shop-swipe-row{position:relative;overflow:hidden;touch-action:pan-y pinch-zoom;--shop-action-width:132px;}
+.shop-swipe-row+.shop-swipe-row{border-top:1px solid #e9e0d166;}
+.shop-swipe-row[hidden],.shop-swipe-actions[hidden],.shop-status[hidden]{display:none;}
+.shop-swipe-row .trip-shop-item{padding-right:36px;}
+.shop-swipe-row .trip-shop-item,.shop-swipe-toggle{transition:transform .18s ease-out;}
+.shop-swipe-row.is-open .trip-shop-item,.shop-swipe-row.is-open .shop-swipe-toggle{transform:translateX(calc(-1 * var(--shop-action-width)));}
+.shop-swipe-toggle{position:absolute;inset:0 0 0 auto;margin:auto 0;width:36px;height:44px;border:0;background:none;color:#655b4f;font-size:1.2rem;cursor:pointer;}
+.shop-swipe-actions{position:absolute;inset:0 0 0 auto;display:flex;width:var(--shop-action-width);}
+.shop-swipe-actions button{flex:1;padding:0 4px;border:0;color:#fff;background:#465f7a;font:inherit;font-size:.78rem;cursor:pointer;}
+.shop-swipe-actions button+button{background:#814f4a;}
+.shop-swipe-actions button[aria-pressed="true"]{text-decoration:underline;text-underline-offset:.25em;}
+.shop-swipe-actions button:focus-visible,.shop-swipe-toggle:focus-visible{outline:2px solid currentColor;outline-offset:-4px;}
+.shop-status{display:block;margin-top:5px;color:#465f7a;font-size:.74rem;}
+.shop-swipe-row[data-status="skip"] .shop-status{color:#814f4a;}
+@media(prefers-reduced-motion:reduce){.shop-swipe-row .trip-shop-item,.shop-swipe-toggle{transition:none;}}
