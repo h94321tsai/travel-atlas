@@ -73,7 +73,7 @@
         </div>
       </details>`).join('')}${(meta.collections||[]).map(c=>`${c.collapsible?`<details class="itinerary-collection trip-note"><summary><h3>${esc(c.title)}</h3></summary><div class="trip-note-body">`:`<section class="itinerary-collection"><h3>${esc(c.title)}</h3>`}${c.note?`<p class="trip-small">${esc(c.note)}</p>`:''}<ul>${(c.items||[]).map(item=>`<li>${item.url&&url(item.url)?`<a href="${url(item.url)}" target="_blank" rel="noopener noreferrer">${esc(item.n)} ↗</a>`:esc(item.n)}</li>`).join('')}</ul>${(c.sections||[]).map(section=>`<div class="transport-note-section"><h4>${esc(section.title)}</h4><dl>${(section.items||[]).map(item=>`<div><dt>${esc(item.label)}</dt><dd>${esc(item.text)}</dd></div>`).join('')}</dl></div>`).join('')}${c.collapsible?'</div></details>':'</section>'}`).join('')}`;
   }
-  function shopping(){return `<div class="trip-section-head shopping-heading"><h2>SHOPPING / 購物清單</h2><span class="shop-head-tools"><span id="trip-shop-progress" class="trip-small" aria-live="polite"></span><button type="button" class="shop-hide-toggle" aria-pressed="false">隱藏已買</button></span></div>${(trip.buyTiming||[]).length?`<details class="shop-timing"><summary>採買時間提醒</summary><div>${trip.buyTiming.map(x=>`<p>${esc(x)}</p>`).join('')}</div></details>`:''}${(trip.shopping||[]).map((g,gi)=>`${g.store&&g.store!==trip.shopping[gi-1]?.store?`<h3 class="shop-store">${esc(g.store)}</h3>`:''}<details class="trip-shop-group${g.store?' in-store':''}" open><summary><h3>${esc((g.group||'購物').replace(/^[^\p{L}\p{N}]+/u,''))}</h3><span class="shop-group-count">${(g.items||[]).length} 項</span></summary>${g.note?`<p class="shop-group-note">${esc(g.note)}</p>`:''}<div class="trip-shop-list">${(g.items||[]).map((item,ii)=>`${item.brand&&item.brand!==g.items[ii-1]?.brand?`<p class="shop-brand">${esc(item.brand)}</p>`:''}<div class="shop-swipe-row"><div class="shop-swipe-actions" hidden><button type="button" data-shop-status="later" aria-pressed="false">下次買</button><button type="button" data-shop-status="skip" aria-pressed="false">不買</button></div><label class="trip-shop-item"><input type="checkbox" data-shop="${gi}:${ii}" data-name="${esc(item.name)}" aria-label="已購買 ${esc(item.name)}">${item.imgs?.[0]?`<span class="shop-photo-trigger" role="button" tabindex="0" data-shop-photo="${gi}:${ii}" aria-label="放大 ${esc(item.name)}，共 ${item.imgs.length} 張照片"><img loading="lazy" src="${url((trip.imageBase||'')+'/'+item.imgs[0])}" alt="${esc(item.name)}">${item.imgs.length>1?`<span class="shop-photo-count">${item.imgs.length} 張</span>`:''}</span>`:'<span class="shop-no-image" aria-hidden="true"></span>'}<span class="shop-copy"><strong>${esc(item.name)}</strong>${item.desc?`<p>${esc(item.desc)}</p>`:''}${item.price?`<em>${esc(item.price)}</em>`:''}<span class="shop-status" hidden></span></span></label><button type="button" class="shop-swipe-toggle" aria-label="${esc(item.name)}的購買選項" aria-expanded="false">⋯</button></div>`).join('')}</div></details>`).join('')||empty('這趟還沒有購物清單。')}`;}
+  function shopping(){return `<div class="trip-section-head shopping-heading"><h2>SHOPPING / 購物清單</h2><span class="shop-head-tools"><span id="trip-shop-progress" class="trip-small" aria-live="polite"></span><button type="button" class="shop-hide-toggle" aria-pressed="false">隱藏已買</button></span></div>${(trip.buyTiming||[]).length?`<details class="shop-timing"><summary>採買時間提醒</summary><div>${trip.buyTiming.map(x=>`<p>${esc(x)}</p>`).join('')}</div></details>`:''}${(trip.shopping||[]).map((g,gi)=>`${g.store&&g.store!==trip.shopping[gi-1]?.store?`<h3 class="shop-store">${esc(g.store)}</h3>`:''}<details class="trip-shop-group${g.store?' in-store':''}" open><summary><h3>${esc((g.group||'購物').replace(/^[^\p{L}\p{N}]+/u,''))}</h3><span class="shop-group-count">${(g.items||[]).length} 項</span></summary>${g.note?`<p class="shop-group-note">${esc(g.note)}</p>`:''}<div class="trip-shop-list">${(g.items||[]).map((item,ii)=>`${item.brand&&item.brand!==g.items[ii-1]?.brand?`<p class="shop-brand">${esc(item.brand)}</p>`:''}<div class="shop-swipe-row" tabindex="0" role="group" aria-label="${esc(item.name)}，按向左鍵開啟購買選項"><div class="shop-swipe-actions" hidden><button type="button" data-shop-status="later" aria-pressed="false">下次買</button><button type="button" data-shop-status="skip" aria-pressed="false">不買了</button></div><label class="trip-shop-item"><input type="checkbox" data-shop="${gi}:${ii}" data-name="${esc(item.name)}" aria-label="已購買 ${esc(item.name)}">${item.imgs?.[0]?`<span class="shop-photo-trigger" role="button" tabindex="0" data-shop-photo="${gi}:${ii}" aria-label="放大 ${esc(item.name)}，共 ${item.imgs.length} 張照片"><img loading="lazy" src="${url((trip.imageBase||'')+'/'+item.imgs[0])}" alt="${esc(item.name)}">${item.imgs.length>1?`<span class="shop-photo-count">${item.imgs.length} 張</span>`:''}</span>`:'<span class="shop-no-image" aria-hidden="true"></span>'}<span class="shop-copy"><strong>${esc(item.name)}</strong>${item.desc?`<p>${esc(item.desc)}</p>`:''}${item.price?`<em>${esc(item.price)}</em>`:''}<span class="shop-status" hidden></span></span></label></div>`).join('')}</div></details>`).join('')||empty('這趟還沒有購物清單。')}`;}
   const allPhotos=[];
   function gallery(){return `<div class="trip-section-head gallery-heading"><h2>MEMORIES / 旅程回顧</h2><span class="trip-small">${count} 張照片</span></div>${photoGroups.map(g=>`<section class="trip-photos-day"><div class="gallery-day-heading"><h3>${esc(g.title)}</h3>${g.date?`<span>${esc(g.date)}</span>`:''}<small>${g.photos.length} 張</small></div><div class="trip-photo-grid trip-memory-mosaic">${g.photos.map((p,pi)=>{const i=allPhotos.push(p)-1;const caption=p.caption||p.spot||p.time||'';return `<button class="trip-photo-button ${g.photos.length>2&&pi%10===0?'memory-feature':g.photos.length>5&&pi%10===5?'memory-wide':''}" data-photo="${i}" aria-label="放大 ${esc(p.caption||p.spot||p.src||'旅行照片')}"><img loading="lazy" src="${url(p.thumb||p.full)}" alt="${esc(p.caption||p.spot||p.src||'旅行照片')}">${caption?`<small>${esc(caption)}</small>`:''}</button>`;}).join('')}</div></section>`).join('')||empty('這趟還沒有回顧照片。')}`;}
   const tabs=[['overview','總覽',overview],['itinerary','行程',itinerary],['shopping','購物',shopping],['photos','回顧',gallery],['finance','記帳',()=>'<div id="finRoot"></div>']];
@@ -120,19 +120,17 @@
   let statuses={};
   try{statuses=JSON.parse(localStorage.getItem(statusKey)||'{}')||{};}catch{}
   let openRow=null, drag=null, wheelDistance=0, wheelRow=null, wheelAt=0, suppressClickUntil=0;
-  const statusText={later:'下次買',skip:'不買'};
+  const statusText={later:'下次買',skip:'不買了'};
 
   function setOpenRow(row){
     if(row===openRow)return;
     if(openRow){
       openRow.classList.remove('is-open');
       openRow.querySelector('.shop-swipe-actions').hidden=true;
-      openRow.querySelector('.shop-swipe-toggle').setAttribute('aria-expanded','false');
     }
     openRow=row;
     if(row){
       row.querySelector('.shop-swipe-actions').hidden=false;
-      row.querySelector('.shop-swipe-toggle').setAttribute('aria-expanded','true');
       row.classList.add('is-open');
     }
   }
@@ -182,19 +180,21 @@
       }
       saveStatus(row,status);
       setOpenRow(null);
-      if(!event.detail)row.querySelector('.shop-swipe-toggle').focus();
-    }else if(event.target.closest('.shop-swipe-toggle')){
-      setOpenRow(openRow===row?null:row);
-      if(openRow&&!event.detail)openRow.querySelector('[data-shop-status]').focus();
+      if(!event.detail)row.focus();
     }else if(openRow){
       setOpenRow(null);
     }
   });
   shopPanel.addEventListener('keydown',event=>{
-    if(event.key==='Escape'&&openRow){
-      const toggle=openRow.querySelector('.shop-swipe-toggle');
+    const row=event.target.closest('.shop-swipe-row');
+    if(event.key==='ArrowLeft'&&row===event.target){
+      event.preventDefault();
+      setOpenRow(row);
+      row.querySelector('[data-shop-status]').focus();
+    }else if(event.key==='Escape'&&openRow){
+      const previous=openRow;
       setOpenRow(null);
-      toggle.focus();
+      previous.focus();
     }
   });
   function startDrag(row,id,x,y){
