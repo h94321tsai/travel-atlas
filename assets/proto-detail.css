@@ -806,3 +806,8 @@ body.trip-detail-open{background-color:#e7dfd0;background-image:radial-gradient(
 .shop-status{display:block;margin-top:5px;color:#465f7a;font-size:.74rem;}
 .shop-swipe-row[data-status="skip"] .shop-status{color:#814f4a;}
 @media(prefers-reduced-motion:reduce){.shop-swipe-row .trip-shop-item,.shop-swipe-toggle{transition:none;}}
+
+.shop-swipe-row{overscroll-behavior-x:contain;}
+.shop-swipe-row .trip-shop-item,.shop-swipe-toggle{user-select:none;-webkit-user-select:none;}
+.shop-swipe-row.is-open .shop-swipe-actions{clip-path:inset(0 0 0 calc(var(--shop-action-width) + var(--shop-drag-offset, -132px)));}
+.shop-swipe-row.is-dragging .trip-shop-item,.shop-swipe-row.is-dragging .shop-swipe-toggle{transition:none;transform:translateX(var(--shop-drag-offset, 0px));}

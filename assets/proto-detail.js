@@ -119,7 +119,7 @@
   const statusKey='atlas:shop:status:'+trip.name;
   let statuses={};
   try{statuses=JSON.parse(localStorage.getItem(statusKey)||'{}')||{};}catch{}
-  let openRow=null, touch=null, suppressClickUntil=0;
+  let openRow=null, drag=null, wheelDistance=0, wheelRow=null, wheelAt=0, suppressClickUntil=0;
   const statusText={later:'下次買',skip:'不買'};
 
   function setOpenRow(row){
@@ -197,26 +197,57 @@
       toggle.focus();
     }
   });
-  shopPanel.addEventListener('touchstart',event=>{
+  shopPanel.addEventListener('pointerdown',event=>{
     suppressClickUntil=0;
     const row=event.target.closest('.shop-swipe-row');
-    if(!row||event.touches.length!==1){touch=null;return;}
-    const {identifier,clientX,clientY}=event.touches[0];
-    touch={row,identifier,clientX,clientY};
-  },{passive:true});
-  shopPanel.addEventListener('touchcancel',()=>{touch=null;},{passive:true});
-  shopPanel.addEventListener('touchend',event=>{
-    if(!touch)return;
-    const start=touch;
-    touch=null;
-    const end=Array.from(event.changedTouches).find(point=>point.identifier===start.identifier);
-    if(!end)return;
-    const dx=end.clientX-start.clientX,dy=end.clientY-start.clientY;
-    if(Math.abs(dx)<45||Math.abs(dx)<Math.abs(dy)*1.4)return;
-    if(event.cancelable)event.preventDefault();
-    suppressClickUntil=Date.now()+350;
-    if(dx<0)setOpenRow(start.row);
-    else if(openRow===start.row)setOpenRow(null);
+    if(!row||!event.isPrimary||event.button!==0||event.target.closest('button'))return;
+    drag={row,id:event.pointerId,x:event.clientX,y:event.clientY,active:false};
+  });
+  shopPanel.addEventListener('pointermove',event=>{
+    if(!drag||drag.id!==event.pointerId)return;
+    const dx=event.clientX-drag.x,dy=event.clientY-drag.y;
+    if(!drag.active){
+      if(Math.abs(dy)>10&&Math.abs(dy)>=Math.abs(dx)){drag=null;return;}
+      if(Math.abs(dx)<9||Math.abs(dx)<=Math.abs(dy))return;
+      drag.active=true;
+      drag.wasOpen=openRow===drag.row;
+      drag.row.setPointerCapture(event.pointerId);
+      setOpenRow(drag.row);
+      drag.row.classList.add('is-dragging');
+    }
+    const offset=Math.min(0,Math.max(-132,(drag.wasOpen?-132:0)+dx));
+    drag.row.style.setProperty('--shop-drag-offset',offset+'px');
+  });
+  function finishDrag(event){
+    if(!drag||drag.id!==event.pointerId)return;
+    const start=drag;
+    drag=null;
+    if(!start.active)return;
+    const dx=event.clientX-start.x;
+    start.row.classList.remove('is-dragging');
+    start.row.style.removeProperty('--shop-drag-offset');
+    const open=event.type==='pointerup'?(start.wasOpen?dx<36:dx<=-36):start.wasOpen;
+    setOpenRow(open?start.row:null);
+    if(event.type==='pointerup')suppressClickUntil=Date.now()+350;
+  }
+  shopPanel.addEventListener('pointerup',finishDrag);
+  shopPanel.addEventListener('pointercancel',finishDrag);
+  shopPanel.addEventListener('lostpointercapture',finishDrag);
+  shopPanel.addEventListener('dragstart',event=>{
+    if(event.target.closest('.shop-swipe-row'))event.preventDefault();
+  });
+  shopPanel.addEventListener('wheel',event=>{
+    const row=event.target.closest('.shop-swipe-row');
+    const delta=event.deltaX|| (event.shiftKey?event.deltaY:0);
+    if(!row||!delta||(!event.shiftKey&&Math.abs(delta)<=Math.abs(event.deltaY)))return;
+    event.preventDefault();
+    const now=Date.now();
+    if(wheelRow!==row||now-wheelAt>220)wheelDistance=0;
+    wheelRow=row;
+    wheelAt=now;
+    wheelDistance+=delta*(event.deltaMode===1?16:1);
+    if(wheelDistance>=26)setOpenRow(row);
+    if(wheelDistance<=-26&&openRow===row)setOpenRow(null);
   },{passive:false});
 
   page.querySelector('.trip-back').addEventListener('click',goHome);
